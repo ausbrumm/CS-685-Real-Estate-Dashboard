@@ -1,4 +1,4 @@
-import pg, { QueryResult, QueryResultRow } from "pg";
+import pg, { QueryResult, QueryResultRow } from 'pg';
 
 // https://node-postgres.com/
 

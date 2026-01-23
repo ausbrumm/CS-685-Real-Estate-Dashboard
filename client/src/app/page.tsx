@@ -1,5 +1,5 @@
 import { MyBarChart } from "../components/BarChart";
-import pool from "../db/db";
+import pool from "../lib/db/db";
 
 export default async function Home() {
   const result = await pool.query<Property>("SELECT * FROM properties");
@@ -10,7 +10,9 @@ export default async function Home() {
         // usage is now safe and autocompletes!
         <div key={property.id}>{property.address}</div>
       ))}
-      <MyBarChart properties={properties} />
+      <div className="w-[50%]">
+        <MyBarChart properties={properties} />
+      </div>
     </div>
   );
 }
