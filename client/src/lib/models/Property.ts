@@ -6,5 +6,6 @@ interface Property {
   bathrooms: number;
   sqft: number;
   listingDate: Date;
-  source: string;  
+  source: string;
 }
+
