@@ -1,12 +1,12 @@
 CREATE DATABASE real_estate_db;
 
-CREATE TABLE IF NOT EXISTS properties (
+CREATE TABLE IF NOT EXISTS metro_us (
     id SERIAL PRIMARY KEY,
-    address VARCHAR(255) NOT NULL,
-    price NUMERIC(15, 2) NOT NULL,
-    bedrooms INT NOT NULL,
-    bathrooms INT NOT NULL,
-    sqft INT NOT NULL,
-    listing_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    region_id NUMERIC(15) NOT NULL,
+    size_rank NUMERIC(15) NOT NULL,
+    region_name VARCHAR(255) NOT NULL,
+    state_name VARCHAR(255) NOT NULL,
+    date DATE NOT NULL,
+    avg_cost NUMERIC(15, 11),
     source VARCHAR(100)
 );
