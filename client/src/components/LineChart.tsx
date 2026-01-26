@@ -1,12 +1,13 @@
-// components/BarChart.tsx
+// components/LineChart.tsx
 "use client";
-import { Bar } from "react-chartjs-2";
+import { Line } from "react-chartjs-2";
 
 import {
   Chart as ChartJS,
   CategoryScale,
   LinearScale,
-  BarElement,
+  PointElement,
+  LineElement,
   Title,
   Tooltip,
   Legend,
@@ -17,7 +18,8 @@ import { Property } from "@/lib/types";
 ChartJS.register(
   CategoryScale,
   LinearScale,
-  BarElement,
+  PointElement,
+  LineElement,
   Title,
   Tooltip,
   Legend,
@@ -30,7 +32,7 @@ type MyChartProps = {
 // TODO: Make this more generic so it can be a reusable component, maybe pass in properties AND the keys of importance?
 //       add options for some of the other values for config?
 
-export function MyBarChart({ properties }: MyChartProps) {
+export function MyLineChart({ properties }: MyChartProps) {
   // Sort properties by price (optional, but good for visualization)
   const sortedProperties = [...properties].sort((a, b) => a.price - b.price);
 
@@ -41,7 +43,7 @@ export function MyBarChart({ properties }: MyChartProps) {
 
   return (
     <div className="mt-[20px] w-full">
-      <Bar
+      <Line
         data={{
           labels: chartLabels,
           datasets: [
@@ -57,7 +59,7 @@ export function MyBarChart({ properties }: MyChartProps) {
         options={{
           responsive: true,
           maintainAspectRatio: false,
-          
+
           scales: {
             y: {
               beginAtZero: true,
