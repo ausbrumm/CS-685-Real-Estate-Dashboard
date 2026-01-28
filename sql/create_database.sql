@@ -10,3 +10,13 @@ CREATE TABLE IF NOT EXISTS metro_us (
     avg_cost NUMERIC(15, 11),
     source VARCHAR(100)
 );
+
+CREATE TABLE IF NOT EXISTS zillow_data (
+    id BIGINT PRIMARY KEY,
+    region_id BIGINT,
+    size_rank INT,
+    region_name TEXT,
+    state_name TEXT,
+    date DATE,
+    avg_cost NUMERIC
+);
