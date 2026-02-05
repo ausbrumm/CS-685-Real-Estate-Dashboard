@@ -136,3 +136,6 @@ temp/
 
 # Cache
 .cache/
+
+# Large TSV
+/server/db/realestateUS.tsv
