@@ -138,4 +138,4 @@ temp/
 .cache/
 
 # Large TSV
-/server/db/realestateUS.tsv
+server/db/*.tsv
