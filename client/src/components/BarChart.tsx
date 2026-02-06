@@ -23,22 +23,39 @@ ChartJS.register(
   Legend,
 );
 
-type MyChartProps = {
-  properties: Property[];
+interface BarChartProps<T extends object> {
+  data: T[];
+  xProp: keyof T;
+  yProp: keyof T;
+  label?: string;
+}
+
+// date format
+// 26-01-01
+const options: Intl.DateTimeFormatOptions = {
+  year: "2-digit",
+  month: "numeric",
+  day: "numeric",
 };
 
-// TODO: Make this more generic so it can be a reusable component, maybe pass in properties AND the keys of importance?
-//       add options for some of the other values for config?
+function formatLabel(value: unknown): string {
+  if (value instanceof Date) {
+    return value.toLocaleDateString(undefined, options);
+  }
+  return String(value);
+}
 
-export function MyBarChart({ properties }: MyChartProps) {
-  // Sort properties by price (optional, but good for visualization)
-  const sortedProperties = [...properties].sort((a, b) => a.price - b.price);
-
-  // Create labels for each bar (e.g., the address)
-  // The X-axis needs a label for every single bar you draw
-  const chartLabels = sortedProperties.map((p) => p.address);
-  const chartData = sortedProperties.map((p) => p.price);
-
+export function MyBarChart<T extends object>({
+  data,
+  xProp,
+  yProp,
+  label = "Property Price",
+}: BarChartProps<T>) {
+  // Create labels for each bar
+  // General bar chart
+  const chartLabels = data.map((p) => formatLabel(p[xProp]));
+  const chartData = data.map((p) => p[yProp]);
+  console.log(data);
   return (
     <div className="mt-[20px] w-full">
       <Bar
@@ -46,7 +63,7 @@ export function MyBarChart({ properties }: MyChartProps) {
           labels: chartLabels,
           datasets: [
             {
-              label: "Property Price", // This is the legend title
+              label: label,
               data: chartData,
               backgroundColor: "#5FC3D6",
               borderColor: "#5FC3D6",
@@ -57,7 +74,7 @@ export function MyBarChart({ properties }: MyChartProps) {
         options={{
           responsive: true,
           maintainAspectRatio: false,
-          
+
           scales: {
             y: {
               beginAtZero: true,
