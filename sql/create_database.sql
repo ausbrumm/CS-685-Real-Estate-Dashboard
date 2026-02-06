@@ -1,28 +1,22 @@
 CREATE DATABASE real_estate_db;
 
--- Table: public.metro_us
+CREATE TABLE IF NOT EXISTS metro_us (
+    id SERIAL PRIMARY KEY,
+    region_id NUMERIC(15) NOT NULL,
+    size_rank NUMERIC(15) NOT NULL,
+    region_name VARCHAR(255) NOT NULL,
+    state_name VARCHAR(255) NOT NULL,
+    date DATE NOT NULL,
+    avg_cost NUMERIC(15, 11),
+    source VARCHAR(100)
+);
 
--- DROP TABLE IF EXISTS public.metro_us;
-
-CREATE TABLE IF NOT EXISTS public.metro_us
-(
-    id bigint NOT NULL DEFAULT nextval('metro_us_id_seq'::regclass),
-    region_id bigint NOT NULL,
-    size_rank integer NOT NULL,
-    date date NOT NULL,
-    avg_cost numeric(15,2),
-    CONSTRAINT metro_us_pkey PRIMARY KEY (id),
-    CONSTRAINT metro_us_region_date_unique UNIQUE (region_id, date),
-    CONSTRAINT metro_us_region_fk FOREIGN KEY (region_id)
-        REFERENCES public.regions (region_id) MATCH SIMPLE
-        ON UPDATE NO ACTION
-        ON DELETE NO ACTION
-)
-
-CREATE TABLE IF NOT EXISTS public.regions
-(
-    region_id bigint NOT NULL,
-    region_name text COLLATE pg_catalog."default",
-    state_name text COLLATE pg_catalog."default",
-    CONSTRAINT regions_pkey PRIMARY KEY (region_id)
-)
+CREATE TABLE IF NOT EXISTS zillow_data (
+    id BIGINT PRIMARY KEY,
+    region_id BIGINT,
+    size_rank INT,
+    region_name TEXT,
+    state_name TEXT,
+    date DATE,
+    avg_cost NUMERIC
+);
