@@ -57,7 +57,7 @@ export function MyBarChart<T extends object>({
   const chartData = data.map((p) => p[yProp]);
   console.log(data);
   return (
-    <div className="mt-[20px] w-full">
+    <div className="mt-[20px] w-full h-full">
       <Bar
         data={{
           labels: chartLabels,
@@ -68,13 +68,21 @@ export function MyBarChart<T extends object>({
               backgroundColor: "#5FC3D6",
               borderColor: "#5FC3D6",
               borderWidth: 1,
+              borderRadius: 4,
             },
           ],
         }}
         options={{
           responsive: true,
           maintainAspectRatio: false,
-
+          layout: {
+            padding: {
+              top: 5,
+              bottom: 5,
+              left: 5,
+              right: 10,
+            },
+          },
           scales: {
             y: {
               beginAtZero: true,

@@ -9,10 +9,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>
+      <body className="relative">
         <Header />
-        <main className="flex flex-col min-h-screen flex-grow items-center">
+        <main className="relative flex flex-col min-h-screen items-center pt-20">
+          <div className="h-20 w-full block" aria-hidden="true"></div>
           {children}
+          <div className="h-10 w-full block" aria-hidden="true"></div>
         </main>
         <Footer />
       </body>

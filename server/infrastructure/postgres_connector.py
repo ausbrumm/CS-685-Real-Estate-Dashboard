@@ -1,12 +1,13 @@
 import logging
 from typing import Optional, Any, Iterator
-import psycopg 
+import psycopg
 from psycopg import sql, Error as PostgresError
 from psycopg.rows import dict_row, tuple_row
 from psycopg_pool import ConnectionPool, AsyncConnectionPool
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
+
 
 class AsyncPostgresConnector:
     """An asynchronous PostgreSQL database connector with connection pooling support."""
@@ -214,15 +215,19 @@ class AsyncPostgresConnector:
         Returns:
             Number of rows copied
         """
-        col_clause = sql.SQL("({})").format(
-            sql.SQL(", ").join(sql.Identifier(c) for c in columns)
-        ) if columns else sql.SQL("")
-        
+        col_clause = (
+            sql.SQL("({})").format(
+                sql.SQL(", ").join(sql.Identifier(c) for c in columns)
+            )
+            if columns
+            else sql.SQL("")
+        )
+
         query = sql.SQL("COPY {} {} FROM STDIN").format(
             sql.Identifier(table),
             col_clause,
         )
-        
+
         async with self._get_connection() as conn:
             async with conn.cursor() as cur:
                 async with cur.copy(query) as copy:
@@ -255,7 +260,9 @@ class AsyncPostgresConnector:
         """Get a connection context manager."""
         if self.use_pool:
             if not self._pool:
-                raise RuntimeError("Connection pool not initialized. Call connect() first.")
+                raise RuntimeError(
+                    "Connection pool not initialized. Call connect() first."
+                )
             return self._pool.connection()
         else:
             if not self._connection:
@@ -275,13 +282,12 @@ class AsyncPostgresConnector:
 
 class _AsyncConnectionWrapper:
     """Simple wrapper to use an existing connection as an async context manager."""
-    
+
     def __init__(self, connection: psycopg.AsyncConnection):
         self._connection = connection
-    
+
     async def __aenter__(self):
         return self._connection
-    
+
     async def __aexit__(self, exc_type, exc_val, exc_tb):
         return False
-

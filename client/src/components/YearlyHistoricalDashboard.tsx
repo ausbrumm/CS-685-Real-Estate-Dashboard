@@ -47,7 +47,7 @@ export default function YearlyHistoricalDashboard({
     params.set("year", String(year));
 
     // update url to force re-render to fetch new data
-    router.push(`/?${params.toString()}`, { scroll: false });
+    router.push(`/historical?${params.toString()}`, { scroll: false });
   };
 
   // Handlers
