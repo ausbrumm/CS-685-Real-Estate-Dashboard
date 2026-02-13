@@ -1,17 +1,20 @@
 from collections import Counter, defaultdict
 import logging
 import random
+import json
+import calendar
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
+
+months = list(calendar.month_name)[1:]
 
 
 class PredictionService:
     def run(self, data, cluster_range=[0, 3]):
         print("\n------------Start-----------------\n")
         start, end = cluster_range
-
-        possible_patterns = ["uuu", "uud", "udu", "udd", "ddd", "ddu", "dud", "duu"]
+        print("Looking at months from", months[start], "to", months[end])
         # setting up yearly buckets
         # https://docs.python.org/3/library/collections.html#collections.defaultdict
         yearly_buckets = defaultdict(lambda: [0] * 12)
@@ -29,7 +32,7 @@ class PredictionService:
             )
             for year, months in yearly_buckets.items()
         }
-        print(subset)
+        print("Subsets", json.dumps(subset, indent=4, sort_keys=True))
 
         # using built in counter class to get counts
         # https://docs.python.org/3/library/collections.html#collections.Counter
@@ -38,7 +41,7 @@ class PredictionService:
         probabilities = {
             pattern: count / total_counts for pattern, count in counts.items()
         }
-
+        print("Probabilities", (json.dumps(probabilities, indent=4, sort_keys=True)))
 
         # generate the probabilities
         predictions = defaultdict(lambda: [])
@@ -50,12 +53,10 @@ class PredictionService:
                     predictions[k].append("D")
                 else:
                     predictions[k].append("U")
-        
-        predictions = { k : max(set(v), key=v.count) for k,v in predictions.items()}
-        print(predictions)
-        print("\n------------END-----------------\n")
 
-        
+        predictions = {k: max(set(v), key=v.count) for k, v in predictions.items()}
+        print("Predictions", json.dumps(predictions, indent=4, sort_keys=True))
+        print("\n------------END-----------------\n")
 
 
 class ZillowData:
