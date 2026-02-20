@@ -7,8 +7,24 @@ import requests
 from io import StringIO
 from typing import Optional
 
-from infrastructure.prediction_service import PredictionService, ZillowData
+# FastAPI
+from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 
+from infrastructure.prediction_service import PredictionService, ZillowData
+from endpoints.prediction_api import router as prediction_router
+
+app = FastAPI(title="Zillow Prediction API")
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+app.include_router(prediction_router)
 
 # Global state
 db: Optional[AsyncPostgresConnector] = None
@@ -75,4 +91,4 @@ async def main():
             pred_service.run(data)
 
 
-asyncio.run(main())
+# asyncio.run(main())

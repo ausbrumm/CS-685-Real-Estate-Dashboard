@@ -14,7 +14,7 @@ class PredictionService:
     def run(self, data, cluster_range=[0, 3]):
         print("\n------------Start-----------------\n")
         start, end = cluster_range
-        print("Looking at months from", months[start], "to", months[end])
+        print("Looking at months from", months[start % 12], "to", months[end % 12])
         # setting up yearly buckets
         # https://docs.python.org/3/library/collections.html#collections.defaultdict
         yearly_buckets = defaultdict(lambda: [0] * 12)
@@ -23,15 +23,21 @@ class PredictionService:
 
         # create subsets of data for the cluster range
         # slicing each year's subset and choosing if U or D for the 3 months prior
-        subset = {
-            year: "".join(
-                "U" if next_m > curr_m else "D"
-                for curr_m, next_m in zip(
-                    months[start : end + 1], months[start + 1 : end + 1]
-                )
-            )
-            for year, months in yearly_buckets.items()
-        }
+        subset = {} 
+        for year, monthly_costs in yearly_buckets.items():
+            pattern_chars = []
+            
+            for i in range(start, end):
+                # bug fix to handle wrap around if we start in the last 3 months of the year
+                curr_idx = i % 12
+                next_idx = (i + 1) % 12
+                
+                curr_val = monthly_costs[curr_idx]
+                next_val = monthly_costs[next_idx]
+                
+                pattern_chars.append("U" if next_val > curr_val else "D")
+            
+            subset[year] = "".join(pattern_chars)
         print("Subsets", json.dumps(subset, indent=4, sort_keys=True))
 
         # using built in counter class to get counts
@@ -57,7 +63,7 @@ class PredictionService:
         predictions = {k: max(set(v), key=v.count) for k, v in predictions.items()}
         print("Predictions", json.dumps(predictions, indent=4, sort_keys=True))
         print("\n------------END-----------------\n")
-
+        return predictions, probabilities, subset, counts
 
 class ZillowData:
     def __init__(self, region_id, region_name, state_name, date, avg_cost):
