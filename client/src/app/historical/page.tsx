@@ -65,9 +65,6 @@ export default async function Historical({ searchParams }: Props) {
       <div>
         <MoYHistoricalDashboard allData={specificRegionData} />
       </div>
-      {/* <div>
-        <StateHistoricalDashboard allData={stateWideResults.rows} />
-      </div> */}
     </div>
   );
 }

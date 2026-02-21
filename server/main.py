@@ -83,12 +83,16 @@ async def main():
             )
 
             data = []
-            print(result[0][3])
+           
             for r in result:
-                data.append(ZillowData(r[1], r[3], r[4], r[5], r[6]))
+               # data.append([r[1], r[3], r[4], r[5], r[6]])
+               data.append([r[5], r[6]]) # date, price
+            
+            
 
             pred_service = PredictionService()
-            pred_service.run(data)
+            pred_service.run2(data, group_size=3)
 
 
-# asyncio.run(main())
+
+asyncio.run(main())
