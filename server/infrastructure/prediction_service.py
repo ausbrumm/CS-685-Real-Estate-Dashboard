@@ -4,6 +4,7 @@ import random
 import json
 import calendar
 from itertools import product
+import numpy as np
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -68,6 +69,7 @@ class PredictionService:
 
 
     def run2(self, data, start=0, group_size=4, repeats=5):
+        
         print("\n------------Start-----------------\n")
         data = sorted(data, key=lambda e: (e[0]))
         patterns = self.generate_patterns(group_size)
@@ -103,22 +105,31 @@ class PredictionService:
                 for i in range(1,5):
                     letter = self.predict_change(change_curr_year, frequencies[s - 1], patterns, idx, group_size)
                     predictions[letter] += 1
-                print(predictions)
-        
+                
+                letter = max(predictions, key=lambda k: predictions[k]) 
+                print(letter)
+               # magnitude = magnitude(change_hist, change_curr_year, letter, idx, k, group_size) + groups[idx + group_size - 2][1]
+
+               #results[i].append([letter, magnitude, month])
+
+            month = month + 4
+        print(results)
 
 
 
         print("\n-------------End-------------------\n")
 
-    def create_groups(self, entries, start=0, group_size=4):
+    def create_groups(self, entries, start=0, group_size=4, k=6):
         """
         Group data into groups of m consecutive months
         """
 
         n = len(entries)
 
-        groups = [[None,None,None] for _ in range(n)] # number of entries, real estate prices, and group
-      
+        groups = [[None,None,None] for _ in range(n)] # date, real estate price, and group
+
+        # store the date and price
+        # calculate the group number     
         for idx in range(n):
             date, price = entries[idx]
             month_offset = date.month - 1
@@ -131,31 +142,54 @@ class PredictionService:
         return groups
 
     def get_changes(self, groups, group_size):
-        
+        '''
+            Get the changes for the groups
+        '''
+        # number of groups
         n = len(groups)
 
         changes = [[None, 0, None] for _ in range(n)]# n years * 12 months, price difference, and change direction
     
+        # go over each group
         for i in range(n // group_size):
+            # loop through group members
             for j in range(group_size):
+
+                # calculate the index for the changes
+                # current group * size of group + current group item
                 idx = i * group_size + j 
+
+                # store the date
                 changes[idx][0] = groups[idx][0]
+
+                # calculate the price difference
                 changes[idx][1] = groups[idx][1] - groups[idx - 1][1]
                 
+                # store the direction based off the differences
                 changes[idx][2] = "U" if changes[idx][1] > 0 else "D"
+        
+        # filter out unset months
         changes = [c for c in changes if c[0] is not None]
         return changes
  
     def get_frequencies(self, changes, group_size, p):
+
+        # number of changes
         y = len(changes)
+
+        # counter to store the change frequencies of the patterns
         freq = Counter()
         
+        # for each roup
         for i in range(1, y//group_size):
             pattern = ""
-            l = p + i
+            # p is 0, 4, and 8... is this just starting point for quartering the data?
+            l = p + i # p + current group
+
+            # look the the range of current quarter (?) + group size 
             for j in range(l, l + group_size):
-                pattern += changes[j][2]
-            freq[pattern] += 1
+                pattern += changes[j][2] # create the pattern 
+            freq[pattern] += 1 # store off in the counter
         return freq 
 
     def predict_change(self, change_curr_year, frequency, patterns, index, group_size):
@@ -163,16 +197,52 @@ class PredictionService:
         for j in range(index + 1, index+group_size -2):
             pattern += change_curr_year[j][2]
         
+        # patter 1 and pattern 2 
         p1 = pattern + 'D'
         p2 = pattern + 'U'
 
+        # frequency of pattern 1 and pattern 2
         f1 = frequency.get(p1, 1)
         f2 = frequency.get(p2, 1)
 
+        # random number between 0 and 1
         x = random.random()
         return "D" if x <= f1 / (f1 + f2) else "U"
 
+
+    def magnitude (change_hist, change_curr_year, letter, index, k):
+        y = len(change_hist)
+        diffs = [[0 for i in range(group_size - 1)] for i in range(y - 2)]
+        dists = [[0 for i in range(1)] for i in range(y - 2)]
+
+        # magnitude is using euclidean distance
+        for j in range(y - 2):
+            for l in range(group_size - 1):
+                diffs[j][l+1] = change_hist[j * group_size + l + 1][1]
+            dists[j] = np.sqrt(sum((diffs[j][t] - change_curr_year[index + t])**2) for t in range(len(diffs)))
+
+        # TODO: Figure out this part of the algorithm. 
+        # Not sure how the indexes and distance portion works yet
+        if letter == "D":
+            pass 
+        else:
+            pass
+
+        # TODO: Figure out how to caluclate the change value
+
+        return
+        
+        
+
+
     def generate_patterns(self, group_size):
+        '''
+        Generates the patterns using itertools.product which takes in an iterable and
+        does the cartesian product
+        Sources:
+        https://docs.python.org/3/library/itertools.html#itertools.product
+        https://stackoverflow.com/questions/2541401/pairwise-crossproduct-in-python#:~:text=You're%20looking%20for%20itertools.
+        '''
         return ["".join(p) for p in product("UD", repeat=group_size)]
 
 class ZillowData:
