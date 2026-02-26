@@ -46,8 +46,35 @@ CREATE TABLE IF NOT EXISTS public.property_listings(
         FOREIGN KEY (region_id) 
         REFERENCES public.regions(region_id)
 );
+-- Create subdivision of coastline to "chunk" the math
+CREATE TABLE coastline_subdivided AS
+-- gid = geographic ID, primary key
+SELECT gid, ST_Subdivide(geom, 255) as geom
+FROM coastline_table;
+-- GIST: genarilized search tree (B-tree), used for sorting spatial data
+CREATE INDEX idx_coast_subdivide_gist ON coastline_subdivided USING GIST (geom);
+
+CREATE TABLE property_geometries AS
+SELECT 
+    id, 
+    ST_SetSRID(ST_Point(lon, lat), 4326)::geometry(Point, 4326) as geom
+FROM property_listings
+WHERE lon IS NOT NULL AND lat IS NOT NULL;
+
+CREATE INDEX idx_prop_geometries_gist ON property_geometries USING GIST (geom);
+
+`CREATE MATERIALIZED VIEW property_listings_geo AS
+SELECT 
+    *, 
+    ST_SetSRID(ST_Point(lon, lat), 4326)::geometry(Point, 4326) as geom
+FROM property_listings
+WHERE lon IS NOT NULL AND lat IS NOT NULL;
+
+CREATE INDEX idx_property_geo_gist ON property_listings_geo USING GIST (geom);`
+
 
 CREATE INDEX IF NOT EXISTS idx_listings_state ON property_listings(state);
 CREATE INDEX IF NOT EXISTS idx_listings_price ON property_listings(price);
 CREATE INDEX IF NOT EXISTS idx_listings_status ON property_listings(status);
 CREATE INDEX IF NOT EXISTS idx_listings_region_id ON property_listings(region_id);
+CREATE INDEX IF NOT EXISTS idx_property_geom_gist ON property_geometries USING gist(geom);
