@@ -15,7 +15,9 @@ months = list(calendar.month_name)[1:]
 class PredictionService:
     # take first 20 years as training set for computing freq
     # for test next 6 years
-    # jan feb march 2020 make prediction for april 2020
+    # so training ~76%
+    # test ~24%
+    # use 3 months before jan feb march 2020 to make prediction for april 2020
     # predict and compare to actual data
     # get count of predict correct vs predict wrong for accuracy
 
@@ -71,6 +73,7 @@ class PredictionService:
                     )
                 )
 
+                # magnitude still but total
                 m = last_known_price + mag if letter == "U" else last_known_price - mag
 
                 results[i].append([letter, m, month])
@@ -80,6 +83,18 @@ class PredictionService:
         return results, patterns, groups, changes, data, frequencies
 
         print("\n-------------End-------------------\n")
+
+    def generate_training_set(data, cutoff):
+        """
+        Generate the training set up to the n months before cutoff
+        """
+        pass
+
+    def generate_test_set(data, cutoff):
+        """
+        Generate the test set up to the n months after cutoff
+        """
+        pass
 
     def create_groups(self, entries, start=0, group_size=4, k=6):
         """
@@ -204,11 +219,13 @@ class PredictionService:
         else:
             candidates = [j for j in range(num_rows) if diffs[j][last_col] >= 0]
 
+        # kth nearest neighbors in each group
         candidates = sorted(candidates, key=lambda j: dists[j])[:k]
 
         if not candidates:
             return 0.0
 
+        # average value of the k nearest neighbors
         change_value = sum(diffs[j][last_col] for j in candidates) / k
         return change_value
 
