@@ -91,8 +91,8 @@ async def main():
             
 
             pred_service = PredictionService()
-            pred_service.run2(data, group_size=3)
+            pred_service.run(data, group_size=3)
 
 
 
-asyncio.run(main())
+#asyncio.run(main())

@@ -23,14 +23,19 @@ DB_CONFIG = {
 class PredictionResponse(BaseModel):
     region_id: int
     region_name: str
-    patterns: Dict[str, str] 
-    probabilities: Dict[str, float]
-    subsets: Dict[int, str]
-    counts: Dict[str, int]
+    patterns: List[str]
+    groups: List[List[any]]
+    changes: List[List[any]]
+    frequencies: Dict[str, Dict[str, int]]  # str keys since JSON can't have int keys
+    original_data: List[List[any]]
+    results: List[List[any]]
     status: str
 
+    class Config:
+        arbitrary_types_allowed = True
+
 @router.get("/predict/{region_id}", response_model=PredictionResponse)
-async def get_prediction(region_id: int, start_month: int = 0, end_month: int = 3):
+async def get_prediction(region_id: int, start_month: int = 0):
     """
     Fetches data for a specific region from Postgres and runs the Prediction Service.
     """
@@ -43,19 +48,32 @@ async def get_prediction(region_id: int, start_month: int = 0, end_month: int = 
             raise HTTPException(status_code=404, detail=f"No data found for region {region_id}")
 
         # r[1]=id, r[3]=name, r[4]=state, r[5]=date, r[6]=cost
-        data = [ZillowData(r[1], r[3], r[4], r[5], r[6]) for r in rows]
+        data = []
+           
+        for r in rows:
+            # data.append([r[1], r[3], r[4], r[5], r[6]])
+            data.append([r[5], r[6]]) # date, price
+
         region_name = rows[0][3]
 
         # run prediction service
         pred_service = PredictionService()
-        predictions, probs, subsets, counts = pred_service.run(data, cluster_range=[start_month, end_month])
+        results, patterns, groups, changes, data, frequencies = pred_service.run(data, start_month)
 
         return {
             "region_id": region_id,
             "region_name": region_name,
-            "patterns": predictions,
-            "probabilities": probs,
-            "subsets": subsets,
-            "counts": counts,
+            "patterns": patterns,
+            "groups": [[str(g[0]), float(g[1]), g[2]] for g in groups],
+            "changes": [[str(c[0]), float(c[1]), c[2]] for c in changes],
+            "frequencies": {
+                str(k): dict(v) for k, v in frequencies.items()  # int keys -> str, Counter -> dict
+            },
+            "original_data": [[str(row[0]), float(row[1])] for row in data],
+            "results": [
+                [str(r[0]) if r[0] else None, float(r[1]) if r[1] else 0, r[2]] + 
+                [[item[0], float(item[1]), item[2]] for item in r[3:]]
+                for r in results
+            ],
             "status": "success"
         }
