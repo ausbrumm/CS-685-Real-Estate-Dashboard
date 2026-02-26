@@ -79,10 +79,15 @@ class PredictionService:
                 results[i].append([letter, m, month])
 
             month = month + 4
-            print(results)
+        # i.e model
+        # [results, groups, changes, blah blah]
+
         return results, patterns, groups, changes, data, frequencies
 
-        print("\n-------------End-------------------\n")
+    def predict(test_set, generated_model, prediction_month):
+        # prediction being like
+
+        pass
 
     def generate_training_set(data, cutoff):
         """
