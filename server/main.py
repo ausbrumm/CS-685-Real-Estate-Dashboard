@@ -1,15 +1,32 @@
+#!/usr/bin/env python3
+
 import asyncio
 from infrastructure.postgres_connector import AsyncPostgresConnector
 import pandas as pd
 import requests
 from io import StringIO
 from typing import Optional
-from selenium import webdriver  # assuming you're using Selenium
 
+# FastAPI
+from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+
+from infrastructure.prediction_service import PredictionService, ZillowData
+from endpoints.prediction_api import router as prediction_router
+
+app = FastAPI(title="Zillow Prediction API")
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+app.include_router(prediction_router)
 
 # Global state
-browser: Optional[webdriver.Chrome] = None
-current_page = 1
 db: Optional[AsyncPostgresConnector] = None
 
 
@@ -22,9 +39,9 @@ async def fetch_zillow_data() -> list[tuple]:
 
     # Melt df so each month is an entry
     df_long = df.melt(
-        id_vars = ["RegionID", "SizeRank", "RegionName", "StateName"],
+        id_vars=["RegionID", "SizeRank", "RegionName", "StateName"],
         var_name="date",
-        value_name="avg_cost"
+        value_name="avg_cost",
     )
 
     # Convert date strings to datetime
@@ -33,22 +50,62 @@ async def fetch_zillow_data() -> list[tuple]:
     # Create id column
     df_long["id"] = range(1, len(df_long) + 1)
 
-    # Reorder columns 
-    df_long = df_long[["id", "RegionID", "SizeRank", "RegionName", "StateName", "date", "avg_cost"]]
-    df_long.columns = ["id", "region_id", "size_rank", "region_name", "state_name", "date", "avg_cost"]
+    # Reorder columns
+    df_long = df_long[
+        ["id", "RegionID", "SizeRank", "RegionName", "StateName", "date", "avg_cost"]
+    ]
+    df_long.columns = [
+        "id",
+        "region_id",
+        "size_rank",
+        "region_name",
+        "state_name",
+        "date",
+        "avg_cost",
+    ]
 
     return list(df_long.itertuples(index=False, name=None))
 
 
 async def main():
-    async with AsyncPostgresConnector(
-        host="localhost",
-        port=5432,
-        dbname="real_estate_db",   # default when POSTGRES_DB not set
-        user="postgres",     # default when POSTGRES_USER not set
-        password="12345",
-    ) as db:
-        result = await db.fetch_one("SELECT * from properties LIMIT 1;")
-        print(f"Connected!\n{result}")
+    regions = [394463]
+    #[394463, 394910, 394338, 753899, 394357, 394466, 394596, 395107]
+    for region in regions:
+        async with AsyncPostgresConnector(
+            host="localhost",
+            port=5432,
+            dbname="real_estate_db",  # default when POSTGRES_DB not set
+            user="postgres",  # default when POSTGRES_USER not set
+            password="devpassword",
+        ) as db:
+            result = await db.fetch_all(
+                "SELECT * FROM public.zillow_data where region_id = %s order by date;",
+                [str(region)],
+            )
+
+            data = []
+           
+            for r in result:
+               # data.append([r[1], r[3], r[4], r[5], r[6]])
+               data.append([r[5], r[6]]) # date, price
+            
+            
+
+            pred_service = PredictionService()
+            # --- EXECUTE DELIVERABLE 1 ---
+            cutoff = 2023 
+            training_data = pred_service.generate_training_set(data, cutoff)
+
+            # --- PRINT TRACE ---
+            print(f"\n[DEBUG] Region {region} Analysis")
+            print(f"[DEBUG] Training set count: {len(training_data)}")
+            
+            # Print first 3 and last 3 to verify the date range
+            if training_data:
+                print(f"[DEBUG] First entry: {training_data[0][0]} -> ${training_data[0][1]:,.2f}")
+                print(f"[DEBUG] Last entry:  {training_data[-1][0]} -> ${training_data[-1][1]:,.2f}")
+            pred_service.run(data, group_size=3)
+
+
 
 asyncio.run(main())
