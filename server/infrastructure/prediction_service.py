@@ -81,6 +81,7 @@ class PredictionService:
             month = month + 4
         # i.e model
         # [results, groups, changes, blah blah]
+        #print(results)
 
         return results, patterns, groups, changes, data, frequencies
 
@@ -89,13 +90,19 @@ class PredictionService:
 
         pass
 
-    def generate_training_set(data, cutoff):
-        """
-        Generate the training set up to the n months before cutoff
-        """
-        pass
+    def generate_training_set(self, data, cutoff):
+        training_data = []
+        for date, price in data:
+            if date.year < cutoff:
+                training_data.append((date,price))
 
-    def generate_test_set(data, cutoff):
+        print(f"\n--- Training Data Generation (Cutoff: {cutoff}) ---")
+        print(f"Total Training Months: {len(training_data)}")
+        print(f"Start Date: {training_data[0][0]} Price {training_data[0][0]:,.2f}")
+
+        return training_data
+
+    def generate_test_set(self, data, cutoff):
         """
         Generate the test set up to the n months after cutoff
         """

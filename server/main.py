@@ -68,14 +68,15 @@ async def fetch_zillow_data() -> list[tuple]:
 
 
 async def main():
-    regions = [394463, 394910, 394338, 753899, 394357, 394466, 394596, 395107]
+    regions = [394463]
+    #[394463, 394910, 394338, 753899, 394357, 394466, 394596, 395107]
     for region in regions:
         async with AsyncPostgresConnector(
             host="localhost",
             port=5432,
             dbname="real_estate_db",  # default when POSTGRES_DB not set
             user="postgres",  # default when POSTGRES_USER not set
-            password="12345",
+            password="devpassword",
         ) as db:
             result = await db.fetch_all(
                 "SELECT * FROM public.zillow_data where region_id = %s order by date;",
@@ -91,8 +92,20 @@ async def main():
             
 
             pred_service = PredictionService()
+            # --- EXECUTE DELIVERABLE 1 ---
+            cutoff = 2023 
+            training_data = pred_service.generate_training_set(data, cutoff)
+
+            # --- PRINT TRACE ---
+            print(f"\n[DEBUG] Region {region} Analysis")
+            print(f"[DEBUG] Training set count: {len(training_data)}")
+            
+            # Print first 3 and last 3 to verify the date range
+            if training_data:
+                print(f"[DEBUG] First entry: {training_data[0][0]} -> ${training_data[0][1]:,.2f}")
+                print(f"[DEBUG] Last entry:  {training_data[-1][0]} -> ${training_data[-1][1]:,.2f}")
             pred_service.run(data, group_size=3)
 
 
 
-#asyncio.run(main())
+asyncio.run(main())
