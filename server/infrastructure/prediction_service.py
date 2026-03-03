@@ -81,13 +81,80 @@ class PredictionService:
             month = month + 4
         # i.e model
         # [results, groups, changes, blah blah]
-        #print(results)
+        #print("frequencies: ",frequencies)
+        """jan_apr = frequencies
+        print(f"Sum: {sum(jan_apr.values())}")
+        total = sum(jan_apr.values())
+        ranges_dict = {}
+        tracker = 1
+        for pattern, count in jan_apr.items():
+            #print(f"Range: {tracker}-{tracker+count-1}")
+            #ranges_dict.update({pattern:()})
+            print(f"{pattern}: {count}  | {count/total:,.2f}")
+            tracker = tracker+count"""
+
+        #for n in range(5):
+            #print(n)
+
+
+        #print(data)
 
         return results, patterns, groups, changes, data, frequencies
 
-    def predict(test_set, generated_model, prediction_month):
-        # prediction being like
+    def predict(self, test_set, patterns, training_frequencies, prediction_month):
+        prefix = ""
+        jan, feb, mar, apr = test_set[0][1], test_set[1][1], test_set[2][1], test_set[3][1]
+        prefix = ("U" if feb > jan else "D") + ("U" if mar > feb else "D")
+        prefix_triple = ("U" if feb > jan else "D") + ("U" if mar > feb else "D") + ("U" if apr > mar else "D")
+        prefix_triple_alt_case = ("U" if feb > jan else "D") + ("U" if mar > feb else "D") + ("U" if apr < mar else "D")
+        jan_apr_training_freq = training_frequencies[0]
+        training_dict = {}
+        print(f"Our prefix is {prefix}, so we test probability between {prefix_triple} and {prefix_triple_alt_case}")
+        for p in jan_apr_training_freq:
+            if p == prefix_triple or p == prefix_triple_alt_case:
+                training_dict[p] = jan_apr_training_freq[p]
+        for month in test_set[:4]:
+            print(f"Test month: {month}")
+        print(f"training dict: {training_dict}")
+        print(f"training_dict total months: {sum(training_dict.values())}")
+        probability_dict = {}
+        for p in training_dict:
+            probability = f"{(training_dict[p]/sum(training_dict.values())):,.2f}"
+            probability_dict[p] = probability
+        print(f"{prefix_triple} probability: {probability_dict[prefix_triple]}")
+        print(f"{prefix_triple_alt_case} probability: {probability_dict[prefix_triple_alt_case]}")
+        
+        score1 = 0
+        score2 = 0
+        p1 = float(probability_dict[prefix_triple_alt_case])
+        for i in range(5):
+            rand = random.randrange(0,100)/100
+            if rand <= p1:
+                score2 += 1
+                #print(f"Score for {prefix_triple_alt_case}:")
+            else:
+                #print(f"Score for {prefix_triple}")
+                score1 += 1 
+        print(f"{prefix_triple} points | {score1}")
+        print(f"{prefix_triple_alt_case} points | {score2}")
+        if score1 > score2:
+            winner = prefix_triple
+        else:
+            winner = prefix_triple_alt_case
+        print(f"We predict {winner}")
+        print(f"Test case is {prefix_triple} for {test_set[3][0]}")
+        if winner == prefix_triple:
+            print(f"Correct direction prediction of {prefix_triple[-1]} for {test_set[3][0]}")
+        else:
+            print("Incorrect prediction")
 
+        """print(f"jan-apr training frequencies {jan_apr_training_freq}")
+        print(f"Prefix: {prefix}")
+        print(f"Prefix_triple: {prefix_triple}")
+        print(f"Prefix_triple_alt_case: {prefix_triple_alt_case}")"""
+        #print(f"Patterns: {patterns}")
+        #print(len(test_set))
+        
         pass
 
     def generate_training_set(self, data, cutoff):
@@ -96,17 +163,22 @@ class PredictionService:
             if date.year < cutoff:
                 training_data.append((date,price))
 
-        print(f"\n--- Training Data Generation (Cutoff: {cutoff}) ---")
+        """print(f"\n--- Training Data Generation (Cutoff: {cutoff}) ---")
         print(f"Total Training Months: {len(training_data)}")
-        print(f"Start Date: {training_data[0][0]} Price {training_data[0][0]:,.2f}")
+        print(f"Start Date: {training_data[0][0]} Price {training_data[0][0]:,.2f}")"""
 
         return training_data
 
     def generate_test_set(self, data, cutoff):
-        """
-        Generate the test set up to the n months after cutoff
-        """
-        pass
+        testing_data = []
+        for date, price in data:
+            if date.year >= cutoff:
+                testing_data.append((date,price))
+
+        """print(f"\n--- Testing Data Generation (Cutoff: {cutoff}) ---")
+        print(f"Total Testing Months: {len(testing_data)}")
+        print(f"Start Date: {testing_data[0][0]} Price {testing_data[0][0]:,.2f}")"""
+        return testing_data
 
     def create_groups(self, entries, start=0, group_size=4, k=6):
         """
