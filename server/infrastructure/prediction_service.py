@@ -33,10 +33,11 @@ class PredictionService:
         if not years:
             return []
 
-        last_year = years[-1]
+        last_year = years[-6]
 
-        change_hist = [c for c in changes if c[0].year != last_year]
-        change_curr_year = [c for c in changes if c[0].year == last_year]
+        change_hist = [c for c in changes if c[0].year < last_year]
+        change_curr_year = [c for c in changes if c[0].year >= last_year]
+
 
         y = len(change_hist)
         z = len(change_curr_year)
@@ -102,60 +103,72 @@ class PredictionService:
         return results, patterns, groups, changes, data, frequencies
 
     def predict(self, test_set, patterns, training_frequencies, prediction_month):
-        prefix = ""
-        jan, feb, mar, apr = test_set[0][1], test_set[1][1], test_set[2][1], test_set[3][1]
-        prefix = ("U" if feb > jan else "D") + ("U" if mar > feb else "D")
-        prefix_triple = ("U" if feb > jan else "D") + ("U" if mar > feb else "D") + ("U" if apr > mar else "D")
-        prefix_triple_alt_case = ("U" if feb > jan else "D") + ("U" if mar > feb else "D") + ("U" if apr < mar else "D")
-        jan_apr_training_freq = training_frequencies[0]
-        training_dict = {}
-        print(f"Our prefix is {prefix}, so we test probability between {prefix_triple} and {prefix_triple_alt_case}")
-        for p in jan_apr_training_freq:
-            if p == prefix_triple or p == prefix_triple_alt_case:
-                training_dict[p] = jan_apr_training_freq[p]
-        for month in test_set[:4]:
-            print(f"Test month: {month}")
-        print(f"training dict: {training_dict}")
-        print(f"training_dict total months: {sum(training_dict.values())}")
-        probability_dict = {}
-        for p in training_dict:
-            probability = f"{(training_dict[p]/sum(training_dict.values())):,.2f}"
-            probability_dict[p] = probability
-        print(f"{prefix_triple} probability: {probability_dict[prefix_triple]}")
-        print(f"{prefix_triple_alt_case} probability: {probability_dict[prefix_triple_alt_case]}")
+        correct_predictions = 0
+        incorrect_predictions = 0
         
-        score1 = 0
-        score2 = 0
-        p1 = float(probability_dict[prefix_triple_alt_case])
-        for i in range(5):
-            rand = random.randrange(0,100)/100
-            if rand <= p1:
-                score2 += 1
-                #print(f"Score for {prefix_triple_alt_case}:")
+        for i in range(4):
+            print(f"\n----------Training round {i}--------------")
+            print(f"trainging freqs: {training_frequencies}")
+            start = i *12
+            prefix = ""
+            jan, feb, mar, apr = test_set[start][1], test_set[start+1][1], test_set[start+2][1], test_set[start+3][1]
+            print(f"Months {test_set[start+1], test_set[start+2], test_set[start+3], test_set[start+4]}")
+            prefix = ("U" if feb > jan else "D") + ("U" if mar > feb else "D")
+            prefix_triple = ("U" if feb > jan else "D") + ("U" if mar > feb else "D") + ("U" if apr > mar else "D")
+            prefix_triple_alt_case = ("U" if feb > jan else "D") + ("U" if mar > feb else "D") + ("U" if apr < mar else "D")
+            jan_apr_training_freq = training_frequencies[0]
+            training_dict = {}
+            print(f"Our prefix is {prefix}, so we test probability between {prefix_triple} and {prefix_triple_alt_case}")
+            for p in jan_apr_training_freq:
+                if p == prefix_triple or p == prefix_triple_alt_case:
+                    training_dict[p] = jan_apr_training_freq[p]
+            for month in test_set[start:start+3]:
+                print(f"Test month: {month}")
+            print(f"training dict: {training_dict}")
+            print(f"training_dict total months: {sum(training_dict.values())}")
+            probability_dict = {}
+            for p in training_dict:
+                probability = f"{(training_dict[p]/sum(training_dict.values())):,.2f}"
+                probability_dict[p] = probability
+            print(f"{prefix_triple} probability: {probability_dict[prefix_triple]}")
+            print(f"{prefix_triple_alt_case} probability: {probability_dict[prefix_triple_alt_case]}")
+            
+            score1 = 0
+            score2 = 0
+            p1 = float(probability_dict[prefix_triple_alt_case])
+            for _ in range(5):
+                rand = random.randrange(0,100)/100
+                if rand <= p1:
+                    score2 += 1
+                    #print(f"Score for {prefix_triple_alt_case}:")
+                else:
+                    #print(f"Score for {prefix_triple}")
+                    score1 += 1 
+            print(f"{prefix_triple} points | {score1}")
+            print(f"{prefix_triple_alt_case} points | {score2}")
+            if score1 > score2:
+                winner = prefix_triple
             else:
-                #print(f"Score for {prefix_triple}")
-                score1 += 1 
-        print(f"{prefix_triple} points | {score1}")
-        print(f"{prefix_triple_alt_case} points | {score2}")
-        if score1 > score2:
-            winner = prefix_triple
-        else:
-            winner = prefix_triple_alt_case
-        print(f"We predict {winner}")
-        print(f"Test case is {prefix_triple} for {test_set[3][0]}")
-        if winner == prefix_triple:
-            print(f"Correct direction prediction of {prefix_triple[-1]} for {test_set[3][0]}")
-        else:
-            print("Incorrect prediction")
+                winner = prefix_triple_alt_case
+            print(f"We predict {winner}")
+            print(f"Test case is {prefix_triple} for {test_set[start+3][0]}")
+            if winner == prefix_triple:
+                print(f"Correct direction prediction of {prefix_triple[-1]} for {test_set[start+3][0]}") 
+                correct_predictions = correct_predictions + 1
+            else:
+                print("Incorrect prediction")
+                incorrect_predictions = incorrect_predictions +1
+            print(i)
+            print(f"succes rate: {correct_predictions/(i+1)}")
 
-        """print(f"jan-apr training frequencies {jan_apr_training_freq}")
-        print(f"Prefix: {prefix}")
-        print(f"Prefix_triple: {prefix_triple}")
-        print(f"Prefix_triple_alt_case: {prefix_triple_alt_case}")"""
-        #print(f"Patterns: {patterns}")
-        #print(len(test_set))
-        
-        pass
+            """print(f"jan-apr training frequencies {jan_apr_training_freq}")
+            print(f"Prefix: {prefix}")
+            print(f"Prefix_triple: {prefix_triple}")
+            print(f"Prefix_triple_alt_case: {prefix_triple_alt_case}")"""
+            #print(f"Patterns: {patterns}")
+            #print(len(test_set))
+            
+            pass
 
     def generate_training_set(self, data, cutoff):
         training_data = []

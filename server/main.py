@@ -71,7 +71,7 @@ async def fetch_zillow_data() -> list[tuple]:
 
 
 async def main():
-    regions = [394596]
+    regions = [395107]
     #regions = [394463, 394910, 394338, 753899, 394357, 394466, 394596, 395107]
     data = []
     for region in regions:
