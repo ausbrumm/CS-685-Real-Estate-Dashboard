@@ -324,6 +324,7 @@ class PredictionService:
 
         # average value of the k nearest neighbors
         change_value = sum(diffs[j][last_col] for j in candidates) / k
+        print(f"change value {change_value}")
         return change_value
 
     def generate_patterns(self, group_size):
