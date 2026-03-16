@@ -129,7 +129,8 @@ async def main():
     #print(f"Training frequencies: {frequencies}")
 
 
-    pred_service.predict(test_data, patterns, training_frequencies, groups)
+    change_hist = pred_service.get_changes(training_data, group_size=3)
+    pred_service.predict(test_data, patterns, training_frequencies, groups, change_hist)
 
 
 

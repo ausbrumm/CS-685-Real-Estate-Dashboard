@@ -102,10 +102,12 @@ class PredictionService:
 
         return results, patterns, groups, changes, data, frequencies
 
-    def predict(self, test_set, patterns, training_frequencies, prediction_month):
+    def predict(self, test_set, patterns, training_frequencies, prediction_month, change_hist, group_size=3, k=6):
         correct_predictions = 0
         incorrect_predictions = 0
-        
+        change_curr_year = self.get_changes(test_set, group_size)
+        summary_rows = []
+
         for i in range(4):
             print(f"\n----------Training round {i}--------------")
             print(f"trainging freqs: {training_frequencies}")
@@ -151,9 +153,24 @@ class PredictionService:
             else:
                 winner = prefix_triple_alt_case
             print(f"We predict {winner}")
+
+            target_date = test_set[start][0]
+            idx = next(
+                (j for j, c in enumerate(change_curr_year) if c[0] == target_date),
+                i * 12  # fallback
+            )
+            last_known_price = float(test_set[start + group_size - 1][1])
+            # updated winner to winner[-1] to allow for correct magnitude direction (positive/negative)
+            # if letter == "D" causes "UUD" to fall into the else branch
+            mag = float(self.magnitude(change_hist, change_curr_year, winner[-1], idx, k, group_size))
+            predicted_price = last_known_price + mag
+            print(f"Last known price: ${last_known_price:,.2f} | Magnitude: {mag:,.2f} | Predicted price: ${predicted_price:,.2f}")
+            actual_price = float(test_set[start + group_size][1])
+            print(f"Actual price: ${actual_price:,.2f} | Error: ${abs(predicted_price - actual_price):,.2f}")
             print(f"Test case is {prefix_triple} for {test_set[start+3][0]}")
-            if winner == prefix_triple:
-                print(f"Correct direction prediction of {prefix_triple[-1]} for {test_set[start+3][0]}") 
+            correct = winner == prefix_triple
+            if correct:
+                print(f"Correct direction prediction of {prefix_triple[-1]} for {test_set[start+3][0]}")
                 correct_predictions = correct_predictions + 1
             else:
                 print("Incorrect prediction")
@@ -161,14 +178,34 @@ class PredictionService:
             print(i)
             print(f"succes rate: {correct_predictions/(i+1)}")
 
+            summary_rows.append({
+                "month": test_set[start+3][0],
+                "last_known": last_known_price,
+                "magnitude": mag,
+                "predicted": predicted_price,
+                "actual": actual_price,
+                "error": abs(predicted_price - actual_price),
+                "direction": winner[-1],
+                "correct": correct,
+            })
+
             """print(f"jan-apr training frequencies {jan_apr_training_freq}")
             print(f"Prefix: {prefix}")
             print(f"Prefix_triple: {prefix_triple}")
             print(f"Prefix_triple_alt_case: {prefix_triple_alt_case}")"""
             #print(f"Patterns: {patterns}")
             #print(len(test_set))
-            
+
             pass
+
+        print("\n" + "="*95)
+        print(f"{'Month':<12} {'Last Known':>14} {'Magnitude':>12} {'Predicted':>14} {'Actual':>14} {'Error':>12} {'Dir':>4} {'OK':>4}")
+        print("="*95)
+        for r in summary_rows:
+            ok = "✓" if r["correct"] else "✗"
+            print(f"{str(r['month']):<12} ${r['last_known']:>13,.2f} ${r['magnitude']:>11,.2f} ${r['predicted']:>13,.2f} ${r['actual']:>13,.2f} ${r['error']:>11,.2f} {r['direction']:>4} {ok:>4}")
+        print("="*95)
+        print(f"Success rate: {correct_predictions}/{correct_predictions+incorrect_predictions} ({correct_predictions/(correct_predictions+incorrect_predictions):.0%})")
 
     def generate_training_set(self, data, cutoff):
         training_data = []
@@ -304,7 +341,8 @@ class PredictionService:
                 sum(
                     (diffs[j][t] - change_curr_year[index + t][1])
                     ** 2  # [1] to get price
-                    for t in range(1, group_size - 1)
+                    # need to iterate over whole group size here for correct magnitude prediction
+                    for t in range(1, group_size)
                     if index + t < len(change_curr_year)
                 )
             )
