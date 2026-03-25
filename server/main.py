@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+import argparse
 import asyncio
 from infrastructure.postgres_connector import AsyncPostgresConnector
 import pandas as pd
@@ -70,7 +71,7 @@ async def fetch_zillow_data() -> list[tuple]:
     return list(df_long.itertuples(index=False, name=None))
 
 
-async def main():
+async def main(cutoff: int, start_month: int):
     regions = [395107]
     #regions = [394463, 394910, 394338, 753899, 394357, 394466, 394596, 395107]
     data = []
@@ -94,8 +95,6 @@ async def main():
             
     #print(data)
     pred_service = PredictionService()
-    # 2024 cutoff causes crash
-    cutoff = 2020
     training_data = pred_service.generate_training_set(data, cutoff)
     test_data = pred_service.generate_test_set(data, cutoff)
 
@@ -122,17 +121,18 @@ async def main():
     print(f"All frequencies: {frequencies}")"""
     results, patterns, groups, changes, _, training_frequencies = pred_service.run(training_data, group_size=3)
     print(f"Training frequencies: {training_frequencies}")
-    results, patterns, groups, changes, _, test_frequencies = pred_service.run(test_data, group_size=3)
-    print(f"Test frequencies: {test_frequencies}")
-    #pred_service.run(training_data, group_size=3)
-    #pred_service.run(test_data, group_size=3)
-    #print(f"Training frequencies: {frequencies}")
-
 
     change_hist = pred_service.get_changes(training_data, group_size=3)
-    pred_service.predict(test_data, patterns, training_frequencies, groups, change_hist)
+    pred_service.predict(test_data, patterns, training_frequencies, start_month, change_hist)
 
 
 
 
-asyncio.run(main())
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description="Run real estate prediction")
+    parser.add_argument("--year", "-y", type=int, default=2020,
+                        help="Cutoff year: data before this year is training, on/after is test (default: 2020)")
+    parser.add_argument("--month", "-m", type=int, default=0,
+                        help="Start month offset 0-11 (0=Jan, 1=Feb, ... default: 0)")
+    args = parser.parse_args()
+    asyncio.run(main(args.year, args.month))

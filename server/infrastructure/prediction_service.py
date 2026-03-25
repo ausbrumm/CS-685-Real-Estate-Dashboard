@@ -111,7 +111,8 @@ class PredictionService:
         for i in range(4):
             print(f"\n----------Training round {i}--------------")
             print(f"trainging freqs: {training_frequencies}")
-            start = i *12
+            # offset into each year so that the 3-month prefix ends at prediction_month
+            start = i * 12 + (prediction_month - group_size)
             prefix = ""
             jan, feb, mar, apr = test_set[start][1], test_set[start+1][1], test_set[start+2][1], test_set[start+3][1]
             print(f"Months {test_set[start+1], test_set[start+2], test_set[start+3], test_set[start+4]}")
@@ -119,19 +120,25 @@ class PredictionService:
             prefix_triple = ("U" if feb > jan else "D") + ("U" if mar > feb else "D") + ("U" if apr > mar else "D")
             prefix_triple_alt_case = ("U" if feb > jan else "D") + ("U" if mar > feb else "D") + ("U" if apr < mar else "D")
             jan_apr_training_freq = training_frequencies[0]
-            training_dict = {}
+            # default to 0 if a pattern was never seen in training, avoids KeyError later
+            training_dict = {
+                prefix_triple: jan_apr_training_freq.get(prefix_triple, 0),
+                prefix_triple_alt_case: jan_apr_training_freq.get(prefix_triple_alt_case, 0),
+            }
             print(f"Our prefix is {prefix}, so we test probability between {prefix_triple} and {prefix_triple_alt_case}")
-            for p in jan_apr_training_freq:
-                if p == prefix_triple or p == prefix_triple_alt_case:
-                    training_dict[p] = jan_apr_training_freq[p]
             for month in test_set[start:start+3]:
                 print(f"Test month: {month}")
             print(f"training dict: {training_dict}")
-            print(f"training_dict total months: {sum(training_dict.values())}")
+            total = sum(training_dict.values())
             probability_dict = {}
-            for p in training_dict:
-                probability = f"{(training_dict[p]/sum(training_dict.values())):,.2f}"
-                probability_dict[p] = probability
+            if total == 0:
+                # neither pattern ever appeared in training — fall back to 50/50
+                probability_dict[prefix_triple] = "0.50"
+                probability_dict[prefix_triple_alt_case] = "0.50"
+            else:
+                for p in training_dict:
+                    probability_dict[p] = f"{training_dict[p] / total:,.2f}"
+            print(f"training_dict total months: {total}")
             print(f"{prefix_triple} probability: {probability_dict[prefix_triple]}")
             print(f"{prefix_triple_alt_case} probability: {probability_dict[prefix_triple_alt_case]}")
             
@@ -301,6 +308,8 @@ class PredictionService:
 
             # look the the range of current quarter (?) + group size
             for j in range(l, l + group_size):
+                if j >= y:
+                    break
                 pattern += changes[j][2]  # create the pattern
             freq[pattern] += 1  # store off in the counter
         return freq
