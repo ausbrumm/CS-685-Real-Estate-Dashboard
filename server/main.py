@@ -47,7 +47,7 @@ async def main():
 
             for r in result:
                 data.append([r[5], r[6]])  # date, price
-
+            print(data)
             pred_service = PredictionService()
             pred_service.run(data, group_size=3, repeats=100, k=5)
 

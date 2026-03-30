@@ -15,6 +15,41 @@ months = list(calendar.month_name)[1:]
 class PredictionService:
     def run(self, data, start=0, group_size=4, repeats=9, k=5, pred_date=None):
 
+        data = sorted(data, key=lambda e: e[0])
+
+        # store last real date for the ui to mark projected months
+        last_real_date = str(data[-1][0]) if data else None
+
+        if pred_date is not None and data and pred_date < data[-1][0]:
+            data = [d for d in data if d[0] <= pred_date]
+            last_real_date = str(data[-1][0]) if data else None
+
+        if pred_date is not None and data and pred_date > data[-1][0]:
+            data = self.chain_predictions(
+                data, pred_date, start, group_size, repeats, k
+            )
+
+        print(last_real_date)
+
+        if len(data) < group_size:
+            return (
+                [],
+                {},
+                {},
+                {},
+                [],
+                {},
+                {
+                    "correct": 0,
+                    "wrong": 0,
+                    "total": 0,
+                    "accuracy": 0.0,
+                    "mse": 0.0,
+                    "rmse": 0.0,
+                },
+                [],
+                last_real_date,
+            )
         # sort data by date
         data = sorted(data, key=lambda e: e[0])
 
@@ -61,6 +96,7 @@ class PredictionService:
                     "rmse": 0.0,
                 },
                 [],
+                last_real_date,
             )
 
         # lookup for prediction comparison, for accuracy
@@ -157,6 +193,7 @@ class PredictionService:
             frequencies,
             acc_summary,
             error_band,
+            last_real_date,
         )
 
     def create_groups(self, entries, start=0, group_size=4, k=6):
@@ -253,7 +290,7 @@ class PredictionService:
         f2 = frequency.get(p2, 1)
 
         # random number between 0 and 1
-        x = random.random()
+        x = np.random.rand()
         return "D" if x <= f1 / (f1 + f2) else "U"
 
     def magnitude(self, change_hist, change_curr_year, letter, index, k, group_size):
@@ -307,6 +344,52 @@ class PredictionService:
         https://stackoverflow.com/questions/2541401/pairwise-crossproduct-in-python#:~:text=You're%20looking%20for%20itertools.
         """
         return ["".join(p) for p in product("UD", repeat=group_size)]
+
+    def chain_predictions(self, data, pred_date, start, group_size, repeats, k):
+        """Chain predictions forward month by month until pred_date is reached."""
+        data = sorted(data, key=lambda e: e[0])
+        last_date = data[-1][0]
+
+        while last_date < pred_date:
+            # advance to next month
+            if last_date.month == 12:
+                next_date = dt.date(last_date.year + 1, 1, 31)
+            else:
+                next_month = last_date.month + 1
+                last_day = calendar.monthrange(last_date.year, next_month)[1]
+                next_date = dt.date(last_date.year, next_month, last_day)
+
+            # run prediction on data up to this point
+            (
+                results,
+                patterns,
+                groups,
+                changes,
+                filtered_data,
+                frequencies,
+                acc_summary,
+                error_band,
+                last_real_date,
+            ) = self.run(data, start, group_size, repeats, k)
+
+            if not results or not results[-1]["predictions"]:
+                break
+
+            # get the last prediction's average price to use as the "actual" data
+            last_preds = results[-1]["predictions"]
+            prices = [
+                p["price"] for p in last_preds.values() if p.get("price") is not None
+            ]
+            if not prices:
+                break
+            predicted_price = sum(prices) / len(prices)
+
+            # append predicted month to data
+            data.append((next_date, predicted_price))
+            data = sorted(data, key=lambda e: e[0])
+            last_date = next_date
+
+        return data
 
     def mse(self, data, results):
         # Collect paired (actual, predicted) for all results that have both

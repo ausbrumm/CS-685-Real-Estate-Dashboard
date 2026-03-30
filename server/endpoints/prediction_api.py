@@ -6,6 +6,8 @@ import pandas as pd
 from io import StringIO
 import requests
 import os
+import calendar
+import datetime as dt
 
 from infrastructure.postgres_connector import AsyncPostgresConnector
 from infrastructure.prediction_service import PredictionService
@@ -48,13 +50,18 @@ class PredictionResponse(BaseModel):
     accuracy_summary: AccuracySummary
     status: str
     error_band: List[Any]
+    last_real_date: Optional[str]
 
     class Config:
         arbitrary_types_allowed = True
 
 
 @router.get("/predict/{region_id}", response_model=PredictionResponse)
-async def get_prediction(region_id: int):
+async def get_prediction(
+    region_id: int,
+    pred_month: Optional[int] = None,
+    pred_year: Optional[int] = None,
+):
     """
     Fetches data for a specific region from Postgres and runs the Prediction Service.
     """
@@ -72,10 +79,18 @@ async def get_prediction(region_id: int):
 
         for r in rows:
             data.append([r[5], r[6]])  # date, price
-
+        print(data)
         region_name = rows[0][3]
 
         # run prediction service
+        pred_date = None
+        if pred_month is not None or pred_year is not None:
+            now = dt.date.today()
+            year = pred_year if pred_year is not None else now.year
+            month = pred_month if pred_month is not None else now.month
+            last_day = calendar.monthrange(year, month)[1]
+            pred_date = dt.date(year, month, last_day)
+
         pred_service = PredictionService()
         (
             results,
@@ -86,7 +101,8 @@ async def get_prediction(region_id: int):
             frequencies,
             acc_summary,
             error_bands,
-        ) = pred_service.run(data)
+            last_real_date,
+        ) = pred_service.run(data, pred_date=pred_date)
 
         # handle edge case where prediction service returns no results
         if not results:
@@ -119,4 +135,5 @@ async def get_prediction(region_id: int):
             "accuracy_summary": acc_summary,
             "error_band": error_bands,
             "status": "success",
+            "last_real_date": last_real_date,
         }
