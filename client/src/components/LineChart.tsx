@@ -23,27 +23,27 @@ ChartJS.register(
 );
 
 interface DatasetConfig<T> {
-  key: keyof T;        
-  label: string;        
-  color?: string;      
+  key: keyof T;
+  label: string;
+  color?: string;
+  dashed?: boolean;
 }
 
 interface GenericLineChartProps<T> {
-  items: T[];                               
-  labelKey: keyof T;                  
-  configs: DatasetConfig<T>[];               
-  options?: ChartOptions<"line">;            
-  height?: string;                      
+  items: T[];
+  labelKey: keyof T;
+  configs: DatasetConfig<T>[];
+  options?: ChartOptions<"line">;
+  height?: string;
 }
 
 export function GenericLineChart<T>({
-  items, 
+  items,
   labelKey,
-  configs, // each set of data
+  configs,
   options,
   height = "400px",
 }: GenericLineChartProps<T>) {
-  
   const chartLabels = items.map((item) => String(item[labelKey]));
 
   const datasets = configs.map((config) => ({
@@ -52,32 +52,58 @@ export function GenericLineChart<T>({
     backgroundColor: config.color || "#5FC3D6",
     borderColor: config.color || "#5FC3D6",
     borderWidth: 2,
+    borderDash: config.dashed ? [6, 3] : [],
     tension: 0.3,
-    pointRadius: 3,
+    pointRadius: 2,
+    pointHoverRadius: 5,
+    spanGaps: true,
   }));
 
   const defaultOptions: ChartOptions<"line"> = {
     responsive: true,
     maintainAspectRatio: false,
+    interaction: {
+      mode: "index",
+      intersect: false,
+    },
     plugins: {
       legend: {
-        position: 'top' as const,
+        position: "top" as const,
+        labels: {
+          usePointStyle: true,
+          pointStyleWidth: 16,
+          padding: 20,
+        },
+      },
+      tooltip: {
+        callbacks: {
+          label: (ctx) =>
+            `${ctx.dataset.label}: $${Number(ctx.parsed.y).toLocaleString(undefined, { maximumFractionDigits: 0 })}`,
+        },
       },
     },
     scales: {
+      x: {
+        ticks: {
+          maxTicksLimit: 12,
+          maxRotation: 45,
+        },
+      },
       y: {
-        beginAtZero: true,
+        beginAtZero: false,
+        ticks: {
+          callback: (value) =>
+            `$${Number(value).toLocaleString(undefined, { maximumFractionDigits: 0 })}`,
+        },
       },
     },
-    ...options, 
+    // caller-supplied options win
+    ...options,
   };
 
   return (
-    <div style={{ height }} className="mt-[20px] w-full">
-      <Line 
-        data={{ labels: chartLabels, datasets }} 
-        options={defaultOptions} 
-      />
+    <div style={{ height }} className="mt-5 w-full">
+      <Line data={{ labels: chartLabels, datasets }} options={defaultOptions} />
     </div>
   );
 }
