@@ -3,6 +3,7 @@
 import asyncio
 from infrastructure.postgres_connector import AsyncPostgresConnector
 from typing import Optional
+import os
 
 # FastAPI
 from fastapi import FastAPI
@@ -31,11 +32,11 @@ async def main():
     regions = [394463]
     for region in regions:
         async with AsyncPostgresConnector(
-            host="localhost",
-            port=5432,
-            dbname="real_estate_db",  # default when POSTGRES_DB not set
-            user="postgres",  # default when POSTGRES_USER not set
-            password="12345",
+            host=os.environ.get("POSTGRES_HOST", "localhost"),
+            port=int(os.environ.get("POSTGRES_PORT", 5432)),
+            dbname=os.environ.get("POSTGRES_DB", "real_estate_db"),
+            user=os.environ.get("POSTGRES_USER", "postgres"),
+            password=os.environ.get("POSTGRES_PASSWORD", "12345"),
         ) as db:
             result = await db.fetch_all(
                 "SELECT * FROM public.zillow_data where region_id = %s order by date;",

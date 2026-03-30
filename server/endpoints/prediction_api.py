@@ -5,6 +5,7 @@ import asyncio
 import pandas as pd
 from io import StringIO
 import requests
+import os
 
 from infrastructure.postgres_connector import AsyncPostgresConnector
 from infrastructure.prediction_service import PredictionService
@@ -13,11 +14,11 @@ router = APIRouter()
 
 # Database configuration
 DB_CONFIG = {
-    "host": "localhost",
-    "port": 5432,
-    "dbname": "real_estate_db",
-    "user": "postgres",
-    "password": "12345",
+    "host": os.environ.get("POSTGRES_HOST", "localhost"),
+    "port": int(os.environ.get("POSTGRES_PORT", 5432)),
+    "dbname": os.environ.get("POSTGRES_DB", "real_estate_db"),
+    "user": os.environ.get("POSTGRES_USER", "postgres"),
+    "password": os.environ.get("POSTGRES_PASSWORD", "12345"),
 }
 
 
