@@ -2,13 +2,7 @@
 
 import asyncio
 from infrastructure.postgres_connector import AsyncPostgresConnector
-import pandas as pd
-import requests
-from io import StringIO
 from typing import Optional
-from datetime import datetime
-
-from db.ingest import run_ingestion
 
 # FastAPI
 from fastapi import FastAPI
