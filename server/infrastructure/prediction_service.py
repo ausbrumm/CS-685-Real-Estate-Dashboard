@@ -1,6 +1,5 @@
 from collections import Counter, defaultdict
 import logging
-import random
 import calendar
 from itertools import product
 import numpy as np
