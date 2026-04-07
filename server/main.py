@@ -15,7 +15,7 @@ from decimal import Decimal
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from infrastructure.prediction_service import PredictionService, ZillowData
+from infrastructure.prediction_service import PredictionService
 from endpoints.prediction_api import router as prediction_router
 
 app = FastAPI(title="Zillow Prediction API")
@@ -73,59 +73,49 @@ async def fetch_zillow_data() -> list[tuple]:
 
 async def main(cutoff: int, start_month: int):
     regions = [395107]
-    #regions = [394463, 394910, 394338, 753899, 394357, 394466, 394596, 395107]
     data = []
     for region in regions:
         async with AsyncPostgresConnector(
             host="localhost",
             port=5432,
-            dbname="real_estate_db",  # default when POSTGRES_DB not set
-            user="postgres",  # default when POSTGRES_USER not set
+            dbname="real_estate_db",
+            user="postgres",
             password="devpassword",
         ) as db:
             result = await db.fetch_all(
                 "SELECT * FROM public.zillow_data where region_id = %s order by date;",
                 [str(region)],
             )
-           
+
             for r in result:
-               # data.append([r[1], r[3], r[4], r[5], r[6]])
-               data.append([r[5], r[6]]) # date, price
-            
-            
+                data.append([r[5], r[6]])  # date, price
+
     #print(data)
     pred_service = PredictionService()
     training_data = pred_service.generate_training_set(data, cutoff)
     test_data = pred_service.generate_test_set(data, cutoff)
 
     # --- PRINT TRACE ---
-    print(f"[DEBUG] Full set count: {len(data)}") 
+    print(f"[DEBUG] Full set count: {len(data)}")
     if training_data:
         print(f"[DEBUG] First entry: {data[0][0]} -> ${data[0][1]:,.2f}")
         print(f"[DEBUG] Last entry:  {data[-1][0]} -> ${data[-1][1]:,.2f}")
-    
 
-    #print(f"\n[DEBUG] Region {region} Analysis")
-    print(f"[DEBUG] Training set count: {len(training_data)}") 
-    # Print first 3 and last 3 to verify the date range
+    print(f"[DEBUG] Training set count: {len(training_data)}")
     if training_data:
         print(f"[DEBUG] First entry: {training_data[0][0]} -> ${training_data[0][1]:,.2f}")
         print(f"[DEBUG] Last entry:  {training_data[-1][0]} -> ${training_data[-1][1]:,.2f}")
-    
+
     print(f"\n[DEBUG] Testing set count: {len(test_data)}")
     if test_data:
         print(f"[DEBUG] First entry: {test_data[0][0]} -> ${test_data[0][1]:,.2f}")
         print(f"[DEBUG] Last entry:  {test_data[-1][0]} -> ${test_data[-1][1]:,.2f}")
-        #print(f"test_data[:3]: {test_data[:3]}")
-    """results, patterns, groups, changes, _, frequencies = pred_service.run(data, group_size=3)
-    print(f"All frequencies: {frequencies}")"""
-    results, patterns, groups, changes, _, training_frequencies = pred_service.run(training_data, group_size=3)
+
+    _, patterns, _, _, _, training_frequencies = pred_service.run(training_data, group_size=3)
     print(f"Training frequencies: {training_frequencies}")
 
     change_hist = pred_service.get_changes(training_data, group_size=3)
     pred_service.predict(test_data, patterns, training_frequencies, start_month, change_hist)
-
-
 
 
 if __name__ == "__main__":

@@ -5,7 +5,7 @@ import logging
 from io import StringIO
 import requests
 
-from postgres_connector import AsyncPostgresConnector
+from db.postgres_connector import AsyncPostgresConnector
 from psycopg import sql
 
 logging.basicConfig(level=logging.INFO)
@@ -42,37 +42,43 @@ def fetch_raw_data() -> list[dict]:
 
         # Loop over all monthly columns (skip metadata)
         for date_str, avg_cost_str in row.items():
-            if date_str in ("RegionID", "RegionName", "RegionType", "StateName", "SizeRank"):
+            if date_str in (
+                "RegionID",
+                "RegionName",
+                "RegionType",
+                "StateName",
+                "SizeRank",
+            ):
                 continue
             try:
                 avg_cost = float(avg_cost_str) if avg_cost_str else None
-                rows.append({
-                    "region_id": region_id,
-                    "region_name": region_name,
-                    "state_name": state_name,
-                    "size_rank": size_rank,
-                    "date": date_str,  # YYYY-MM-DD format from CSV
-                    "avg_cost": avg_cost
-                })
+                rows.append(
+                    {
+                        "region_id": region_id,
+                        "region_name": region_name,
+                        "state_name": state_name,
+                        "size_rank": size_rank,
+                        "date": date_str,  # YYYY-MM-DD format from CSV
+                        "avg_cost": avg_cost,
+                    }
+                )
             except ValueError as e:
-                logger.warning(f"Skipping cell {date_str} for region {region_name}: {e}")
+                logger.warning(
+                    f"Skipping cell {date_str} for region {region_name}: {e}"
+                )
 
     logger.info(f"Fetched {len(rows)} rows")
+    
     return rows
-
 
 
 def prepare_metro_rows(raw_rows: list[dict]) -> list[tuple]:
     """Prepare metro_us rows for COPY ingestion."""
     return [
-        (
-            r["region_id"],
-            r["size_rank"],
-            r["date"],
-            r["avg_cost"]
-        )
-        for r in raw_rows
+        (r["region_id"], r["size_rank"], r["date"], r["avg_cost"]) for r in raw_rows
     ]
+
+
 def prepare_region_rows(raw_rows: list[dict]) -> list[tuple]:
     """
     Deduplicate regions and prepare tuples for insertion into the `regions` table.
@@ -82,16 +88,11 @@ def prepare_region_rows(raw_rows: list[dict]) -> list[tuple]:
     regions = {}
     for r in raw_rows:
         # Keep only one entry per region_id
-        regions[r["region_id"]] = (
-            r["region_id"],
-            r["region_name"],
-            r["state_name"]
-        )
+        regions[r["region_id"]] = (r["region_id"], r["region_name"], r["state_name"])
     return list(regions.values())
 
 
-
-async def main():
+async def run_ingestion():
     raw_rows = fetch_raw_data()
     region_rows = prepare_region_rows(raw_rows)
     metro_rows = prepare_metro_rows(raw_rows)
@@ -109,7 +110,7 @@ async def main():
         logger.info(f"Inserting {len(metro_rows)} metro_us rows via COPY...")
         copy_query = sql.SQL("COPY {} ({}) FROM STDIN").format(
             sql.Identifier("metro_us"),
-            sql.SQL(", ").join(sql.Identifier(c) for c in METRO_COPY_COLUMNS)
+            sql.SQL(", ").join(sql.Identifier(c) for c in METRO_COPY_COLUMNS),
         )
         async with connector._get_connection() as conn:
             async with conn.cursor() as cur:
@@ -125,4 +126,4 @@ async def main():
 
 
 if __name__ == "__main__":
-    asyncio.run(main())
+    asyncio.run(run_ingestion())

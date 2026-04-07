@@ -1,10 +1,9 @@
 from collections import Counter, defaultdict
 import logging
-import random
-import json
 import calendar
 from itertools import product
 import numpy as np
+import datetime as dt
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -13,94 +12,188 @@ months = list(calendar.month_name)[1:]
 
 
 class PredictionService:
-    # take first 20 years as training set for computing freq
-    # for test next 6 years
-    # so training ~76%
-    # test ~24%
-    # use 3 months before jan feb march 2020 to make prediction for april 2020
-    # predict and compare to actual data
-    # get count of predict correct vs predict wrong for accuracy
+    def run(self, data, start=0, group_size=4, repeats=9, k=5, pred_date=None):
 
-    def run(self, data, start=0, group_size=3, repeats=5, k=6):
-        print("\n------------Start-----------------\n")
-        data = sorted(data, key=lambda e: (e[0]))
+        data = sorted(data, key=lambda e: e[0])
+
+        # store last real date for the ui to mark projected months
+        last_real_date = str(data[-1][0]) if data else None
+
+        if pred_date is not None and data and pred_date < data[-1][0]:
+            data = [d for d in data if d[0] <= pred_date]
+            last_real_date = str(data[-1][0]) if data else None
+
+        if pred_date is not None and data and pred_date > data[-1][0]:
+            data = self.chain_predictions(
+                data, pred_date, start, group_size, repeats, k
+            )
+
+        print(last_real_date)
+
+        if len(data) < group_size:
+            return (
+                [],
+                {},
+                {},
+                {},
+                [],
+                {},
+                {
+                    "correct": 0,
+                    "wrong": 0,
+                    "total": 0,
+                    "accuracy": 0.0,
+                    "mse": 0.0,
+                    "rmse": 0.0,
+                },
+                [],
+                last_real_date,
+            )
+        # sort data by date
+        data = sorted(data, key=lambda e: e[0])
+
+        # generate all possible patterns
         patterns = self.generate_patterns(group_size)
+
+        # group into _group_size_ groups
         groups = self.create_groups(data, start, group_size)
+
+        # calculate the change count
         changes = self.get_changes(data, group_size)
 
+        # get all the years
         years = sorted({item[0].year for item in data})
 
         if not years:
             return []
 
+        # get 6 years ago for the cutoff
         last_year = years[-6]
 
+        # split changes into historical/training set
+
         change_hist = [c for c in changes if c[0].year < last_year]
+
+        # split changes into test set
         change_curr_year = [c for c in changes if c[0].year >= last_year]
 
-
-        y = len(change_hist)
         z = len(change_curr_year)
+        if z == 0:
+            return (
+                [],
+                patterns,
+                groups,
+                changes,
+                data,
+                {},
+                {
+                    "correct": 0,
+                    "wrong": 0,
+                    "total": 0,
+                    "accuracy": 0.0,
+                    "mse": 0.0,
+                    "rmse": 0.0,
+                },
+                [],
+                last_real_date,
+            )
+
+        # lookup for prediction comparison, for accuracy
+        chg_by_date = {c[0]: c for c in change_curr_year}
 
         frequencies = {}
-        # need to ask Arash what p is for here
+
+        # calculate the frequencies
         for p in [0, 4, 8]:
             frequencies[p // group_size] = self.get_frequencies(
                 change_hist, group_size, p
             )
 
         month = 0
-        results = [[None, 0, None] for _ in range(z)]
-        results[z - 1][0] = change_curr_year[z - 1][0]
+        results = [{"date": None, "predictions": {}} for _ in range(z)]
+        results[z - 1]["date"] = change_curr_year[-1][0]
 
-        for s in range(1, 12 // group_size):
-            for i in range(0, z - 1):
+        correct = 0
+        wrong = 0
+
+        # need to add an offset for the groups in order to make it start on the correct year for predicting
+        start_date = change_curr_year[0][0]
+
+        # calculate the start date offset
+        groups_offset = next(i for i, g in enumerate(groups) if g[0] >= start_date)
+        for s in range(1, (12 // group_size)):
+            years = 0
+            for i in range(month, z):
                 predictions = defaultdict(int)
-                idx = i * 12 + month
-                for _ in range(1, repeats):
+                idx = i
+                if idx >= len(change_curr_year):
+                    break
+
+                # get date assignment
+                if idx < len(change_curr_year):
+                    results[i]["date"] = change_curr_year[idx][0]
+
+                for _ in range(repeats):
                     letter = self.predict_change(
                         change_curr_year, frequencies[s - 1], patterns, idx, group_size
                     )
                     predictions[letter] += 1
 
                 letter = max(predictions, key=lambda k: predictions[k])
-                groups_idx = idx + group_size - 2
-                if groups_idx >= len(groups):
-                    continue
+                groups_idx = min(groups_offset + idx + group_size - 2, len(groups) - 1)
                 last_known_price = float(groups[groups_idx][1])
-                mag = float(
-                    self.magnitude(
-                        change_hist, change_curr_year, letter, idx, k, group_size
+                mag = abs(
+                    float(
+                        self.magnitude(
+                            change_hist, change_curr_year, letter, idx, k, group_size
+                        )
                     )
                 )
 
                 # magnitude still but total
                 m = last_known_price + mag if letter == "U" else last_known_price - mag
 
-                results[i].append([letter, m, month])
+                results[i]["date"] = change_curr_year[idx][0]
+                results[i]["predictions"][month] = {"direction": letter, "price": m}
+
+                target_date = (
+                    change_curr_year[idx][0] if idx < len(change_curr_year) else None
+                )
+                if target_date and target_date in chg_by_date:
+                    actual = chg_by_date[target_date][2]
+                    if letter == actual:
+                        correct += 1
+                    else:
+                        wrong += 1
 
             month = month + 4
-        # i.e model
-        # [results, groups, changes, blah blah]
-        #print("frequencies: ",frequencies)
-        """jan_apr = frequencies
-        print(f"Sum: {sum(jan_apr.values())}")
-        total = sum(jan_apr.values())
-        ranges_dict = {}
-        tracker = 1
-        for pattern, count in jan_apr.items():
-            #print(f"Range: {tracker}-{tracker+count-1}")
-            #ranges_dict.update({pattern:()})
-            print(f"{pattern}: {count}  | {count/total:,.2f}")
-            tracker = tracker+count"""
 
-        #for n in range(5):
-            #print(n)
+        total = correct + wrong
+        accuracy = correct / total if total > 0 else 0.0
 
+        mse, rmse, error_band = self.mse(data, results)
 
-        #print(data)
+        acc_summary = {
+            "correct": correct,
+            "wrong": wrong,
+            "total": total,
+            "accuracy": accuracy,
+            "mse": mse,
+            "rmse": rmse,
+        }
 
-        return results, patterns, groups, changes, data, frequencies
+        data = [d for d in data if d[0].year >= last_year]
+        return (
+            results,
+            patterns,
+            groups,
+            changes,
+            data,
+            frequencies,
+            acc_summary,
+            error_band,
+            last_real_date,
+        )
 
     def predict(self, test_set, patterns, training_frequencies, prediction_month, change_hist, group_size=3, k=6):
         correct_predictions = 0
@@ -141,7 +234,7 @@ class PredictionService:
             print(f"training_dict total months: {total}")
             print(f"{prefix_triple} probability: {probability_dict[prefix_triple]}")
             print(f"{prefix_triple_alt_case} probability: {probability_dict[prefix_triple_alt_case]}")
-            
+
             score1 = 0
             score2 = 0
             p1 = float(probability_dict[prefix_triple_alt_case])
@@ -149,10 +242,8 @@ class PredictionService:
                 rand = random.randrange(0,100)/100
                 if rand <= p1:
                     score2 += 1
-                    #print(f"Score for {prefix_triple_alt_case}:")
                 else:
-                    #print(f"Score for {prefix_triple}")
-                    score1 += 1 
+                    score1 += 1
             print(f"{prefix_triple} points | {score1}")
             print(f"{prefix_triple_alt_case} points | {score2}")
             if score1 > score2:
@@ -167,8 +258,6 @@ class PredictionService:
                 i * 12  # fallback
             )
             last_known_price = float(test_set[start + group_size - 1][1])
-            # updated winner to winner[-1] to allow for correct magnitude direction (positive/negative)
-            # if letter == "D" causes "UUD" to fall into the else branch
             mag = float(self.magnitude(change_hist, change_curr_year, winner[-1], idx, k, group_size))
             predicted_price = last_known_price + mag
             print(f"Last known price: ${last_known_price:,.2f} | Magnitude: {mag:,.2f} | Predicted price: ${predicted_price:,.2f}")
@@ -181,7 +270,7 @@ class PredictionService:
                 correct_predictions = correct_predictions + 1
             else:
                 print("Incorrect prediction")
-                incorrect_predictions = incorrect_predictions +1
+                incorrect_predictions = incorrect_predictions + 1
             print(i)
             print(f"succes rate: {correct_predictions/(i+1)}")
 
@@ -195,13 +284,6 @@ class PredictionService:
                 "direction": winner[-1],
                 "correct": correct,
             })
-
-            """print(f"jan-apr training frequencies {jan_apr_training_freq}")
-            print(f"Prefix: {prefix}")
-            print(f"Prefix_triple: {prefix_triple}")
-            print(f"Prefix_triple_alt_case: {prefix_triple_alt_case}")"""
-            #print(f"Patterns: {patterns}")
-            #print(len(test_set))
 
             pass
 
@@ -219,11 +301,6 @@ class PredictionService:
         for date, price in data:
             if date.year < cutoff:
                 training_data.append((date,price))
-
-        """print(f"\n--- Training Data Generation (Cutoff: {cutoff}) ---")
-        print(f"Total Training Months: {len(training_data)}")
-        print(f"Start Date: {training_data[0][0]} Price {training_data[0][0]:,.2f}")"""
-
         return training_data
 
     def generate_test_set(self, data, cutoff):
@@ -231,10 +308,6 @@ class PredictionService:
         for date, price in data:
             if date.year >= cutoff:
                 testing_data.append((date,price))
-
-        """print(f"\n--- Testing Data Generation (Cutoff: {cutoff}) ---")
-        print(f"Total Testing Months: {len(testing_data)}")
-        print(f"Start Date: {testing_data[0][0]} Price {testing_data[0][0]:,.2f}")"""
         return testing_data
 
     def create_groups(self, entries, start=0, group_size=4, k=6):
@@ -245,7 +318,7 @@ class PredictionService:
         n = len(entries)
 
         groups = [
-            [None, None, None] for _ in range(n)
+            [None, None, None] for _ in range(n + group_size)
         ]  # date, real estate price, and group
 
         # store the date and price
@@ -269,17 +342,20 @@ class PredictionService:
         n = len(groups)
 
         changes = [
-            [None, 0, None] for _ in range(n)
+            [None, 0, None] for _ in range(n + group_size)
         ]  # n years * 12 months, price difference, and change direction
+        # adding group size to deal with if there is a partial group
 
         # go over each group
-        for i in range(n // group_size):
+        for i in range(1, (n // group_size) + 1):
             # loop through group members
             for j in range(group_size):
                 # calculate the index for the changes
                 # current group * size of group + current group item
                 idx = i * group_size + j
 
+                if idx >= n:
+                    break
                 # store the date
                 changes[idx][0] = groups[idx][0]
 
@@ -304,10 +380,10 @@ class PredictionService:
         for i in range(1, y // group_size):
             pattern = ""
             # p is 0, 4, and 8... is this just starting point for quartering the data?
-            l = p + i  # p + current group
+            curr_group = p + i  # p + current group
 
             # look the the range of current quarter (?) + group size
-            for j in range(l, l + group_size):
+            for j in range(curr_group, curr_group + group_size):
                 if j >= y:
                     break
                 pattern += changes[j][2]  # create the pattern
@@ -315,9 +391,12 @@ class PredictionService:
         return freq
 
     def predict_change(self, change_curr_year, frequency, patterns, index, group_size):
-        pattern = ""
-        for j in range(index + 1, index + group_size - 2):
-            pattern += change_curr_year[j][2]
+        pattern = "".join(
+            change_curr_year[j][2]
+            for j in range(index + 1, index + group_size - 2)
+            if j < len(change_curr_year)
+        )
+
         # patter 1 and pattern 2
         p1 = pattern + "D"
         p2 = pattern + "U"
@@ -327,7 +406,7 @@ class PredictionService:
         f2 = frequency.get(p2, 1)
 
         # random number between 0 and 1
-        x = random.random()
+        x = np.random.rand()
         return "D" if x <= f1 / (f1 + f2) else "U"
 
     def magnitude(self, change_hist, change_curr_year, letter, index, k, group_size):
@@ -335,11 +414,11 @@ class PredictionService:
         num_rows = (y - 1) // group_size  # safe number of fully indexable groups
 
         diffs = [
-            [0] * group_size for _ in range(num_rows)
+            [0] * group_size for _ in range(num_rows + 1)
         ]  # group_size columns, not group_size-1
-        dists = [0.0] * num_rows
+        dists = [0.0] * (num_rows + 1)
 
-        for j in range(num_rows):
+        for j in range(num_rows + 1):
             for l in range(group_size - 1):
                 hist_idx = j * group_size + l + 1
                 if hist_idx >= y:
@@ -350,7 +429,6 @@ class PredictionService:
                 sum(
                     (diffs[j][t] - change_curr_year[index + t][1])
                     ** 2  # [1] to get price
-                    # need to iterate over whole group size here for correct magnitude prediction
                     for t in range(1, group_size)
                     if index + t < len(change_curr_year)
                 )
@@ -359,9 +437,9 @@ class PredictionService:
         last_col = group_size - 1  # last valid column index
 
         if letter == "D":
-            candidates = [j for j in range(num_rows) if diffs[j][last_col] < 0]
+            candidates = [j for j in range(num_rows + 1) if diffs[j][last_col] < 0]
         else:
-            candidates = [j for j in range(num_rows) if diffs[j][last_col] >= 0]
+            candidates = [j for j in range(num_rows + 1) if diffs[j][last_col] >= 0]
 
         # kth nearest neighbors in each group
         candidates = sorted(candidates, key=lambda j: dists[j])[:k]
@@ -384,11 +462,105 @@ class PredictionService:
         """
         return ["".join(p) for p in product("UD", repeat=group_size)]
 
+    def chain_predictions(self, data, pred_date, start, group_size, repeats, k):
+        """Chain predictions forward month by month until pred_date is reached."""
+        data = sorted(data, key=lambda e: e[0])
+        last_date = data[-1][0]
 
-class ZillowData:
-    def __init__(self, region_id, region_name, state_name, date, avg_cost):
-        self.region_id = region_id
-        self.region_name = region_name
-        self.state_name = state_name
-        self.date = date
-        self.avg_cost = avg_cost
+        while last_date < pred_date:
+            # advance to next month
+            if last_date.month == 12:
+                next_date = dt.date(last_date.year + 1, 1, 31)
+            else:
+                next_month = last_date.month + 1
+                last_day = calendar.monthrange(last_date.year, next_month)[1]
+                next_date = dt.date(last_date.year, next_month, last_day)
+
+            # run prediction on data up to this point
+            (
+                results,
+                patterns,
+                groups,
+                changes,
+                filtered_data,
+                frequencies,
+                acc_summary,
+                error_band,
+                last_real_date,
+            ) = self.run(data, start, group_size, repeats, k)
+
+            if not results or not results[-1]["predictions"]:
+                break
+
+            # get the last prediction's average price to use as the "actual" data
+            last_preds = results[-1]["predictions"]
+            prices = [
+                p["price"] for p in last_preds.values() if p.get("price") is not None
+            ]
+            if not prices:
+                break
+            predicted_price = sum(prices) / len(prices)
+
+            # append predicted month to data
+            data.append((next_date, predicted_price))
+            data = sorted(data, key=lambda e: e[0])
+            last_date = next_date
+
+        return data
+
+    def mse(self, data, results):
+        # Collect paired (actual, predicted) for all results that have both
+        paired = []
+
+        actual_price_by_date = {}
+        for item in data:
+            date_key = item[0]
+            actual_price_by_date[date_key] = float(item[1])
+
+        for result in results:
+            if result["date"] is None or not result["predictions"]:
+                continue
+
+            # Average all prediction prices for this result
+            pred_prices = [
+                p["price"]
+                for p in result["predictions"].values()
+                if p.get("price") is not None
+            ]
+            if not pred_prices:
+                continue
+            avg_pred = sum(pred_prices) / len(pred_prices)
+            # Find the actual price for this date
+            if result["date"] in actual_price_by_date:
+                actual = actual_price_by_date[result["date"]]
+                paired.append((actual, avg_pred))
+
+        if paired:
+            mse = sum((a - p) ** 2 for a, p in paired) / len(paired)
+            rmse = float(np.sqrt(mse))
+        else:
+            mse = 0.0
+            rmse = 0.0
+
+        # Build error_band: for each result with a prediction, add upper/lower
+        error_band = []
+        for result in results:
+            if result["date"] is None or not result["predictions"]:
+                continue
+            pred_prices = [
+                p["price"]
+                for p in result["predictions"].values()
+                if p.get("price") is not None
+            ]
+            if not pred_prices:
+                continue
+            avg_pred = sum(pred_prices) / len(pred_prices)
+            error_band.append(
+                {
+                    "date": result["date"],
+                    "predicted": avg_pred,
+                    "upper": avg_pred + rmse,
+                    "lower": avg_pred - rmse,
+                }
+            )
+        return mse, rmse, error_band
