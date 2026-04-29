@@ -4,6 +4,7 @@ import calendar
 from itertools import product
 import numpy as np
 import datetime as dt
+import random
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -205,7 +206,10 @@ class PredictionService:
             print(f"\n----------Training round {i}--------------")
             print(f"trainging freqs: {training_frequencies}")
             # offset into each year so that the 3-month prefix ends at prediction_month
-            start = i * 12 + (prediction_month - group_size)
+            start = i * 12 + prediction_month
+            if start + group_size >= len(test_set):
+                print(f"Not enough test data for round {i}, stopping.")
+                break
             prefix = ""
             jan, feb, mar, apr = test_set[start][1], test_set[start+1][1], test_set[start+2][1], test_set[start+3][1]
             print(f"Months {test_set[start+1], test_set[start+2], test_set[start+3], test_set[start+4]}")
@@ -294,7 +298,24 @@ class PredictionService:
             ok = "✓" if r["correct"] else "✗"
             print(f"{str(r['month']):<12} ${r['last_known']:>13,.2f} ${r['magnitude']:>11,.2f} ${r['predicted']:>13,.2f} ${r['actual']:>13,.2f} ${r['error']:>11,.2f} {r['direction']:>4} {ok:>4}")
         print("="*95)
-        print(f"Success rate: {correct_predictions}/{correct_predictions+incorrect_predictions} ({correct_predictions/(correct_predictions+incorrect_predictions):.0%})")
+        total = correct_predictions + incorrect_predictions
+        accuracy = correct_predictions / total if total > 0 else 0.0
+        print(f"Success rate: {correct_predictions}/{total} ({accuracy:.0%})")
+
+        mse = sum(r["error"] ** 2 for r in summary_rows) / len(summary_rows) if summary_rows else 0.0
+        rmse = mse ** 0.5
+        print(f"MSE:  {mse:,.2f}")
+        print(f"RMSE: {rmse:,.2f}")
+
+        return {
+            "correct": correct_predictions,
+            "wrong": incorrect_predictions,
+            "total": total,
+            "accuracy": accuracy,
+            "mse": mse,
+            "rmse": rmse,
+            "rows": summary_rows,
+        }
 
     def generate_training_set(self, data, cutoff):
         training_data = []
@@ -342,25 +363,22 @@ class PredictionService:
         n = len(groups)
 
         changes = [
-            [None, 0, None] for _ in range(n + group_size)
+            [None, 0, None] for _ in range(n)
         ]  # n years * 12 months, price difference, and change direction
-        # adding group size to deal with if there is a partial group
 
         # go over each group
-        for i in range(1, (n // group_size) + 1):
+        for i in range(n // group_size):
             # loop through group members
             for j in range(group_size):
                 # calculate the index for the changes
                 # current group * size of group + current group item
                 idx = i * group_size + j
 
-                if idx >= n:
-                    break
                 # store the date
                 changes[idx][0] = groups[idx][0]
 
                 # calculate the price difference
-                changes[idx][1] = groups[idx][1] - groups[idx - 1][1]
+                changes[idx][1] = float(groups[idx][1]) - float(groups[idx - 1][1])
 
                 # store the direction based off the differences
                 changes[idx][2] = "U" if changes[idx][1] > 0 else "D"

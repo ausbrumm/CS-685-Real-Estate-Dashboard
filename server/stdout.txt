@@ -1,0 +1,2508 @@
+
+============================================================
+Region: 394463
+============================================================
+[DEBUG] Full set count: 312
+[DEBUG] Training: 2000-01-31 -> 2019-12-31
+[DEBUG] Test:     2020-01-31 -> 2025-12-31
+2019-12-31
+change value 1308.408139193732
+change value -477.078884089472
+change value -477.078884089472
+change value -477.078884089472
+change value 1023.451375628908
+change value 936.612957081046
+change value 706.496784194762
+change value 592.820405001786
+change value -477.078884089472
+change value -477.078884089472
+change value -477.078884089472
+change value 301.80023694113
+change value 467.568232306282
+change value -477.078884089472
+change value 826.548422838124
+change value -477.078884089472
+change value 826.548422838124
+change value -477.078884089472
+change value 826.548422838124
+change value 936.40126283592
+change value 1083.629869632586
+change value 1083.629869632586
+change value 1097.81792995031
+change value 1083.629869632586
+change value -477.078884089472
+change value -477.078884089472
+change value -477.078884089472
+change value 826.548422838124
+change value -477.078884089472
+change value -477.078884089472
+change value -477.078884089472
+change value 706.496784194762
+change value -477.078884089472
+change value -477.078884089472
+change value 1170.201516567598
+change value -477.078884089472
+change value 1540.89088463171
+change value -477.078884089472
+change value -477.078884089472
+change value 698.460030524136
+change value -477.078884089472
+change value 301.80023694113
+change value 467.568232306282
+change value -477.078884089472
+change value 1069.591740711838
+change value 1155.568887869278
+change value -477.078884089472
+change value -477.078884089472
+change value -477.078884089472
+change value 1202.523186258658
+change value -477.078884089472
+change value -477.078884089472
+change value -477.078884089472
+change value 274.536635092152
+change value 274.536635092152
+change value 274.536635092152
+change value -477.078884089472
+change value -477.078884089472
+change value -477.078884089472
+change value 1069.591740711838
+change value -477.078884089472
+change value -477.078884089472
+change value 706.496784194762
+change value -477.078884089472
+change value 301.80023694113
+change value 274.536635092152
+change value 274.536635092152
+change value 274.536635092152
+change value -477.078884089472
+change value 301.80023694113
+change value -875.242616778464
+change value -1028.569075686656
+change value -477.078884089472
+change value -477.078884089472
+change value 706.496784194762
+change value 592.820405001786
+change value 467.568232306282
+change value -477.078884089472
+change value 467.568232306282
+change value 301.80023694113
+change value -477.078884089472
+change value -477.078884089472
+change value -477.078884089472
+change value -477.078884089472
+change value 826.548422838124
+change value -477.078884089472
+change value 826.548422838124
+change value 936.40126283592
+change value -477.078884089472
+change value -477.078884089472
+change value 1097.81792995031
+change value -477.078884089472
+change value -477.078884089472
+change value 826.548422838124
+change value -477.078884089472
+change value -477.078884089472
+change value -477.078884089472
+change value 301.80023694113
+change value 301.80023694113
+change value 706.496784194762
+change value 922.952945772706
+change value 1069.591740711838
+change value 1170.201516567598
+change value -477.078884089472
+change value -477.078884089472
+change value 1388.27235553879
+change value 1029.856720022446
+change value 698.460030524136
+change value -477.078884089472
+change value -477.078884089472
+change value 467.568232306282
+change value 922.952945772706
+change value -477.078884089472
+change value 1155.568887869278
+change value 1517.141679171416
+change value 1408.812384367382
+change value -477.078884089472
+change value 1202.523186258658
+change value 987.587713943188
+change value 592.820405001786
+change value -477.078884089472
+change value 274.536635092152
+change value -477.078884089472
+change value -477.078884089472
+change value 301.80023694113
+change value -477.078884089472
+change value 826.548422838124
+change value -477.078884089472
+change value -477.078884089472
+change value 993.317943137794
+change value -477.078884089472
+change value -477.078884089472
+change value -477.078884089472
+change value -477.078884089472
+change value -477.078884089472
+change value 274.536635092152
+change value 274.536635092152
+change value -477.078884089472
+change value 706.496784194762
+change value -1028.569075686656
+change value -477.078884089472
+change value -477.078884089472
+change value -477.078884089472
+change value 301.80023694113
+change value 467.568232306282
+change value 592.820405001786
+change value -477.078884089472
+change value 826.548422838124
+change value -477.078884089472
+change value 826.548422838124
+change value 826.548422838124
+change value -477.078884089472
+change value -477.078884089472
+change value -477.078884089472
+change value -477.078884089472
+change value 1083.629869632586
+change value -477.078884089472
+change value 826.548422838124
+change value 706.496784194762
+change value -477.078884089472
+change value -477.078884089472
+change value -477.078884089472
+change value 301.80023694113
+change value -477.078884089472
+change value -477.078884089472
+change value 1069.591740711838
+change value 1170.201516567598
+change value -477.078884089472
+change value 1540.89088463171
+change value 1388.27235553879
+change value -477.078884089472
+change value 698.460030524136
+change value -477.078884089472
+change value -477.078884089472
+change value 467.568232306282
+change value -477.078884089472
+change value -477.078884089472
+change value -477.078884089472
+change value -477.078884089472
+change value -477.078884089472
+change value -477.078884089472
+change value 1202.523186258658
+change value -477.078884089472
+change value -477.078884089472
+change value 274.536635092152
+change value -477.078884089472
+change value 274.536635092152
+change value 274.536635092152
+change value -477.078884089472
+change value 467.568232306282
+change value 826.548422838124
+change value 1069.591740711838
+change value 1087.888574569064
+change value 993.317943137794
+change value -477.078884089472
+change value 301.80023694113
+change value -477.078884089472
+change value 274.536635092152
+change value -477.078884089472
+change value 274.536635092152
+change value -477.078884089472
+change value -477.078884089472
+change value -875.242616778464
+change value -1028.569075686656
+Training frequencies: {0: Counter({'UUU': 55}), 1: Counter({'UUU': 55}), 2: Counter({'UUU': 55})}
+
+----------Training round 0--------------
+trainging freqs: {0: Counter({'UUU': 55}), 1: Counter({'UUU': 55}), 2: Counter({'UUU': 55})}
+Months ((datetime.date(2019, 11, 30), Decimal('233228.59783414155')), (datetime.date(2019, 12, 31), Decimal('233849.8634507372')), (datetime.date(2020, 1, 31), Decimal('234960.7952218828')), (datetime.date(2020, 2, 29), Decimal('236284.1601651748')))
+Our prefix is UU, so we test probability between UUU and UUD
+Test month: (datetime.date(2019, 10, 31), Decimal('233033.54697204524'))
+Test month: (datetime.date(2019, 11, 30), Decimal('233228.59783414155'))
+Test month: (datetime.date(2019, 12, 31), Decimal('233849.8634507372'))
+training dict: {'UUU': 55, 'UUD': 0}
+training_dict total months: 55
+UUU probability: 1.00
+UUD probability: 0.00
+UUU points | 5
+UUD points | 0
+We predict UUU
+change value 533.02650417505
+Last known price: $233,849.86 | Magnitude: 533.03 | Predicted price: $234,382.89
+Actual price: $234,960.80 | Error: $577.91
+Test case is UUU for 2020-01-31
+Correct direction prediction of U for 2020-01-31
+0
+succes rate: 1.0
+
+----------Training round 1--------------
+trainging freqs: {0: Counter({'UUU': 55}), 1: Counter({'UUU': 55}), 2: Counter({'UUU': 55})}
+Months ((datetime.date(2020, 11, 30), Decimal('244983.4587954224')), (datetime.date(2020, 12, 31), Decimal('247955.72874770072')), (datetime.date(2021, 1, 31), Decimal('250909.152706536')), (datetime.date(2021, 2, 28), Decimal('254118.1320007477')))
+Our prefix is UU, so we test probability between UUU and UUD
+Test month: (datetime.date(2020, 10, 31), Decimal('241994.60889324837'))
+Test month: (datetime.date(2020, 11, 30), Decimal('244983.4587954224'))
+Test month: (datetime.date(2020, 12, 31), Decimal('247955.72874770072'))
+training dict: {'UUU': 55, 'UUD': 0}
+training_dict total months: 55
+UUU probability: 1.00
+UUD probability: 0.00
+UUU points | 5
+UUD points | 0
+We predict UUU
+change value 1685.350461203885
+Last known price: $247,955.73 | Magnitude: 1,685.35 | Predicted price: $249,641.08
+Actual price: $250,909.15 | Error: $1,268.07
+Test case is UUU for 2021-01-31
+Correct direction prediction of U for 2021-01-31
+1
+succes rate: 1.0
+
+----------Training round 2--------------
+trainging freqs: {0: Counter({'UUU': 55}), 1: Counter({'UUU': 55}), 2: Counter({'UUU': 55})}
+Months ((datetime.date(2021, 11, 30), Decimal('271226.57686297223')), (datetime.date(2021, 12, 31), Decimal('272680.15948561573')), (datetime.date(2022, 1, 31), Decimal('275263.03926451266')), (datetime.date(2022, 2, 28), Decimal('279025.4268867469')))
+Our prefix is UU, so we test probability between UUU and UUD
+Test month: (datetime.date(2021, 10, 31), Decimal('270565.2620124216'))
+Test month: (datetime.date(2021, 11, 30), Decimal('271226.57686297223'))
+Test month: (datetime.date(2021, 12, 31), Decimal('272680.15948561573'))
+training dict: {'UUU': 55, 'UUD': 0}
+training_dict total months: 55
+UUU probability: 1.00
+UUD probability: 0.00
+UUU points | 5
+UUD points | 0
+We predict UUU
+change value 1147.54114866529
+Last known price: $272,680.16 | Magnitude: 1,147.54 | Predicted price: $273,827.70
+Actual price: $275,263.04 | Error: $1,435.34
+Test case is UUU for 2022-01-31
+Correct direction prediction of U for 2022-01-31
+2
+succes rate: 1.0
+
+----------Training round 3--------------
+trainging freqs: {0: Counter({'UUU': 55}), 1: Counter({'UUU': 55}), 2: Counter({'UUU': 55})}
+Months ((datetime.date(2022, 11, 30), Decimal('289723.4982849457')), (datetime.date(2022, 12, 31), Decimal('289309.142407679')), (datetime.date(2023, 1, 31), Decimal('288708.9881048329')), (datetime.date(2023, 2, 28), Decimal('288557.58112714643')))
+Our prefix is DD, so we test probability between DDD and DDU
+Test month: (datetime.date(2022, 10, 31), Decimal('290484.5051447184'))
+Test month: (datetime.date(2022, 11, 30), Decimal('289723.4982849457'))
+Test month: (datetime.date(2022, 12, 31), Decimal('289309.142407679'))
+training dict: {'DDD': 0, 'DDU': 0}
+training_dict total months: 0
+DDD probability: 0.50
+DDU probability: 0.50
+DDD points | 3
+DDU points | 2
+We predict DDD
+change value -555.51041225133
+Last known price: $289,309.14 | Magnitude: -555.51 | Predicted price: $288,753.63
+Actual price: $288,708.99 | Error: $44.64
+Test case is DDD for 2023-01-31
+Correct direction prediction of D for 2023-01-31
+3
+succes rate: 1.0
+
+===============================================================================================
+Month            Last Known    Magnitude      Predicted         Actual        Error  Dir   OK
+===============================================================================================
+2020-01-31   $   233,849.86 $     533.03 $   234,382.89 $   234,960.80 $     577.91    U    ✓
+2021-01-31   $   247,955.73 $   1,685.35 $   249,641.08 $   250,909.15 $   1,268.07    U    ✓
+2022-01-31   $   272,680.16 $   1,147.54 $   273,827.70 $   275,263.04 $   1,435.34    U    ✓
+2023-01-31   $   289,309.14 $    -555.51 $   288,753.63 $   288,708.99 $      44.64    D    ✓
+===============================================================================================
+Success rate: 4/4 (100%)
+MSE:  1,001,043.74
+RMSE: 1,000.52
+
+============================================================
+Region: 394910
+============================================================
+[DEBUG] Full set count: 312
+[DEBUG] Training: 2000-01-31 -> 2019-12-31
+[DEBUG] Test:     2020-01-31 -> 2025-12-31
+2019-12-31
+change value -288.74537112486
+change value -250.307938831526
+change value -250.307938831526
+change value 957.643993151884
+change value -339.167716849784
+change value 465.024228562702
+change value 133.464969799176
+change value -250.307938831526
+change value -250.307938831526
+change value 1089.794930846468
+change value 1080.349131983706
+change value -339.167716849784
+change value -339.167716849784
+change value 878.162100924108
+change value -250.307938831526
+change value 1000.902249621654
+change value 828.004132602106
+change value 465.024228562702
+change value -250.307938831526
+change value 1001.55834730975
+change value -339.167716849784
+change value -339.167716849784
+change value -339.167716849784
+change value -250.307938831526
+change value 88.694501170518
+change value 508.323664009946
+change value 865.800572390256
+change value 1104.688193576646
+change value 849.205095617336
+change value -250.307938831526
+change value -339.167716849784
+change value 666.224959476076
+change value 339.038994345552
+change value -339.167716849784
+change value -642.300203566168
+change value 124.360159451252
+change value -469.406455403278
+change value -296.623614239302
+change value 124.360159451252
+change value 124.360159451252
+change value 124.360159451252
+change value -250.307938831526
+change value 666.224959476076
+change value -250.307938831526
+change value 957.643993151884
+change value -339.167716849784
+change value -250.307938831526
+change value -250.307938831526
+change value -339.167716849784
+change value 241.700930138354
+change value -823.084300492048
+change value -910.428192330884
+change value 124.360159451252
+change value -217.946993897976
+change value 806.087750561118
+change value 501.38188374309
+change value 154.779857590998
+change value -250.307938831526
+change value 735.683007840176
+change value 1104.688193576646
+change value -250.307938831526
+change value -339.167716849784
+change value 1776.32342302463
+change value -339.167716849784
+change value 919.014048469468
+change value -339.167716849784
+change value -250.307938831526
+change value -339.167716849784
+change value 498.819382460438
+change value -250.307938831526
+change value -478.61751922829
+change value -758.050038213094
+change value 879.35314276374
+change value 465.024228562702
+change value 133.464969799176
+change value -250.307938831526
+change value 926.69266301627
+change value -250.307938831526
+change value 1080.349131983706
+change value -339.167716849784
+change value -339.167716849784
+change value -250.307938831526
+change value 998.139377114822
+change value -339.167716849784
+change value -339.167716849784
+change value -339.167716849784
+change value -250.307938831526
+change value -250.307938831526
+change value 1089.794930846468
+change value -339.167716849784
+change value 352.62140734777
+change value -250.307938831526
+change value 88.694501170518
+change value 508.323664009946
+change value 865.800572390256
+change value 1104.688193576646
+change value -339.167716849784
+change value -250.307938831526
+change value -339.167716849784
+change value 666.224959476076
+change value -339.167716849784
+change value 88.694501170518
+change value 96.920627156316
+change value 124.360159451252
+change value -469.406455403278
+change value 124.360159451252
+change value 124.360159451252
+change value 124.360159451252
+change value 124.360159451252
+change value -250.307938831526
+change value 666.224959476076
+change value -250.307938831526
+change value -339.167716849784
+change value 881.358587515014
+change value 945.621888903638
+change value 929.511111085742
+change value 828.004132602106
+change value -478.61751922829
+change value 96.920627156316
+change value -910.428192330884
+change value 124.360159451252
+change value 260.635428876724
+change value 806.087750561118
+change value 501.38188374309
+change value -250.307938831526
+change value -250.307938831526
+change value -250.307938831526
+change value -250.307938831526
+change value 1850.563929093308
+change value -339.167716849784
+change value 1776.32342302463
+change value 931.170076795072
+change value -250.307938831526
+change value -339.167716849784
+change value 750.00498606883
+change value -339.167716849784
+change value -250.307938831526
+change value 806.087750561118
+change value -478.61751922829
+change value 677.85663812849
+change value 926.69266301627
+change value -250.307938831526
+change value 1080.349131983706
+change value -339.167716849784
+change value 879.35314276374
+change value -250.307938831526
+change value -250.307938831526
+change value 1000.902249621654
+change value -339.167716849784
+change value -339.167716849784
+change value -250.307938831526
+change value -250.307938831526
+change value -339.167716849784
+change value 849.205095617336
+change value 352.62140734777
+change value -250.307938831526
+change value 88.694501170518
+change value -217.946993897976
+change value 865.800572390256
+change value 1104.688193576646
+change value 849.205095617336
+change value -250.307938831526
+change value 592.381276320042
+change value -250.307938831526
+change value -339.167716849784
+change value 88.694501170518
+change value 96.920627156316
+change value -647.808549725958
+change value -469.406455403278
+change value 124.360159451252
+change value 124.360159451252
+change value -469.406455403278
+change value 124.360159451252
+change value 260.50855005003
+change value -250.307938831526
+change value -250.307938831526
+change value 957.643993151884
+change value -339.167716849784
+change value 945.621888903638
+change value -250.307938831526
+change value 828.004132602106
+change value 241.700930138354
+change value -823.084300492048
+change value 124.360159451252
+change value -689.97906666781
+change value -217.946993897976
+change value -250.307938831526
+change value -339.167716849784
+change value 154.779857590998
+change value -250.307938831526
+change value 735.683007840176
+change value -250.307938831526
+change value 1850.563929093308
+change value 1850.563929093308
+change value 1776.32342302463
+change value 931.170076795072
+change value 919.014048469468
+change value -339.167716849784
+change value 750.00498606883
+change value 465.024228562702
+change value 498.819382460438
+change value 806.087750561118
+change value -478.61751922829
+change value -758.050038213094
+Training frequencies: {0: Counter({'UUU': 55}), 1: Counter({'UUU': 55}), 2: Counter({'UUU': 55})}
+
+----------Training round 0--------------
+trainging freqs: {0: Counter({'UUU': 55}), 1: Counter({'UUU': 55}), 2: Counter({'UUU': 55})}
+Months ((datetime.date(2019, 11, 30), Decimal('235094.2829735589')), (datetime.date(2019, 12, 31), Decimal('236072.5011704057')), (datetime.date(2020, 1, 31), Decimal('238214.00223211732')), (datetime.date(2020, 2, 29), Decimal('240450.71145658265')))
+Our prefix is UU, so we test probability between UUU and UUD
+Test month: (datetime.date(2019, 10, 31), Decimal('234641.81016529127'))
+Test month: (datetime.date(2019, 11, 30), Decimal('235094.2829735589'))
+Test month: (datetime.date(2019, 12, 31), Decimal('236072.5011704057'))
+training dict: {'UUU': 55, 'UUD': 0}
+training_dict total months: 55
+UUU probability: 1.00
+UUD probability: 0.00
+UUU points | 5
+UUD points | 0
+We predict UUU
+change value 866.8345247835866666666666667
+Last known price: $236,072.50 | Magnitude: 866.83 | Predicted price: $236,939.34
+Actual price: $238,214.00 | Error: $1,274.67
+Test case is UUU for 2020-01-31
+Correct direction prediction of U for 2020-01-31
+0
+succes rate: 1.0
+
+----------Training round 1--------------
+trainging freqs: {0: Counter({'UUU': 55}), 1: Counter({'UUU': 55}), 2: Counter({'UUU': 55})}
+Months ((datetime.date(2020, 11, 30), Decimal('250880.29878894996')), (datetime.date(2020, 12, 31), Decimal('252881.4113496088')), (datetime.date(2021, 1, 31), Decimal('253962.7803746479')), (datetime.date(2021, 2, 28), Decimal('255423.13815674683')))
+Our prefix is UU, so we test probability between UUU and UUD
+Test month: (datetime.date(2020, 10, 31), Decimal('248415.17339334'))
+Test month: (datetime.date(2020, 11, 30), Decimal('250880.29878894996'))
+Test month: (datetime.date(2020, 12, 31), Decimal('252881.4113496088'))
+training dict: {'UUU': 55, 'UUD': 0}
+training_dict total months: 55
+UUU probability: 1.00
+UUD probability: 0.00
+UUU points | 5
+UUD points | 0
+We predict UUU
+change value 1923.292690927016666666666667
+Last known price: $252,881.41 | Magnitude: 1,923.29 | Predicted price: $254,804.70
+Actual price: $253,962.78 | Error: $841.92
+Test case is UUU for 2021-01-31
+Correct direction prediction of U for 2021-01-31
+1
+succes rate: 1.0
+
+----------Training round 2--------------
+trainging freqs: {0: Counter({'UUU': 55}), 1: Counter({'UUU': 55}), 2: Counter({'UUU': 55})}
+Months ((datetime.date(2021, 11, 30), Decimal('274042.76143287326')), (datetime.date(2021, 12, 31), Decimal('275976.4008492018')), (datetime.date(2022, 1, 31), Decimal('277096.9966937302')), (datetime.date(2022, 2, 28), Decimal('278337.44004716194')))
+Our prefix is UU, so we test probability between UUU and UUD
+Test month: (datetime.date(2021, 10, 31), Decimal('272088.6067963634'))
+Test month: (datetime.date(2021, 11, 30), Decimal('274042.76143287326'))
+Test month: (datetime.date(2021, 12, 31), Decimal('275976.4008492018'))
+training dict: {'UUU': 55, 'UUD': 0}
+training_dict total months: 55
+UUU probability: 1.00
+UUD probability: 0.00
+UUU points | 5
+UUD points | 0
+We predict UUU
+change value 1923.292690927016666666666667
+Last known price: $275,976.40 | Magnitude: 1,923.29 | Predicted price: $277,899.69
+Actual price: $277,097.00 | Error: $802.70
+Test case is UUU for 2022-01-31
+Correct direction prediction of U for 2022-01-31
+2
+succes rate: 1.0
+
+----------Training round 3--------------
+trainging freqs: {0: Counter({'UUU': 55}), 1: Counter({'UUU': 55}), 2: Counter({'UUU': 55})}
+Months ((datetime.date(2022, 11, 30), Decimal('279245.54292486835')), (datetime.date(2022, 12, 31), Decimal('276453.169356765')), (datetime.date(2023, 1, 31), Decimal('273811.9942989571')), (datetime.date(2023, 2, 28), Decimal('272068.330838305')))
+Our prefix is DD, so we test probability between DDD and DDU
+Test month: (datetime.date(2022, 10, 31), Decimal('281847.2322069453'))
+Test month: (datetime.date(2022, 11, 30), Decimal('279245.54292486835'))
+Test month: (datetime.date(2022, 12, 31), Decimal('276453.169356765'))
+training dict: {'DDD': 0, 'DDU': 0}
+training_dict total months: 0
+DDD probability: 0.50
+DDU probability: 0.50
+DDD points | 3
+DDU points | 2
+We predict DDD
+change value -1109.303229575731666666666667
+Last known price: $276,453.17 | Magnitude: -1,109.30 | Predicted price: $275,343.87
+Actual price: $273,811.99 | Error: $1,531.87
+Test case is DDD for 2023-01-31
+Correct direction prediction of D for 2023-01-31
+3
+succes rate: 1.0
+
+===============================================================================================
+Month            Last Known    Magnitude      Predicted         Actual        Error  Dir   OK
+===============================================================================================
+2020-01-31   $   236,072.50 $     866.83 $   236,939.34 $   238,214.00 $   1,274.67    U    ✓
+2021-01-31   $   252,881.41 $   1,923.29 $   254,804.70 $   253,962.78 $     841.92    U    ✓
+2022-01-31   $   275,976.40 $   1,923.29 $   277,899.69 $   277,097.00 $     802.70    U    ✓
+2023-01-31   $   276,453.17 $  -1,109.30 $   275,343.87 $   273,811.99 $   1,531.87    D    ✓
+===============================================================================================
+Success rate: 4/4 (100%)
+MSE:  1,331,140.94
+RMSE: 1,153.75
+
+============================================================
+Region: 394338
+============================================================
+[DEBUG] Full set count: 312
+[DEBUG] Training: 2000-01-31 -> 2019-12-31
+[DEBUG] Test:     2020-01-31 -> 2025-12-31
+2019-12-31
+change value 822.88196966340
+change value -374.153299972112
+change value 624.281940431858
+change value 529.464573884134
+change value 743.949120713718
+change value 724.73471001854
+change value -374.153299972112
+change value 1026.494571556128
+change value 1058.936522166602
+change value -374.153299972112
+change value 1281.77314147844
+change value -374.153299972112
+change value -374.153299972112
+change value 1220.56825566650
+change value -374.153299972112
+change value -374.153299972112
+change value 1281.77314147844
+change value -374.153299972112
+change value 1507.659985963878
+change value 1672.367830849344
+change value -374.153299972112
+change value 1589.898491068792
+change value 1672.367830849344
+change value -374.153299972112
+change value -374.153299972112
+change value 822.88196966340
+change value 822.88196966340
+change value -374.153299972112
+change value -374.153299972112
+change value -374.153299972112
+change value 1507.659985963878
+change value 1589.898491068792
+change value -374.153299972112
+change value -374.153299972112
+change value 1238.893466777966
+change value -374.153299972112
+change value 1589.898491068792
+change value 1672.367830849344
+change value -374.153299972112
+change value 1672.367830849344
+change value -374.153299972112
+change value 1589.898491068792
+change value 1589.898491068792
+change value -374.153299972112
+change value 1301.203942011138
+change value 1281.77314147844
+change value 1507.659985963878
+change value 1589.898491068792
+change value 1672.367830849344
+change value -374.153299972112
+change value -374.153299972112
+change value 867.66929342241
+change value -374.153299972112
+change value -374.153299972112
+change value -374.153299972112
+change value -374.153299972112
+change value 772.711234682644
+change value -374.153299972112
+change value 602.717608164158
+change value 297.512106275704
+change value -374.153299972112
+change value -374.153299972112
+change value -374.153299972112
+change value -374.153299972112
+change value 822.88196966340
+change value -374.153299972112
+change value 816.658488468854
+change value -374.153299972112
+change value -374.153299972112
+change value 1589.898491068792
+change value -374.153299972112
+change value 526.645514144896
+change value 743.949120713718
+change value -374.153299972112
+change value -374.153299972112
+change value 1026.494571556128
+change value -374.153299972112
+change value 1220.56825566650
+change value 1281.77314147844
+change value -374.153299972112
+change value 1301.203942011138
+change value 1220.56825566650
+change value 948.514621582876
+change value -374.153299972112
+change value -374.153299972112
+change value 1460.79916297538
+change value 1507.659985963878
+change value 1672.367830849344
+change value -374.153299972112
+change value -374.153299972112
+change value 1672.367830849344
+change value 1507.659985963878
+change value -374.153299972112
+change value 822.88196966340
+change value 822.88196966340
+change value 1250.378397258818
+change value -374.153299972112
+change value 1281.77314147844
+change value 1507.659985963878
+change value -374.153299972112
+change value -374.153299972112
+change value -374.153299972112
+change value -374.153299972112
+change value 1281.77314147844
+change value 1589.898491068792
+change value -374.153299972112
+change value 1672.367830849344
+change value 1672.367830849344
+change value 1554.633793709986
+change value 1589.898491068792
+change value 1589.898491068792
+change value -374.153299972112
+change value -374.153299972112
+change value 1281.77314147844
+change value 1507.659985963878
+change value 1589.898491068792
+change value -374.153299972112
+change value 1662.118877958158
+change value 1386.180232976016
+change value -374.153299972112
+change value -374.153299972112
+change value -374.153299972112
+change value -374.153299972112
+change value 640.078804573654
+change value -374.153299972112
+change value -374.153299972112
+change value 602.717608164158
+change value -374.153299972112
+change value 212.898932275942
+change value 597.46363346698
+change value 832.67282318029
+change value -374.153299972112
+change value 822.88196966340
+change value -374.153299972112
+change value -374.153299972112
+change value -374.153299972112
+change value -374.153299972112
+change value -374.153299972112
+change value 1626.854180599352
+change value -912.194936520934
+change value -374.153299972112
+change value 1220.56825566650
+change value -374.153299972112
+change value 1388.831604192754
+change value -374.153299972112
+change value 1220.56825566650
+change value 948.514621582876
+change value -374.153299972112
+change value -374.153299972112
+change value 1460.79916297538
+change value 1507.659985963878
+change value -374.153299972112
+change value -374.153299972112
+change value 1589.898491068792
+change value -374.153299972112
+change value -374.153299972112
+change value -374.153299972112
+change value -374.153299972112
+change value 822.88196966340
+change value -374.153299972112
+change value 1238.893466777966
+change value 1281.77314147844
+change value -374.153299972112
+change value 1589.898491068792
+change value -374.153299972112
+change value 1507.659985963878
+change value -374.153299972112
+change value -374.153299972112
+change value -374.153299972112
+change value 1672.367830849344
+change value -374.153299972112
+change value -374.153299972112
+change value 1554.633793709986
+change value 1589.898491068792
+change value -374.153299972112
+change value -374.153299972112
+change value -374.153299972112
+change value 1281.77314147844
+change value -374.153299972112
+change value -374.153299972112
+change value -374.153299972112
+change value -374.153299972112
+change value -374.153299972112
+change value 867.66929342241
+change value -374.153299972112
+change value 1110.146355082774
+change value 817.136503556346
+change value -374.153299972112
+change value -374.153299972112
+change value -374.153299972112
+change value 602.717608164158
+change value 297.512106275704
+change value 212.898932275942
+change value -374.153299972112
+change value -374.153299972112
+change value 817.136503556346
+change value -374.153299972112
+change value -374.153299972112
+change value -374.153299972112
+change value -374.153299972112
+change value 1465.563369699474
+change value -374.153299972112
+change value -374.153299972112
+change value -912.194936520934
+Training frequencies: {0: Counter({'UUU': 55}), 1: Counter({'UUU': 55}), 2: Counter({'UUU': 55})}
+
+----------Training round 0--------------
+trainging freqs: {0: Counter({'UUU': 55}), 1: Counter({'UUU': 55}), 2: Counter({'UUU': 55})}
+Months ((datetime.date(2019, 11, 30), Decimal('272222.9018659312')), (datetime.date(2019, 12, 31), Decimal('274014.37683424645')), (datetime.date(2020, 1, 31), Decimal('275702.1465422241')), (datetime.date(2020, 2, 29), Decimal('277420.5361236397')))
+Our prefix is UU, so we test probability between UUU and UUD
+Test month: (datetime.date(2019, 10, 31), Decimal('270537.1959870501'))
+Test month: (datetime.date(2019, 11, 30), Decimal('272222.9018659312'))
+Test month: (datetime.date(2019, 12, 31), Decimal('274014.37683424645'))
+training dict: {'UUU': 55, 'UUD': 0}
+training_dict total months: 55
+UUU probability: 1.00
+UUD probability: 0.00
+UUU points | 5
+UUD points | 0
+We predict UUU
+change value 1767.573027029481666666666667
+Last known price: $274,014.38 | Magnitude: 1,767.57 | Predicted price: $275,781.95
+Actual price: $275,702.15 | Error: $79.80
+Test case is UUU for 2020-01-31
+Correct direction prediction of U for 2020-01-31
+0
+succes rate: 1.0
+
+----------Training round 1--------------
+trainging freqs: {0: Counter({'UUU': 55}), 1: Counter({'UUU': 55}), 2: Counter({'UUU': 55})}
+Months ((datetime.date(2020, 11, 30), Decimal('296755.0330118656')), (datetime.date(2020, 12, 31), Decimal('301365.8595511788')), (datetime.date(2021, 1, 31), Decimal('305994.8973490212')), (datetime.date(2021, 2, 28), Decimal('311252.6904581108')))
+Our prefix is UU, so we test probability between UUU and UUD
+Test month: (datetime.date(2020, 10, 31), Decimal('292235.01781345427'))
+Test month: (datetime.date(2020, 11, 30), Decimal('296755.0330118656'))
+Test month: (datetime.date(2020, 12, 31), Decimal('301365.8595511788'))
+training dict: {'UUU': 55, 'UUD': 0}
+training_dict total months: 55
+UUU probability: 1.00
+UUD probability: 0.00
+UUU points | 5
+UUD points | 0
+We predict UUU
+change value 1847.139057010058333333333333
+Last known price: $301,365.86 | Magnitude: 1,847.14 | Predicted price: $303,213.00
+Actual price: $305,994.90 | Error: $2,781.90
+Test case is UUU for 2021-01-31
+Correct direction prediction of U for 2021-01-31
+1
+succes rate: 1.0
+
+----------Training round 2--------------
+trainging freqs: {0: Counter({'UUU': 55}), 1: Counter({'UUU': 55}), 2: Counter({'UUU': 55})}
+Months ((datetime.date(2021, 11, 30), Decimal('349541.256675353')), (datetime.date(2021, 12, 31), Decimal('352732.1791879174')), (datetime.date(2022, 1, 31), Decimal('357959.03314887936')), (datetime.date(2022, 2, 28), Decimal('364725.409540016')))
+Our prefix is UU, so we test probability between UUU and UUD
+Test month: (datetime.date(2021, 10, 31), Decimal('346920.78269067145'))
+Test month: (datetime.date(2021, 11, 30), Decimal('349541.256675353'))
+Test month: (datetime.date(2021, 12, 31), Decimal('352732.1791879174'))
+training dict: {'UUU': 55, 'UUD': 0}
+training_dict total months: 55
+UUU probability: 1.00
+UUD probability: 0.00
+UUU points | 5
+UUD points | 0
+We predict UUU
+change value 1847.139057010058333333333333
+Last known price: $352,732.18 | Magnitude: 1,847.14 | Predicted price: $354,579.32
+Actual price: $357,959.03 | Error: $3,379.71
+Test case is UUU for 2022-01-31
+Correct direction prediction of U for 2022-01-31
+2
+succes rate: 1.0
+
+----------Training round 3--------------
+trainging freqs: {0: Counter({'UUU': 55}), 1: Counter({'UUU': 55}), 2: Counter({'UUU': 55})}
+Months ((datetime.date(2022, 11, 30), Decimal('397798.9497720809')), (datetime.date(2022, 12, 31), Decimal('397046.3740461722')), (datetime.date(2023, 1, 31), Decimal('395384.76928832446')), (datetime.date(2023, 2, 28), Decimal('394257.9348272994')))
+Our prefix is DD, so we test probability between DDD and DDU
+Test month: (datetime.date(2022, 10, 31), Decimal('398267.8683087095'))
+Test month: (datetime.date(2022, 11, 30), Decimal('397798.9497720809'))
+Test month: (datetime.date(2022, 12, 31), Decimal('397046.3740461722'))
+training dict: {'DDD': 0, 'DDU': 0}
+training_dict total months: 0
+DDD probability: 0.50
+DDU probability: 0.50
+DDD points | 3
+DDU points | 2
+We predict DDD
+change value -593.1122221035483333333333333
+Last known price: $397,046.37 | Magnitude: -593.11 | Predicted price: $396,453.26
+Actual price: $395,384.77 | Error: $1,068.49
+Test case is DDD for 2023-01-31
+Correct direction prediction of D for 2023-01-31
+3
+succes rate: 1.0
+
+===============================================================================================
+Month            Last Known    Magnitude      Predicted         Actual        Error  Dir   OK
+===============================================================================================
+2020-01-31   $   274,014.38 $   1,767.57 $   275,781.95 $   275,702.15 $      79.80    U    ✓
+2021-01-31   $   301,365.86 $   1,847.14 $   303,213.00 $   305,994.90 $   2,781.90    U    ✓
+2022-01-31   $   352,732.18 $   1,847.14 $   354,579.32 $   357,959.03 $   3,379.71    U    ✓
+2023-01-31   $   397,046.37 $    -593.11 $   396,453.26 $   395,384.77 $   1,068.49    D    ✓
+===============================================================================================
+Success rate: 4/4 (100%)
+MSE:  5,077,369.58
+RMSE: 2,253.30
+
+============================================================
+Region: 753899
+============================================================
+[DEBUG] Full set count: 312
+[DEBUG] Training: 2000-01-31 -> 2019-12-31
+[DEBUG] Test:     2020-01-31 -> 2025-12-31
+2019-12-31
+change value 1004.987060249328
+change value -653.188298465374
+change value 2067.03205521472
+change value 2191.25253110900
+change value -653.188298465374
+change value 2311.855256365652
+change value -653.188298465374
+change value -653.188298465374
+change value -653.188298465374
+change value -653.188298465374
+change value 4260.669660194388
+change value 2294.994844575354
+change value -653.188298465374
+change value -653.188298465374
+change value 1040.475344531098
+change value 1382.025549972128
+change value -653.188298465374
+change value -653.188298465374
+change value 714.66886394525
+change value 714.66886394525
+change value 714.66886394525
+change value 714.66886394525
+change value 1040.475344531098
+change value 6180.702510704168
+change value -653.188298465374
+change value 8695.506977025958
+change value -653.188298465374
+change value 4827.595286882838
+change value 1848.585638732854
+change value -1722.434763344886
+change value 714.66886394525
+change value -4756.101431090688
+change value 1040.475344531098
+change value -625.782136819234
+change value -523.17284511904
+change value -653.188298465374
+change value 8851.195825953658
+change value 8695.506977025958
+change value 7606.991422660106
+change value 5551.99282507849
+change value -653.188298465374
+change value -653.188298465374
+change value 1040.475344531098
+change value -523.17284511904
+change value -653.188298465374
+change value 4738.04422102451
+change value -653.188298465374
+change value 6893.82292428407
+change value -653.188298465374
+change value -653.188298465374
+change value -653.188298465374
+change value 4080.45425143352
+change value 3646.816516449232
+change value -653.188298465374
+change value 6843.402839205518
+change value -653.188298465374
+change value -653.188298465374
+change value -653.188298465374
+change value 1004.987060249328
+change value -4010.16706825406
+change value -7912.115477396872
+change value -5664.291543955256
+change value 1040.475344531098
+change value 1040.475344531098
+change value 1040.475344531098
+change value -653.188298465374
+change value -653.188298465374
+change value 6351.186803193064
+change value 6193.936770888804
+change value 5454.74634599996
+change value 5622.622425221916
+change value -2369.56663099912
+change value -653.188298465374
+change value 2311.855256365652
+change value 4278.320814035194
+change value 4883.352829647098
+change value -653.188298465374
+change value 5069.946100683652
+change value -653.188298465374
+change value -653.188298465374
+change value 1004.987060249328
+change value -653.188298465374
+change value -653.188298465374
+change value -653.188298465374
+change value 1382.025549972128
+change value 714.66886394525
+change value -2740.871165693886
+change value 714.66886394525
+change value -3192.305444659928
+change value -2877.8929677470
+change value -997.15877155328
+change value -653.188298465374
+change value 8851.195825953658
+change value -653.188298465374
+change value 6246.910102733614
+change value -653.188298465374
+change value 1848.585638732854
+change value 714.66886394525
+change value 714.66886394525
+change value 714.66886394525
+change value 1040.475344531098
+change value -625.782136819234
+change value 5571.448594245612
+change value -653.188298465374
+change value 8851.195825953658
+change value 8695.506977025958
+change value -653.188298465374
+change value -653.188298465374
+change value -653.188298465374
+change value 1004.987060249328
+change value 1040.475344531098
+change value -523.17284511904
+change value 3887.234565449014
+change value 4738.04422102451
+change value 6244.857664161278
+change value -653.188298465374
+change value 7625.53276195915
+change value 6246.910102733614
+change value -653.188298465374
+change value 4080.45425143352
+change value 3646.816516449232
+change value 4568.12039792633
+change value -653.188298465374
+change value -653.188298465374
+change value 6246.910102733614
+change value 4260.669660194388
+change value 1004.987060249328
+change value -4010.16706825406
+change value 714.66886394525
+change value -5664.291543955256
+change value -2885.540960882208
+change value 1040.475344531098
+change value 1040.475344531098
+change value -653.188298465374
+change value -653.188298465374
+change value 6351.186803193064
+change value -653.188298465374
+change value 5454.74634599996
+change value 5622.622425221916
+change value -2369.56663099912
+change value 5069.946100683652
+change value 5069.946100683652
+change value 4260.669660194388
+change value -653.188298465374
+change value 1004.987060249328
+change value -653.188298465374
+change value -653.188298465374
+change value 1382.025549972128
+change value -653.188298465374
+change value -653.188298465374
+change value -2740.871165693886
+change value -3248.079039786272
+change value -3192.305444659928
+change value 714.66886394525
+change value 1040.475344531098
+change value -653.188298465374
+change value -653.188298465374
+change value -653.188298465374
+change value -653.188298465374
+change value 4827.595286882838
+change value 1848.585638732854
+change value 714.66886394525
+change value -4706.94828446766
+change value -4756.101431090688
+change value 1040.475344531098
+change value 1040.475344531098
+change value 5571.448594245612
+change value 8851.195825953658
+change value 8851.195825953658
+change value 8695.506977025958
+change value -653.188298465374
+change value 5551.99282507849
+change value -653.188298465374
+change value 1004.987060249328
+change value -653.188298465374
+change value -523.17284511904
+change value 3887.234565449014
+change value 4738.04422102451
+change value -653.188298465374
+change value 6893.82292428407
+change value 7625.53276195915
+change value -653.188298465374
+change value -653.188298465374
+change value -653.188298465374
+change value -653.188298465374
+change value -653.188298465374
+change value -653.188298465374
+change value -653.188298465374
+change value -653.188298465374
+change value -653.188298465374
+change value 1004.987060249328
+change value 714.66886394525
+change value 714.66886394525
+change value -5664.291543955256
+change value -2885.540960882208
+change value 1040.475344531098
+change value 1040.475344531098
+change value 2583.099456412866
+change value -653.188298465374
+change value 6351.186803193064
+change value -653.188298465374
+change value -653.188298465374
+change value -653.188298465374
+change value -2369.56663099912
+Training frequencies: {0: Counter({'UUU': 55}), 1: Counter({'UUU': 55}), 2: Counter({'UUU': 55})}
+
+----------Training round 0--------------
+trainging freqs: {0: Counter({'UUU': 55}), 1: Counter({'UUU': 55}), 2: Counter({'UUU': 55})}
+Months ((datetime.date(2019, 11, 30), Decimal('650507.4072929998')), (datetime.date(2019, 12, 31), Decimal('655919.5741208735')), (datetime.date(2020, 1, 31), Decimal('659099.4595625645')), (datetime.date(2020, 2, 29), Decimal('660611.5594336246')))
+Our prefix is UU, so we test probability between UUU and UUD
+Test month: (datetime.date(2019, 10, 31), Decimal('644542.9786970076'))
+Test month: (datetime.date(2019, 11, 30), Decimal('650507.4072929998'))
+Test month: (datetime.date(2019, 12, 31), Decimal('655919.5741208735'))
+training dict: {'UUU': 55, 'UUD': 0}
+training_dict total months: 55
+UUU probability: 1.00
+UUD probability: 0.00
+UUU points | 5
+UUD points | 0
+We predict UUU
+change value 5112.33015272062
+Last known price: $655,919.57 | Magnitude: 5,112.33 | Predicted price: $661,031.90
+Actual price: $659,099.46 | Error: $1,932.44
+Test case is UUU for 2020-01-31
+Correct direction prediction of U for 2020-01-31
+0
+succes rate: 1.0
+
+----------Training round 1--------------
+trainging freqs: {0: Counter({'UUU': 55}), 1: Counter({'UUU': 55}), 2: Counter({'UUU': 55})}
+Months ((datetime.date(2020, 11, 30), Decimal('700871.9912377023')), (datetime.date(2020, 12, 31), Decimal('714372.281258714')), (datetime.date(2021, 1, 31), Decimal('723464.3820717456')), (datetime.date(2021, 2, 28), Decimal('729136.654348339')))
+Our prefix is UU, so we test probability between UUU and UUD
+Test month: (datetime.date(2020, 10, 31), Decimal('686721.2389699784'))
+Test month: (datetime.date(2020, 11, 30), Decimal('700871.9912377023'))
+Test month: (datetime.date(2020, 12, 31), Decimal('714372.281258714'))
+training dict: {'UUU': 55, 'UUD': 0}
+training_dict total months: 55
+UUU probability: 1.00
+UUD probability: 0.00
+UUU points | 5
+UUD points | 0
+We predict UUU
+change value 10279.52949561737333333333333
+Last known price: $714,372.28 | Magnitude: 10,279.53 | Predicted price: $724,651.81
+Actual price: $723,464.38 | Error: $1,187.43
+Test case is UUU for 2021-01-31
+Correct direction prediction of U for 2021-01-31
+1
+succes rate: 1.0
+
+----------Training round 2--------------
+trainging freqs: {0: Counter({'UUU': 55}), 1: Counter({'UUU': 55}), 2: Counter({'UUU': 55})}
+Months ((datetime.date(2021, 11, 30), Decimal('802522.3440562558')), (datetime.date(2021, 12, 31), Decimal('812430.1068915598')), (datetime.date(2022, 1, 31), Decimal('824341.1984495769')), (datetime.date(2022, 2, 28), Decimal('838432.0573505764')))
+Our prefix is UU, so we test probability between UUU and UUD
+Test month: (datetime.date(2021, 10, 31), Decimal('794276.2582592736'))
+Test month: (datetime.date(2021, 11, 30), Decimal('802522.3440562558'))
+Test month: (datetime.date(2021, 12, 31), Decimal('812430.1068915598'))
+training dict: {'UUU': 55, 'UUD': 0}
+training_dict total months: 55
+UUU probability: 1.00
+UUD probability: 0.00
+UUU points | 5
+UUD points | 0
+We predict UUU
+change value 8727.55325614449
+Last known price: $812,430.11 | Magnitude: 8,727.55 | Predicted price: $821,157.66
+Actual price: $824,341.20 | Error: $3,183.54
+Test case is UUU for 2022-01-31
+Correct direction prediction of U for 2022-01-31
+2
+succes rate: 1.0
+
+----------Training round 3--------------
+trainging freqs: {0: Counter({'UUU': 55}), 1: Counter({'UUU': 55}), 2: Counter({'UUU': 55})}
+Months ((datetime.date(2022, 11, 30), Decimal('870566.3953671913')), (datetime.date(2022, 12, 31), Decimal('867478.8821170501')), (datetime.date(2023, 1, 31), Decimal('859284.1035956461')), (datetime.date(2023, 2, 28), Decimal('848515.09361721')))
+Our prefix is DD, so we test probability between DDD and DDU
+Test month: (datetime.date(2022, 10, 31), Decimal('874266.0279502465'))
+Test month: (datetime.date(2022, 11, 30), Decimal('870566.3953671913'))
+Test month: (datetime.date(2022, 12, 31), Decimal('867478.8821170501'))
+training dict: {'DDD': 0, 'DDU': 0}
+training_dict total months: 0
+DDD probability: 0.50
+DDU probability: 0.50
+DDD points | 3
+DDU points | 2
+We predict DDD
+change value -2952.169490198366666666666667
+Last known price: $867,478.88 | Magnitude: -2,952.17 | Predicted price: $864,526.71
+Actual price: $859,284.10 | Error: $5,242.61
+Test case is DDD for 2023-01-31
+Correct direction prediction of D for 2023-01-31
+3
+succes rate: 1.0
+
+===============================================================================================
+Month            Last Known    Magnitude      Predicted         Actual        Error  Dir   OK
+===============================================================================================
+2020-01-31   $   655,919.57 $   5,112.33 $   661,031.90 $   659,099.46 $   1,932.44    U    ✓
+2021-01-31   $   714,372.28 $  10,279.53 $   724,651.81 $   723,464.38 $   1,187.43    U    ✓
+2022-01-31   $   812,430.11 $   8,727.55 $   821,157.66 $   824,341.20 $   3,183.54    U    ✓
+2023-01-31   $   867,478.88 $  -2,952.17 $   864,526.71 $   859,284.10 $   5,242.61    D    ✓
+===============================================================================================
+Success rate: 4/4 (100%)
+MSE:  10,691,048.75
+RMSE: 3,269.72
+
+============================================================
+Region: 394357
+============================================================
+[DEBUG] Full set count: 312
+[DEBUG] Training: 2000-01-31 -> 2019-12-31
+[DEBUG] Test:     2020-01-31 -> 2025-12-31
+2019-12-31
+change value -470.19214371431
+change value -470.19214371431
+change value -470.19214371431
+change value 1453.23433047532
+change value -470.19214371431
+change value 659.66198723056
+change value 449.076870474078
+change value 646.016774673478
+change value -341.394519197986
+change value -470.19214371431
+change value 1206.119114215628
+change value 1022.737900585628
+change value -470.19214371431
+change value 659.66198723056
+change value -470.19214371431
+change value 894.374770583754
+change value -470.19214371431
+change value 793.527352479606
+change value -470.19214371431
+change value 1206.119114215628
+change value -470.19214371431
+change value 1453.23433047532
+change value -470.19214371431
+change value 1206.119114215628
+change value 1022.737900585628
+change value -470.19214371431
+change value -470.19214371431
+change value 449.076870474078
+change value -470.19214371431
+change value 306.880201485154
+change value -470.19214371431
+change value 602.585817301522
+change value 905.878266018886
+change value 1022.737900585628
+change value 1022.737900585628
+change value 905.878266018886
+change value -470.19214371431
+change value 1022.737900585628
+change value 758.34582922123
+change value 706.347005924068
+change value -470.19214371431
+change value -470.19214371431
+change value -470.19214371431
+change value 1014.555402782016
+change value 1631.20253270841
+change value 1712.645506480708
+change value 1712.645506480708
+change value 1453.23433047532
+change value 1388.409506092074
+change value -470.19214371431
+change value 1022.737900585628
+change value -470.19214371431
+change value 1022.737900585628
+change value 910.948078365156
+change value 659.66198723056
+change value 659.66198723056
+change value -470.19214371431
+change value -470.19214371431
+change value 1022.737900585628
+change value 1206.119114215628
+change value 1206.119114215628
+change value -470.19214371431
+change value -470.19214371431
+change value -470.19214371431
+change value -470.19214371431
+change value -470.19214371431
+change value 659.66198723056
+change value 676.513664666176
+change value -470.19214371431
+change value -470.19214371431
+change value -470.19214371431
+change value 375.77213810027
+change value 910.948078365156
+change value -470.19214371431
+change value -470.19214371431
+change value -341.394519197986
+change value 1206.119114215628
+change value 1453.23433047532
+change value -470.19214371431
+change value 1022.737900585628
+change value 671.165482665692
+change value 659.66198723056
+change value -470.19214371431
+change value -470.19214371431
+change value -470.19214371431
+change value -470.19214371431
+change value -470.19214371431
+change value -341.394519197986
+change value -470.19214371431
+change value 1453.23433047532
+change value -470.19214371431
+change value -470.19214371431
+change value 1022.737900585628
+change value -470.19214371431
+change value -470.19214371431
+change value 449.076870474078
+change value 395.75487336901
+change value 306.880201485154
+change value -470.19214371431
+change value -341.394519197986
+change value 905.878266018886
+change value -470.19214371431
+change value 1022.737900585628
+change value -470.19214371431
+change value -470.19214371431
+change value 1022.737900585628
+change value -470.19214371431
+change value -470.19214371431
+change value -470.19214371431
+change value -470.19214371431
+change value 659.66198723056
+change value -341.394519197986
+change value 1631.20253270841
+change value -470.19214371431
+change value 1712.645506480708
+change value -470.19214371431
+change value 1388.409506092074
+change value 1206.119114215628
+change value 1022.737900585628
+change value -470.19214371431
+change value 1022.737900585628
+change value -470.19214371431
+change value -470.19214371431
+change value -470.19214371431
+change value -470.19214371431
+change value 894.374770583754
+change value -470.19214371431
+change value 1206.119114215628
+change value 1206.119114215628
+change value -470.19214371431
+change value 905.878266018886
+change value -470.19214371431
+change value -470.19214371431
+change value -470.19214371431
+change value -470.19214371431
+change value 676.513664666176
+change value 905.878266018886
+change value -470.19214371431
+change value 1550.062795234654
+change value 375.77213810027
+change value 1206.119114215628
+change value 1453.23433047532
+change value 1206.119114215628
+change value 1022.737900585628
+change value 671.165482665692
+change value 659.66198723056
+change value -470.19214371431
+change value 894.374770583754
+change value -470.19214371431
+change value -470.19214371431
+change value 793.527352479606
+change value 1206.119114215628
+change value -470.19214371431
+change value -470.19214371431
+change value -470.19214371431
+change value -470.19214371431
+change value 1022.737900585628
+change value -470.19214371431
+change value 502.80212692563
+change value 449.076870474078
+change value 395.75487336901
+change value -470.19214371431
+change value -470.19214371431
+change value -341.394519197986
+change value 905.878266018886
+change value -470.19214371431
+change value 1022.737900585628
+change value -470.19214371431
+change value -470.19214371431
+change value 1022.737900585628
+change value 758.34582922123
+change value 706.347005924068
+change value 576.729974290284
+change value 449.076870474078
+change value 659.66198723056
+change value 1014.555402782016
+change value -470.19214371431
+change value 1712.645506480708
+change value 1712.645506480708
+change value 1453.23433047532
+change value 1388.409506092074
+change value 1206.119114215628
+change value -470.19214371431
+change value -470.19214371431
+change value -470.19214371431
+change value 910.948078365156
+change value -470.19214371431
+change value 659.66198723056
+change value 659.66198723056
+change value 894.374770583754
+change value 1022.737900585628
+change value 1206.119114215628
+change value -470.19214371431
+change value -470.19214371431
+change value -470.19214371431
+change value -470.19214371431
+change value 671.165482665692
+change value -470.19214371431
+change value -470.19214371431
+change value -470.19214371431
+change value -470.19214371431
+change value 1022.737900585628
+change value -470.19214371431
+change value -1497.542795125496
+Training frequencies: {0: Counter({'UUU': 51, 'DDD': 2, 'DDU': 1, 'DUU': 1}), 1: Counter({'UUU': 55}), 2: Counter({'UUU': 55})}
+
+----------Training round 0--------------
+trainging freqs: {0: Counter({'UUU': 51, 'DDD': 2, 'DDU': 1, 'DUU': 1}), 1: Counter({'UUU': 55}), 2: Counter({'UUU': 55})}
+Months ((datetime.date(2019, 11, 30), Decimal('229376.67944391584')), (datetime.date(2019, 12, 31), Decimal('230537.54057626947')), (datetime.date(2020, 1, 31), Decimal('231963.98015067424')), (datetime.date(2020, 2, 29), Decimal('233283.3641975747')))
+Our prefix is UU, so we test probability between UUU and UUD
+Test month: (datetime.date(2019, 10, 31), Decimal('228338.47474194167'))
+Test month: (datetime.date(2019, 11, 30), Decimal('229376.67944391584'))
+Test month: (datetime.date(2019, 12, 31), Decimal('230537.54057626947'))
+training dict: {'UUU': 51, 'UUD': 0}
+training_dict total months: 51
+UUU probability: 1.00
+UUD probability: 0.00
+UUU points | 5
+UUD points | 0
+We predict UUU
+change value 1104.872393329675
+Last known price: $230,537.54 | Magnitude: 1,104.87 | Predicted price: $231,642.41
+Actual price: $231,963.98 | Error: $321.57
+Test case is UUU for 2020-01-31
+Correct direction prediction of U for 2020-01-31
+0
+succes rate: 1.0
+
+----------Training round 1--------------
+trainging freqs: {0: Counter({'UUU': 51, 'DDD': 2, 'DDU': 1, 'DUU': 1}), 1: Counter({'UUU': 55}), 2: Counter({'UUU': 55})}
+Months ((datetime.date(2020, 11, 30), Decimal('250236.4849481535')), (datetime.date(2020, 12, 31), Decimal('254029.63396325195')), (datetime.date(2021, 1, 31), Decimal('257806.3694663126')), (datetime.date(2021, 2, 28), Decimal('261422.5053761204')))
+Our prefix is UU, so we test probability between UUU and UUD
+Test month: (datetime.date(2020, 10, 31), Decimal('246528.4342237351'))
+Test month: (datetime.date(2020, 11, 30), Decimal('250236.4849481535'))
+Test month: (datetime.date(2020, 12, 31), Decimal('254029.63396325195'))
+training dict: {'UUU': 51, 'UUD': 0}
+training_dict total months: 51
+UUU probability: 1.00
+UUD probability: 0.00
+UUU points | 5
+UUD points | 0
+We predict UUU
+change value 3468.362417554911666666666667
+Last known price: $254,029.63 | Magnitude: 3,468.36 | Predicted price: $257,498.00
+Actual price: $257,806.37 | Error: $308.37
+Test case is UUU for 2021-01-31
+Correct direction prediction of U for 2021-01-31
+1
+succes rate: 1.0
+
+----------Training round 2--------------
+trainging freqs: {0: Counter({'UUU': 51, 'DDD': 2, 'DDU': 1, 'DUU': 1}), 1: Counter({'UUU': 55}), 2: Counter({'UUU': 55})}
+Months ((datetime.date(2021, 11, 30), Decimal('296866.2168604785')), (datetime.date(2021, 12, 31), Decimal('300467.16321871127')), (datetime.date(2022, 1, 31), Decimal('304646.8247285325')), (datetime.date(2022, 2, 28), Decimal('309469.4610595584')))
+Our prefix is UU, so we test probability between UUU and UUD
+Test month: (datetime.date(2021, 10, 31), Decimal('293605.6187739246'))
+Test month: (datetime.date(2021, 11, 30), Decimal('296866.2168604785'))
+Test month: (datetime.date(2021, 12, 31), Decimal('300467.16321871127'))
+training dict: {'UUU': 51, 'UUD': 0}
+training_dict total months: 51
+UUU probability: 1.00
+UUD probability: 0.00
+UUU points | 5
+UUD points | 0
+We predict UUU
+change value 2814.139192262003333333333333
+Last known price: $300,467.16 | Magnitude: 2,814.14 | Predicted price: $303,281.30
+Actual price: $304,646.82 | Error: $1,365.52
+Test case is UUU for 2022-01-31
+Correct direction prediction of U for 2022-01-31
+2
+succes rate: 1.0
+
+----------Training round 3--------------
+trainging freqs: {0: Counter({'UUU': 51, 'DDD': 2, 'DDU': 1, 'DUU': 1}), 1: Counter({'UUU': 55}), 2: Counter({'UUU': 55})}
+Months ((datetime.date(2022, 11, 30), Decimal('329330.31108421244')), (datetime.date(2022, 12, 31), Decimal('327793.53189440625')), (datetime.date(2023, 1, 31), Decimal('325665.35257455736')), (datetime.date(2023, 2, 28), Decimal('323943.53107450885')))
+Our prefix is DD, so we test probability between DDD and DDU
+Test month: (datetime.date(2022, 10, 31), Decimal('330914.09536806896'))
+Test month: (datetime.date(2022, 11, 30), Decimal('329330.31108421244'))
+Test month: (datetime.date(2022, 12, 31), Decimal('327793.53189440625'))
+training dict: {'DDD': 2, 'DDU': 1}
+training_dict total months: 3
+DDD probability: 0.67
+DDU probability: 0.33
+DDD points | 2
+DDU points | 3
+We predict DDU
+change value 280.0129522630883333333333333
+Last known price: $327,793.53 | Magnitude: 280.01 | Predicted price: $328,073.54
+Actual price: $325,665.35 | Error: $2,408.19
+Test case is DDD for 2023-01-31
+Incorrect prediction
+3
+succes rate: 0.75
+
+===============================================================================================
+Month            Last Known    Magnitude      Predicted         Actual        Error  Dir   OK
+===============================================================================================
+2020-01-31   $   230,537.54 $   1,104.87 $   231,642.41 $   231,963.98 $     321.57    U    ✓
+2021-01-31   $   254,029.63 $   3,468.36 $   257,498.00 $   257,806.37 $     308.37    U    ✓
+2022-01-31   $   300,467.16 $   2,814.14 $   303,281.30 $   304,646.82 $   1,365.52    U    ✓
+2023-01-31   $   327,793.53 $     280.01 $   328,073.54 $   325,665.35 $   2,408.19    U    ✗
+===============================================================================================
+Success rate: 3/4 (75%)
+MSE:  1,965,635.16
+RMSE: 1,402.01
+
+============================================================
+Region: 394466
+============================================================
+[DEBUG] Full set count: 312
+[DEBUG] Training: 2000-01-31 -> 2019-12-31
+[DEBUG] Test:     2020-01-31 -> 2025-12-31
+2019-12-31
+change value -103.983805546628
+change value 199.54512887797
+change value -103.983805546628
+change value 708.423337851824
+change value 708.423337851824
+change value 531.126327361048
+change value 321.054986172044
+change value 164.03957706943
+change value 112.78943570788
+change value -103.983805546628
+change value -103.983805546628
+change value 432.581658334462
+change value 428.21659894660
+change value -103.983805546628
+change value 599.24663603855
+change value -103.983805546628
+change value -103.983805546628
+change value 708.423337851824
+change value -103.983805546628
+change value -103.983805546628
+change value 531.126327361048
+change value 599.24663603855
+change value 708.423337851824
+change value 708.423337851824
+change value 624.66559722744
+change value 411.648361049624
+change value 266.569459528462
+change value 439.597183322358
+change value 395.38226371097
+change value -103.983805546628
+change value 487.472375408492
+change value 708.423337851824
+change value -103.983805546628
+change value 708.423337851824
+change value -103.983805546628
+change value 708.423337851824
+change value 708.423337851824
+change value 708.423337851824
+change value 708.423337851824
+change value 708.423337851824
+change value 708.423337851824
+change value 630.109982641108
+change value -103.983805546628
+change value -103.983805546628
+change value 546.352242016724
+change value -103.983805546628
+change value -103.983805546628
+change value 630.109982641108
+change value -103.983805546628
+change value -103.983805546628
+change value -103.983805546628
+change value 708.423337851824
+change value 708.423337851824
+change value 708.423337851824
+change value 708.423337851824
+change value -103.983805546628
+change value -103.983805546628
+change value 708.423337851824
+change value 708.423337851824
+change value -103.983805546628
+change value -103.983805546628
+change value -103.983805546628
+change value -103.983805546628
+change value 624.66559722744
+change value -103.983805546628
+change value 630.109982641108
+change value -103.983805546628
+change value -103.983805546628
+change value 708.423337851824
+change value -103.983805546628
+change value 708.423337851824
+change value 551.278073581388
+change value 708.423337851824
+change value -103.983805546628
+change value 321.054986172044
+change value 164.03957706943
+change value 112.78943570788
+change value 192.911872140252
+change value -103.983805546628
+change value -103.983805546628
+change value 428.21659894660
+change value -103.983805546628
+change value 599.24663603855
+change value 546.352242016724
+change value 630.109982641108
+change value -103.983805546628
+change value 708.423337851824
+change value -103.983805546628
+change value -103.983805546628
+change value -103.983805546628
+change value 708.423337851824
+change value 708.423337851824
+change value 624.66559722744
+change value -103.983805546628
+change value -103.983805546628
+change value -103.983805546628
+change value 395.38226371097
+change value 426.555010102872
+change value -103.983805546628
+change value 708.423337851824
+change value 708.423337851824
+change value 708.423337851824
+change value 708.423337851824
+change value 708.423337851824
+change value -103.983805546628
+change value -103.983805546628
+change value 708.423337851824
+change value -103.983805546628
+change value -103.983805546628
+change value 630.109982641108
+change value 546.352242016724
+change value 630.109982641108
+change value -103.983805546628
+change value 546.352242016724
+change value -103.983805546628
+change value -103.983805546628
+change value 708.423337851824
+change value 708.423337851824
+change value -103.983805546628
+change value 708.423337851824
+change value 708.423337851824
+change value -103.983805546628
+change value -103.983805546628
+change value -103.983805546628
+change value 708.423337851824
+change value 708.423337851824
+change value -103.983805546628
+change value 708.423337851824
+change value 708.423337851824
+change value 708.423337851824
+change value 708.423337851824
+change value 624.66559722744
+change value 546.352242016724
+change value -103.983805546628
+change value -103.983805546628
+change value 708.423337851824
+change value -103.983805546628
+change value -103.983805546628
+change value -103.983805546628
+change value -191.245109103418
+change value 112.78943570788
+change value -103.983805546628
+change value -103.983805546628
+change value -103.983805546628
+change value 428.21659894660
+change value -103.983805546628
+change value 599.24663603855
+change value 546.352242016724
+change value -103.983805546628
+change value 708.423337851824
+change value 708.423337851824
+change value -103.983805546628
+change value -103.983805546628
+change value -103.983805546628
+change value -103.983805546628
+change value -103.983805546628
+change value 624.66559722744
+change value -103.983805546628
+change value 266.569459528462
+change value 439.597183322358
+change value 395.38226371097
+change value -103.983805546628
+change value 487.472375408492
+change value -103.983805546628
+change value 708.423337851824
+change value 708.423337851824
+change value -103.983805546628
+change value 708.423337851824
+change value -103.983805546628
+change value 708.423337851824
+change value 708.423337851824
+change value -103.983805546628
+change value -103.983805546628
+change value 630.109982641108
+change value -103.983805546628
+change value 630.109982641108
+change value 546.352242016724
+change value 546.352242016724
+change value -103.983805546628
+change value -103.983805546628
+change value -103.983805546628
+change value -103.983805546628
+change value -103.983805546628
+change value -103.983805546628
+change value -103.983805546628
+change value -103.983805546628
+change value -103.983805546628
+change value 708.423337851824
+change value 708.423337851824
+change value -103.983805546628
+change value -103.983805546628
+change value -103.983805546628
+change value -103.983805546628
+change value -103.983805546628
+change value -103.983805546628
+change value -103.983805546628
+change value -103.983805546628
+change value 630.109982641108
+change value 708.423337851824
+change value 708.423337851824
+change value 708.423337851824
+change value -103.983805546628
+change value -103.983805546628
+change value -191.245109103418
+Training frequencies: {0: Counter({'UUU': 53, 'DDU': 1, 'DUU': 1}), 1: Counter({'UUU': 55}), 2: Counter({'UUU': 55})}
+
+----------Training round 0--------------
+trainging freqs: {0: Counter({'UUU': 53, 'DDU': 1, 'DUU': 1}), 1: Counter({'UUU': 55}), 2: Counter({'UUU': 55})}
+Months ((datetime.date(2019, 11, 30), Decimal('190930.250613986')), (datetime.date(2019, 12, 31), Decimal('192037.22407664327')), (datetime.date(2020, 1, 31), Decimal('193318.6142143258')), (datetime.date(2020, 2, 29), Decimal('194542.1804962397')))
+Our prefix is UU, so we test probability between UUU and UUD
+Test month: (datetime.date(2019, 10, 31), Decimal('189872.2459513901'))
+Test month: (datetime.date(2019, 11, 30), Decimal('190930.250613986'))
+Test month: (datetime.date(2019, 12, 31), Decimal('192037.22407664327'))
+training dict: {'UUU': 53, 'UUD': 0}
+training_dict total months: 53
+UUU probability: 1.00
+UUD probability: 0.00
+UUU points | 5
+UUD points | 0
+We predict UUU
+change value 1049.196347360938333333333333
+Last known price: $192,037.22 | Magnitude: 1,049.20 | Predicted price: $193,086.42
+Actual price: $193,318.61 | Error: $232.19
+Test case is UUU for 2020-01-31
+Correct direction prediction of U for 2020-01-31
+0
+succes rate: 1.0
+
+----------Training round 1--------------
+trainging freqs: {0: Counter({'UUU': 53, 'DDU': 1, 'DUU': 1}), 1: Counter({'UUU': 55}), 2: Counter({'UUU': 55})}
+Months ((datetime.date(2020, 11, 30), Decimal('211679.46097703784')), (datetime.date(2020, 12, 31), Decimal('215007.72282958133')), (datetime.date(2021, 1, 31), Decimal('218044.676123474')), (datetime.date(2021, 2, 28), Decimal('220992.42949758796')))
+Our prefix is UU, so we test probability between UUU and UUD
+Test month: (datetime.date(2020, 10, 31), Decimal('208188.59485081103'))
+Test month: (datetime.date(2020, 11, 30), Decimal('211679.46097703784'))
+Test month: (datetime.date(2020, 12, 31), Decimal('215007.72282958133'))
+training dict: {'UUU': 53, 'UUD': 0}
+training_dict total months: 53
+UUU probability: 1.00
+UUD probability: 0.00
+UUU points | 5
+UUD points | 0
+We predict UUU
+change value 1096.37271953936
+Last known price: $215,007.72 | Magnitude: 1,096.37 | Predicted price: $216,104.10
+Actual price: $218,044.68 | Error: $1,940.58
+Test case is UUU for 2021-01-31
+Correct direction prediction of U for 2021-01-31
+1
+succes rate: 1.0
+
+----------Training round 2--------------
+trainging freqs: {0: Counter({'UUU': 53, 'DDU': 1, 'DUU': 1}), 1: Counter({'UUU': 55}), 2: Counter({'UUU': 55})}
+Months ((datetime.date(2021, 11, 30), Decimal('238050.9374286679')), (datetime.date(2021, 12, 31), Decimal('239754.7016881638')), (datetime.date(2022, 1, 31), Decimal('242504.7904063504')), (datetime.date(2022, 2, 28), Decimal('246117.1367824876')))
+Our prefix is UU, so we test probability between UUU and UUD
+Test month: (datetime.date(2021, 10, 31), Decimal('237001.02832794076'))
+Test month: (datetime.date(2021, 11, 30), Decimal('238050.9374286679'))
+Test month: (datetime.date(2021, 12, 31), Decimal('239754.7016881638'))
+training dict: {'UUU': 53, 'UUD': 0}
+training_dict total months: 53
+UUU probability: 1.00
+UUD probability: 0.00
+UUU points | 5
+UUD points | 0
+We predict UUU
+change value 1096.37271953936
+Last known price: $239,754.70 | Magnitude: 1,096.37 | Predicted price: $240,851.07
+Actual price: $242,504.79 | Error: $1,653.72
+Test case is UUU for 2022-01-31
+Correct direction prediction of U for 2022-01-31
+2
+succes rate: 1.0
+
+----------Training round 3--------------
+trainging freqs: {0: Counter({'UUU': 53, 'DDU': 1, 'DUU': 1}), 1: Counter({'UUU': 55}), 2: Counter({'UUU': 55})}
+Months ((datetime.date(2022, 11, 30), Decimal('260692.93086419115')), (datetime.date(2022, 12, 31), Decimal('260958.2980979813')), (datetime.date(2023, 1, 31), Decimal('260861.74608844676')), (datetime.date(2023, 2, 28), Decimal('260899.01847515107')))
+Our prefix is DU, so we test probability between DUD and DUU
+Test month: (datetime.date(2022, 10, 31), Decimal('260711.3051215393'))
+Test month: (datetime.date(2022, 11, 30), Decimal('260692.93086419115'))
+Test month: (datetime.date(2022, 12, 31), Decimal('260958.2980979813'))
+training dict: {'DUD': 0, 'DUU': 1}
+training_dict total months: 1
+DUD probability: 0.00
+DUU probability: 1.00
+DUD points | 0
+DUU points | 5
+We predict DUU
+change value 153.7943728335916666666666667
+Last known price: $260,958.30 | Magnitude: 153.79 | Predicted price: $261,112.09
+Actual price: $260,861.75 | Error: $250.35
+Test case is DUD for 2023-01-31
+Incorrect prediction
+3
+succes rate: 0.75
+
+===============================================================================================
+Month            Last Known    Magnitude      Predicted         Actual        Error  Dir   OK
+===============================================================================================
+2020-01-31   $   192,037.22 $   1,049.20 $   193,086.42 $   193,318.61 $     232.19    U    ✓
+2021-01-31   $   215,007.72 $   1,096.37 $   216,104.10 $   218,044.68 $   1,940.58    U    ✓
+2022-01-31   $   239,754.70 $   1,096.37 $   240,851.07 $   242,504.79 $   1,653.72    U    ✓
+2023-01-31   $   260,958.30 $     153.79 $   261,112.09 $   260,861.75 $     250.35    U    ✗
+===============================================================================================
+Success rate: 3/4 (75%)
+MSE:  1,654,304.21
+RMSE: 1,286.20
+
+============================================================
+Region: 394596
+============================================================
+[DEBUG] Full set count: 311
+[DEBUG] Training: 2000-01-31 -> 2019-12-31
+[DEBUG] Test:     2020-01-31 -> 2025-12-31
+2019-12-31
+change value -154.4053335205308
+change value -154.4053335205308
+change value 765.2661573035812
+change value -154.4053335205308
+change value -154.4053335205308
+change value 848.4232164634602
+change value 848.4232164634602
+change value -154.4053335205308
+change value 439.90947679199
+change value 711.9206507492692
+change value 765.2661573035812
+change value 488.16619690117
+change value 354.890120787982
+change value -154.4053335205308
+change value -154.4053335205308
+change value -154.4053335205308
+change value -154.4053335205308
+change value -154.4053335205308
+change value -154.4053335205308
+change value -154.4053335205308
+change value -154.4053335205308
+change value -154.4053335205308
+change value 694.1707729414392
+change value -154.4053335205308
+change value 694.1707729414392
+change value -154.4053335205308
+change value -154.4053335205308
+change value 848.4232164634602
+change value -154.4053335205308
+change value -154.4053335205308
+change value 530.034575950016
+change value -154.4053335205308
+change value 848.4232164634602
+change value -154.4053335205308
+change value 848.4232164634602
+change value 848.4232164634602
+change value 530.160062652908
+change value 667.6584974375752
+change value 765.2661573035812
+change value -154.4053335205308
+change value -154.4053335205308
+change value -154.4053335205308
+change value 694.1707729414392
+change value 765.2661573035812
+change value 848.4232164634602
+change value 848.4232164634602
+change value -154.4053335205308
+change value -154.4053335205308
+change value 848.4232164634602
+change value -154.4053335205308
+change value -154.4053335205308
+change value 848.4232164634602
+change value -154.4053335205308
+change value -154.4053335205308
+change value -154.4053335205308
+change value 100.128540531426
+change value -154.4053335205308
+change value -154.4053335205308
+change value 679.0874374822832
+change value -154.4053335205308
+change value -154.4053335205308
+change value -154.4053335205308
+change value 848.4232164634602
+change value -154.4053335205308
+change value -154.4053335205308
+change value 151.21084389549
+change value -154.4053335205308
+change value -154.4053335205308
+change value 240.727035602682
+change value -430.142117305426
+change value 848.4232164634602
+change value 848.4232164634602
+change value 848.4232164634602
+change value 436.627109366448
+change value -154.4053335205308
+change value 711.9206507492692
+change value -154.4053335205308
+change value -154.4053335205308
+change value 354.890120787982
+change value -154.4053335205308
+change value -154.4053335205308
+change value 488.16619690117
+change value -154.4053335205308
+change value -154.4053335205308
+change value -154.4053335205308
+change value -154.4053335205308
+change value 802.8716979754092
+change value 765.2661573035812
+change value 694.1707729414392
+change value 694.1707729414392
+change value -154.4053335205308
+change value -154.4053335205308
+change value 848.4232164634602
+change value -154.4053335205308
+change value -154.4053335205308
+change value -154.4053335205308
+change value -154.4053335205308
+change value 765.2661573035812
+change value -154.4053335205308
+change value -154.4053335205308
+change value -154.4053335205308
+change value -154.4053335205308
+change value -154.4053335205308
+change value -154.4053335205308
+change value -154.4053335205308
+change value 848.4232164634602
+change value -154.4053335205308
+change value 674.9684863235092
+change value 694.1707729414392
+change value -154.4053335205308
+change value -154.4053335205308
+change value 848.4232164634602
+change value -154.4053335205308
+change value 848.4232164634602
+change value 848.4232164634602
+change value -154.4053335205308
+change value -154.4053335205308
+change value 848.4232164634602
+change value 848.4232164634602
+change value 848.4232164634602
+change value -154.4053335205308
+change value 100.128540531426
+change value -154.4053335205308
+change value 235.876543880398
+change value -154.4053335205308
+change value -154.4053335205308
+change value 848.4232164634602
+change value -154.4053335205308
+change value -154.4053335205308
+change value 848.4232164634602
+change value -154.4053335205308
+change value 151.21084389549
+change value 98.000190307574
+change value -154.4053335205308
+change value -221.6289735012288
+change value 431.781017560244
+change value -154.4053335205308
+change value -154.4053335205308
+change value -154.4053335205308
+change value -154.4053335205308
+change value 354.890120787982
+change value -154.4053335205308
+change value 459.970131070032
+change value 488.16619690117
+change value 579.718277173026
+change value 694.1707729414392
+change value -154.4053335205308
+change value 848.4232164634602
+change value 802.8716979754092
+change value -154.4053335205308
+change value 694.1707729414392
+change value 694.1707729414392
+change value 694.1707729414392
+change value -154.4053335205308
+change value -154.4053335205308
+change value -154.4053335205308
+change value -154.4053335205308
+change value 378.11477359771
+change value -154.4053335205308
+change value -154.4053335205308
+change value -154.4053335205308
+change value -154.4053335205308
+change value 848.4232164634602
+change value 848.4232164634602
+change value -154.4053335205308
+change value 667.6584974375752
+change value -154.4053335205308
+change value 848.4232164634602
+change value 802.8716979754092
+change value -154.4053335205308
+change value -154.4053335205308
+change value -154.4053335205308
+change value -154.4053335205308
+change value 848.4232164634602
+change value -154.4053335205308
+change value 848.4232164634602
+change value -154.4053335205308
+change value -154.4053335205308
+change value -154.4053335205308
+change value 848.4232164634602
+change value -154.4053335205308
+change value 848.4232164634602
+change value 530.160062652908
+change value -154.4053335205308
+change value 150.300076855012
+change value 235.876543880398
+change value 679.0874374822832
+change value 848.4232164634602
+change value -154.4053335205308
+change value 848.4232164634602
+change value 848.4232164634602
+change value 848.4232164634602
+change value 530.160062652908
+change value 151.21084389549
+change value 98.000190307574
+change value 150.300076855012
+change value -221.6289735012288
+change value 431.781017560244
+Training frequencies: {0: Counter({'UUU': 54}), 1: Counter({'UUU': 54}), 2: Counter({'UUU': 54})}
+
+----------Training round 0--------------
+trainging freqs: {0: Counter({'UUU': 54}), 1: Counter({'UUU': 54}), 2: Counter({'UUU': 54})}
+Months ((datetime.date(2019, 11, 30), Decimal('115462.3411628826')), (datetime.date(2019, 12, 31), Decimal('116218.34561910904')), (datetime.date(2020, 1, 31), Decimal('117056.72649612994')), (datetime.date(2020, 2, 29), Decimal('118187.36846288276')))
+Our prefix is UU, so we test probability between UUU and UUD
+Test month: (datetime.date(2019, 10, 31), Decimal('114790.18194810076'))
+Test month: (datetime.date(2019, 11, 30), Decimal('115462.3411628826'))
+Test month: (datetime.date(2019, 12, 31), Decimal('116218.34561910904'))
+training dict: {'UUU': 54, 'UUD': 0}
+training_dict total months: 54
+UUU probability: 1.00
+UUD probability: 0.00
+UUU points | 5
+UUD points | 0
+We predict UUU
+change value 733.6113376959776666666666667
+Last known price: $116,218.35 | Magnitude: 733.61 | Predicted price: $116,951.96
+Actual price: $117,056.73 | Error: $104.77
+Test case is UUU for 2020-01-31
+Correct direction prediction of U for 2020-01-31
+0
+succes rate: 1.0
+
+----------Training round 1--------------
+trainging freqs: {0: Counter({'UUU': 54}), 1: Counter({'UUU': 54}), 2: Counter({'UUU': 54})}
+Months ((datetime.date(2020, 11, 30), Decimal('129238.14480663706')), (datetime.date(2020, 12, 31), Decimal('131578.18356510875')), (datetime.date(2021, 1, 31), Decimal('134171.5000471068')), (datetime.date(2021, 2, 28), Decimal('137019.1494610897')))
+Our prefix is UU, so we test probability between UUU and UUD
+Test month: (datetime.date(2020, 10, 31), Decimal('126565.3839511368'))
+Test month: (datetime.date(2020, 11, 30), Decimal('129238.14480663706'))
+Test month: (datetime.date(2020, 12, 31), Decimal('131578.18356510875'))
+training dict: {'UUU': 54, 'UUD': 0}
+training_dict total months: 54
+UUU probability: 1.00
+UUD probability: 0.00
+UUU points | 5
+UUD points | 0
+We predict UUU
+change value 1114.450507454170166666666667
+Last known price: $131,578.18 | Magnitude: 1,114.45 | Predicted price: $132,692.63
+Actual price: $134,171.50 | Error: $1,478.87
+Test case is UUU for 2021-01-31
+Correct direction prediction of U for 2021-01-31
+1
+succes rate: 1.0
+
+----------Training round 2--------------
+trainging freqs: {0: Counter({'UUU': 54}), 1: Counter({'UUU': 54}), 2: Counter({'UUU': 54})}
+Months ((datetime.date(2021, 11, 30), Decimal('149360.97991928717')), (datetime.date(2021, 12, 31), Decimal('149554.10533965818')), (datetime.date(2022, 1, 31), Decimal('150769.3990469498')), (datetime.date(2022, 2, 28), Decimal('152955.8604796045')))
+Our prefix is UU, so we test probability between UUU and UUD
+Test month: (datetime.date(2021, 10, 31), Decimal('149033.88939688803'))
+Test month: (datetime.date(2021, 11, 30), Decimal('149360.97991928717'))
+Test month: (datetime.date(2021, 12, 31), Decimal('149554.10533965818'))
+training dict: {'UUU': 54, 'UUD': 0}
+training_dict total months: 54
+UUU probability: 1.00
+UUD probability: 0.00
+UUU points | 5
+UUD points | 0
+We predict UUU
+change value 236.649313665145
+Last known price: $149,554.11 | Magnitude: 236.65 | Predicted price: $149,790.75
+Actual price: $150,769.40 | Error: $978.64
+Test case is UUU for 2022-01-31
+Correct direction prediction of U for 2022-01-31
+2
+succes rate: 1.0
+
+----------Training round 3--------------
+trainging freqs: {0: Counter({'UUU': 54}), 1: Counter({'UUU': 54}), 2: Counter({'UUU': 54})}
+Months ((datetime.date(2022, 11, 30), Decimal('158531.6262127588')), (datetime.date(2022, 12, 31), Decimal('157695.88336238233')), (datetime.date(2023, 1, 31), Decimal('157162.36022056968')), (datetime.date(2023, 2, 28), Decimal('156973.43737118834')))
+Our prefix is DD, so we test probability between DDD and DDU
+Test month: (datetime.date(2022, 10, 31), Decimal('159367.17546130402'))
+Test month: (datetime.date(2022, 11, 30), Decimal('158531.6262127588'))
+Test month: (datetime.date(2022, 12, 31), Decimal('157695.88336238233'))
+training dict: {'DDD': 0, 'DDU': 0}
+training_dict total months: 0
+DDD probability: 0.50
+DDU probability: 0.50
+DDD points | 3
+DDU points | 2
+We predict DDD
+change value -781.6595248471783333333333333
+Last known price: $157,695.88 | Magnitude: -781.66 | Predicted price: $156,914.22
+Actual price: $157,162.36 | Error: $248.14
+Test case is DDD for 2023-01-31
+Correct direction prediction of D for 2023-01-31
+3
+succes rate: 1.0
+
+===============================================================================================
+Month            Last Known    Magnitude      Predicted         Actual        Error  Dir   OK
+===============================================================================================
+2020-01-31   $   116,218.35 $     733.61 $   116,951.96 $   117,056.73 $     104.77    U    ✓
+2021-01-31   $   131,578.18 $   1,114.45 $   132,692.63 $   134,171.50 $   1,478.87    U    ✓
+2022-01-31   $   149,554.11 $     236.65 $   149,790.75 $   150,769.40 $     978.64    U    ✓
+2023-01-31   $   157,695.88 $    -781.66 $   156,914.22 $   157,162.36 $     248.14    D    ✓
+===============================================================================================
+Success rate: 4/4 (100%)
+MSE:  804,334.44
+RMSE: 896.85
+
+============================================================
+Region: 395107
+============================================================
+[DEBUG] Full set count: 221
+[DEBUG] Training: 2007-08-31 -> 2019-12-31
+[DEBUG] Test:     2020-01-31 -> 2025-12-31
+2019-12-31
+change value -259.248316528528
+change value 258.71177303582
+change value 229.828940353524
+change value -129.470445806282
+change value 460.930214045784
+change value 460.930214045784
+change value 229.828940353524
+change value -162.914116264504
+change value 151.185260034314
+change value 151.185260034314
+change value 151.185260034314
+change value -129.470445806282
+change value -129.470445806282
+change value -129.470445806282
+change value 383.612045623754
+change value 460.930214045784
+change value 460.930214045784
+change value -129.470445806282
+change value -129.470445806282
+change value -129.470445806282
+change value 229.828940353524
+change value 412.334359545168
+change value 460.930214045784
+change value 460.930214045784
+change value 460.930214045784
+change value -129.470445806282
+change value 460.930214045784
+change value 460.930214045784
+change value 460.930214045784
+change value -129.470445806282
+change value 460.930214045784
+change value -129.470445806282
+change value 460.930214045784
+change value 460.930214045784
+change value -129.470445806282
+change value 173.284029436348
+change value 173.284029436348
+change value -129.470445806282
+change value -129.470445806282
+change value -129.470445806282
+change value 460.930214045784
+change value 460.930214045784
+change value -129.470445806282
+change value 460.930214045784
+change value -129.470445806282
+change value 460.930214045784
+change value 460.930214045784
+change value 460.930214045784
+change value -129.470445806282
+change value -129.470445806282
+change value 460.930214045784
+change value 335.670169331938
+change value -129.470445806282
+change value 383.612045623754
+change value 460.930214045784
+change value -129.470445806282
+change value -129.470445806282
+change value 460.930214045784
+change value 460.930214045784
+change value -129.470445806282
+change value -129.470445806282
+change value 460.930214045784
+change value -129.470445806282
+change value 229.828940353524
+change value 229.828940353524
+change value 383.612045623754
+change value 460.930214045784
+change value 460.930214045784
+change value -162.914116264504
+change value -622.855755332058
+change value 460.930214045784
+change value 460.930214045784
+change value 229.828940353524
+change value -162.914116264504
+change value 151.185260034314
+change value 151.185260034314
+change value -129.470445806282
+change value 151.185260034314
+change value 105.161587994352
+change value 151.185260034314
+change value 383.612045623754
+change value -129.470445806282
+change value 460.930214045784
+change value 460.930214045784
+change value -129.470445806282
+change value -129.470445806282
+change value 229.828940353524
+change value -129.470445806282
+change value -129.470445806282
+change value -129.470445806282
+change value 460.930214045784
+change value -129.470445806282
+change value 460.930214045784
+change value 460.930214045784
+change value -129.470445806282
+change value 460.930214045784
+change value -129.470445806282
+change value 460.930214045784
+change value -129.470445806282
+change value -129.470445806282
+change value 335.670169331938
+change value -129.470445806282
+change value -129.470445806282
+change value 412.334359545168
+change value -129.470445806282
+change value -129.470445806282
+change value 460.930214045784
+change value -129.470445806282
+change value 460.930214045784
+change value 460.930214045784
+change value -129.470445806282
+change value 460.930214045784
+change value 460.930214045784
+change value 460.930214045784
+change value 460.930214045784
+change value 460.930214045784
+change value 460.930214045784
+change value 335.670169331938
+change value -129.470445806282
+change value -129.470445806282
+change value 460.930214045784
+change value -129.470445806282
+change value 460.930214045784
+change value 460.930214045784
+change value -129.470445806282
+change value 460.930214045784
+change value 460.930214045784
+change value 460.930214045784
+change value 460.930214045784
+change value 229.828940353524
+change value -129.470445806282
+change value -129.470445806282
+change value -129.470445806282
+change value -129.470445806282
+change value -162.914116264504
+change value -622.855755332058
+change value 151.185260034314
+change value 151.185260034314
+change value 151.185260034314
+change value -129.470445806282
+change value -129.470445806282
+change value -129.470445806282
+change value -129.470445806282
+change value 460.930214045784
+change value 460.930214045784
+change value 460.930214045784
+change value -129.470445806282
+change value 460.930214045784
+change value 229.828940353524
+change value -129.470445806282
+change value -129.470445806282
+change value -129.470445806282
+change value -129.470445806282
+change value -129.470445806282
+change value -129.470445806282
+change value 460.930214045784
+change value -129.470445806282
+change value -129.470445806282
+change value -129.470445806282
+change value -129.470445806282
+change value 460.930214045784
+change value -129.470445806282
+change value 335.670169331938
+change value -129.470445806282
+change value 173.284029436348
+change value -129.470445806282
+change value 460.930214045784
+change value -129.470445806282
+change value 460.930214045784
+change value 460.930214045784
+change value -129.470445806282
+change value 460.930214045784
+change value 460.930214045784
+change value -129.470445806282
+change value -129.470445806282
+change value -129.470445806282
+change value -129.470445806282
+change value 460.930214045784
+change value 460.930214045784
+change value -129.470445806282
+change value 229.828940353524
+change value 383.612045623754
+change value -129.470445806282
+change value -129.470445806282
+change value 460.930214045784
+change value -129.470445806282
+change value 460.930214045784
+change value -129.470445806282
+change value -129.470445806282
+change value 460.930214045784
+change value -129.470445806282
+change value -129.470445806282
+change value 229.828940353524
+change value -129.470445806282
+change value 460.930214045784
+change value 460.930214045784
+change value -162.914116264504
+change value -622.855755332058
+Training frequencies: {0: Counter({'DDD': 16, 'UUU': 3, 'UDD': 2, 'UUD': 1, 'DDU': 1, 'DUD': 1}), 1: Counter({'DDD': 20, 'UDD': 2, 'DDU': 1, 'DUD': 1}), 2: Counter({'DDD': 20, 'DDU': 2, 'DUD': 1, 'UDD': 1})}
+
+----------Training round 0--------------
+trainging freqs: {0: Counter({'DDD': 16, 'UUU': 3, 'UDD': 2, 'UUD': 1, 'DDU': 1, 'DUD': 1}), 1: Counter({'DDD': 20, 'UDD': 2, 'DDU': 1, 'DUD': 1}), 2: Counter({'DDD': 20, 'DDU': 2, 'DUD': 1, 'UDD': 1})}
+Months ((datetime.date(2019, 11, 30), Decimal('136838.8459273832')), (datetime.date(2019, 12, 31), Decimal('137809.0009227039')), (datetime.date(2020, 1, 31), Decimal('138789.0220747698')), (datetime.date(2020, 2, 29), Decimal('139899.19813720437')))
+Our prefix is UU, so we test probability between UUU and UUD
+Test month: (datetime.date(2019, 10, 31), Decimal('135992.33249556698'))
+Test month: (datetime.date(2019, 11, 30), Decimal('136838.8459273832'))
+Test month: (datetime.date(2019, 12, 31), Decimal('137809.0009227039'))
+training dict: {'UUU': 3, 'UUD': 1}
+training_dict total months: 4
+UUU probability: 0.75
+UUD probability: 0.25
+UUU points | 3
+UUD points | 2
+We predict UUU
+change value 817.0825016539733333333333333
+Last known price: $137,809.00 | Magnitude: 817.08 | Predicted price: $138,626.08
+Actual price: $138,789.02 | Error: $162.94
+Test case is UUU for 2020-01-31
+Correct direction prediction of U for 2020-01-31
+0
+succes rate: 1.0
+
+----------Training round 1--------------
+trainging freqs: {0: Counter({'DDD': 16, 'UUU': 3, 'UDD': 2, 'UUD': 1, 'DDU': 1, 'DUD': 1}), 1: Counter({'DDD': 20, 'UDD': 2, 'DDU': 1, 'DUD': 1}), 2: Counter({'DDD': 20, 'DDU': 2, 'DUD': 1, 'UDD': 1})}
+Months ((datetime.date(2020, 11, 30), Decimal('149333.6277516609')), (datetime.date(2020, 12, 31), Decimal('151579.87660221488')), (datetime.date(2021, 1, 31), Decimal('153634.4387774192')), (datetime.date(2021, 2, 28), Decimal('155703.75146549384')))
+Our prefix is UU, so we test probability between UUU and UUD
+Test month: (datetime.date(2020, 10, 31), Decimal('147013.22604052472'))
+Test month: (datetime.date(2020, 11, 30), Decimal('149333.6277516609'))
+Test month: (datetime.date(2020, 12, 31), Decimal('151579.87660221488'))
+training dict: {'UUU': 3, 'UUD': 1}
+training_dict total months: 4
+UUU probability: 0.75
+UUD probability: 0.25
+UUU points | 3
+UUD points | 2
+We predict UUU
+change value 961.51580068854
+Last known price: $151,579.88 | Magnitude: 961.52 | Predicted price: $152,541.39
+Actual price: $153,634.44 | Error: $1,093.05
+Test case is UUU for 2021-01-31
+Correct direction prediction of U for 2021-01-31
+1
+succes rate: 1.0
+
+----------Training round 2--------------
+trainging freqs: {0: Counter({'DDD': 16, 'UUU': 3, 'UDD': 2, 'UUD': 1, 'DDU': 1, 'DUD': 1}), 1: Counter({'DDD': 20, 'UDD': 2, 'DDU': 1, 'DUD': 1}), 2: Counter({'DDD': 20, 'DDU': 2, 'DUD': 1, 'UDD': 1})}
+Months ((datetime.date(2021, 11, 30), Decimal('169543.69002543177')), (datetime.date(2021, 12, 31), Decimal('171086.38059621272')), (datetime.date(2022, 1, 31), Decimal('173647.5338214259')), (datetime.date(2022, 2, 28), Decimal('176905.7651805757')))
+Our prefix is UU, so we test probability between UUU and UUD
+Test month: (datetime.date(2021, 10, 31), Decimal('168851.45930957256'))
+Test month: (datetime.date(2021, 11, 30), Decimal('169543.69002543177'))
+Test month: (datetime.date(2021, 12, 31), Decimal('171086.38059621272'))
+training dict: {'UUU': 3, 'UUD': 1}
+training_dict total months: 4
+UUU probability: 0.75
+UUD probability: 0.25
+UUU points | 5
+UUD points | 0
+We predict UUU
+change value 1001.467364265053333333333333
+Last known price: $171,086.38 | Magnitude: 1,001.47 | Predicted price: $172,087.85
+Actual price: $173,647.53 | Error: $1,559.69
+Test case is UUU for 2022-01-31
+Correct direction prediction of U for 2022-01-31
+2
+succes rate: 1.0
+
+----------Training round 3--------------
+trainging freqs: {0: Counter({'DDD': 16, 'UUU': 3, 'UDD': 2, 'UUD': 1, 'DDU': 1, 'DUD': 1}), 1: Counter({'DDD': 20, 'UDD': 2, 'DDU': 1, 'DUD': 1}), 2: Counter({'DDD': 20, 'DDU': 2, 'DUD': 1, 'UDD': 1})}
+Months ((datetime.date(2022, 11, 30), Decimal('188914.85193751263')), (datetime.date(2022, 12, 31), Decimal('189032.97206304796')), (datetime.date(2023, 1, 31), Decimal('189133.21259852')), (datetime.date(2023, 2, 28), Decimal('189656.08058102787')))
+Our prefix is DU, so we test probability between DUU and DUD
+Test month: (datetime.date(2022, 10, 31), Decimal('188986.3750927817'))
+Test month: (datetime.date(2022, 11, 30), Decimal('188914.85193751263'))
+Test month: (datetime.date(2022, 12, 31), Decimal('189032.97206304796'))
+training dict: {'DUU': 0, 'DUD': 1}
+training_dict total months: 1
+DUU probability: 0.00
+DUD probability: 1.00
+DUU points | 0
+DUD points | 5
+We predict DUD
+change value -94.69316336874166666666666667
+Last known price: $189,032.97 | Magnitude: -94.69 | Predicted price: $188,938.28
+Actual price: $189,133.21 | Error: $194.93
+Test case is DUU for 2023-01-31
+Incorrect prediction
+3
+succes rate: 0.75
+
+===============================================================================================
+Month            Last Known    Magnitude      Predicted         Actual        Error  Dir   OK
+===============================================================================================
+2020-01-31   $   137,809.00 $     817.08 $   138,626.08 $   138,789.02 $     162.94    U    ✓
+2021-01-31   $   151,579.88 $     961.52 $   152,541.39 $   153,634.44 $   1,093.05    U    ✓
+2022-01-31   $   171,086.38 $   1,001.47 $   172,087.85 $   173,647.53 $   1,559.69    U    ✓
+2023-01-31   $   189,032.97 $     -94.69 $   188,938.28 $   189,133.21 $     194.93    D    ✗
+===============================================================================================
+Success rate: 3/4 (75%)
+MSE:  922,979.63
+RMSE: 960.72
+
+
+===========================================================================
+FINAL SUMMARY
+===========================================================================
+Region        Correct   Total   Accuracy            MSE         RMSE
+---------------------------------------------------------------------------
+394463              4       4      100%   1,001,043.74     1,000.52
+394910              4       4      100%   1,331,140.94     1,153.75
+394338              4       4      100%   5,077,369.58     2,253.30
+753899              4       4      100%  10,691,048.75     3,269.72
+394357              3       4       75%   1,965,635.16     1,402.01
+394466              3       4       75%   1,654,304.21     1,286.20
+394596              4       4      100%     804,334.44       896.85
+395107              3       4       75%     922,979.63       960.72
+===========================================================================

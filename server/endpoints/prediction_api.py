@@ -20,7 +20,7 @@ DB_CONFIG = {
     "port": int(os.environ.get("POSTGRES_PORT", 5432)),
     "dbname": os.environ.get("POSTGRES_DB", "real_estate_db"),
     "user": os.environ.get("POSTGRES_USER", "postgres"),
-    "password": os.environ.get("POSTGRES_PASSWORD", "12345"),
+    "password": os.environ.get("POSTGRES_PASSWORD", "devpassword"),
 }
 
 
