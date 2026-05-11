@@ -28,6 +28,8 @@ interface PredictionResult {
 interface PredictionData {
   region_id: number;
   region_name: string;
+  group_size: number;
+  k: number;
   patterns: string[];
   groups: (string | number | null)[][];
   changes: (string | number | null)[][];
@@ -115,7 +117,7 @@ function buildChartData(data: PredictionData, targetMonth: number, targetYear: n
     ? actualEntries.filter((e) => e.date >= startDate! && e.date <= endDate!)
     : actualEntries.slice(Math.max(0, actualEntries.length - 84));
 
-  const merged: ChartPoint[] = windowEntries.map((entry, i) => {
+  const merged: ChartPoint[] = windowEntries.map((entry) => {
     const isProjected = lastRealDate && entry.date > lastRealDate;
     const isTransition = lastRealDate && entry.date === lastRealDate;
     return {
@@ -153,8 +155,12 @@ export default function PredictionDisplay({ regions, years }: PredictionProps) {
   const [data, setData] = useState<PredictionData | null>(null);
   const [loading, setLoading] = useState(false);
   const [predMonth, setPredictionMonth] = useState(-1);
+  const [groupSize, setGroupSize] = useState(4);
+  const [kSize, setKSize] = useState(5);
   const currentYear = new Date().getFullYear();
   const [predYear, setPredictionYear] = useState(currentYear);
+  const groupSizeOptions = [1, 2, 3, 4, 6, 12];
+  const kSizeOptions = [1, 3, 5, 7, 9, 11];
 
   const monthNames = [
     "January", "February", "March", "April",
@@ -172,6 +178,8 @@ export default function PredictionDisplay({ regions, years }: PredictionProps) {
       const params = new URLSearchParams();
       if (predMonth >= 0) params.set("pred_month", String(predMonth + 1));
       if (predYear > 0) params.set("pred_year", String(predYear));
+      params.set("group_size", String(groupSize));
+      params.set("k", String(kSize));
       if (params.toString()) url += `?${params.toString()}`;
 
       const res = await fetch(
@@ -215,9 +223,9 @@ export default function PredictionDisplay({ regions, years }: PredictionProps) {
       <form
         onSubmit={handleFetch}
         autoComplete="off"
-        className="grid grid-cols-1 md:grid-cols-4 gap-6 bg-slate-50 dark:bg-slate-900/50 p-6 rounded-xl border border-slate-200 dark:border-slate-800"
+        className="grid grid-cols-1 md:grid-cols-6 gap-6 bg-slate-50 dark:bg-slate-900/50 p-6 rounded-xl border border-slate-200 dark:border-slate-800"
       >
-        {/*Region, Month, and Year Selectors */}
+        {/* Region, month, year, grouping, and nearest-neighbor selectors */}
         <div className="flex flex-col gap-2 md:col-span-2">
           <label className="text-xs font-bold uppercase text-slate-500">
             Target Region
@@ -261,7 +269,7 @@ export default function PredictionDisplay({ regions, years }: PredictionProps) {
           </select>
         </div>
 
-         <div className="flex flex-col gap-2">
+        <div className="flex flex-col gap-2">
           <label className="text-xs font-bold uppercase text-slate-500">
             Prediction Year
           </label>
@@ -278,6 +286,40 @@ export default function PredictionDisplay({ regions, years }: PredictionProps) {
                   {year}
                 </option>
               ))}
+          </select>
+        </div>
+
+        <div className="flex flex-col gap-2">
+          <label className="text-xs font-bold uppercase text-slate-500">
+            Group Size
+          </label>
+          <select
+            value={groupSize}
+            onChange={(e) => setGroupSize(parseInt(e.target.value))}
+            className="w-full h-10 px-3 rounded-md border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-950 outline-none focus:ring-2 focus:ring-blue-500 transition-all"
+          >
+            {groupSizeOptions.map((size) => (
+              <option key={size} value={size}>
+                {size} {size === 1 ? "month" : "months"}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        <div className="flex flex-col gap-2">
+          <label className="text-xs font-bold uppercase text-slate-500">
+            K Size
+          </label>
+          <select
+            value={kSize}
+            onChange={(e) => setKSize(parseInt(e.target.value))}
+            className="w-full h-10 px-3 rounded-md border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-950 outline-none focus:ring-2 focus:ring-blue-500 transition-all"
+          >
+            {kSizeOptions.map((size) => (
+              <option key={size} value={size}>
+                {size}
+              </option>
+            ))}
           </select>
         </div>
 
@@ -300,6 +342,8 @@ export default function PredictionDisplay({ regions, years }: PredictionProps) {
           <div className="grid grid-cols-2 md:grid-cols-6 gap-4">
             {[
               { label: "Filter", value: predMonth >= 0 ? monthNames[predMonth] : "All Months", color: "text-blue-600" },
+              { label: "Group Size", value: `${data.group_size} ${data.group_size === 1 ? "month" : "months"}`, color: "text-blue-600" },
+              { label: "K Size", value: data.k, color: "text-blue-600" },
               { label: "Prediction Target", value: predictionTarget ?? "N/A", color: "text-blue-600" },
               { label: "Correct", value: data.accuracy_summary.correct, color: "text-emerald-600" },
               { label: "Wrong", value: data.accuracy_summary.wrong, color: "text-rose-500" },

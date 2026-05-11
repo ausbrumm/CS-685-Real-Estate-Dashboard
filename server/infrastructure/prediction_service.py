@@ -13,6 +13,8 @@ months = list(calendar.month_name)[1:]
 
 class PredictionService:
     def run(self, data, start=0, group_size=4, repeats=9, k=5, pred_date=None):
+        self.validate_group_size(group_size)
+        self.validate_k(k)
 
         data = sorted(data, key=lambda e: e[0])
 
@@ -27,8 +29,6 @@ class PredictionService:
             data = self.chain_predictions(
                 data, pred_date, start, group_size, repeats, k
             )
-
-        print(last_real_date)
 
         if len(data) < group_size:
             return (
@@ -103,10 +103,13 @@ class PredictionService:
 
         frequencies = {}
 
-        # calculate the frequencies
-        for p in [0, 4, 8]:
-            frequencies[p // group_size] = self.get_frequencies(
-                change_hist, group_size, p
+        groups_per_year = 12 // group_size
+        group_starts = range(0, 12, group_size)
+
+        # calculate the frequencies for each position within the year
+        for group_index, start_month in enumerate(group_starts):
+            frequencies[group_index] = self.get_frequencies(
+                change_hist, group_size, start_month
             )
 
         month = 0
@@ -121,8 +124,8 @@ class PredictionService:
 
         # calculate the start date offset
         groups_offset = next(i for i, g in enumerate(groups) if g[0] >= start_date)
-        for s in range(1, (12 // group_size)):
-            years = 0
+        prediction_cycles = max(1, groups_per_year - 1)
+        for step in range(prediction_cycles):
             for i in range(month, z):
                 predictions = defaultdict(int)
                 idx = i
@@ -135,7 +138,7 @@ class PredictionService:
 
                 for _ in range(repeats):
                     letter = self.predict_change(
-                        change_curr_year, frequencies[s - 1], patterns, idx, group_size
+                        change_curr_year, frequencies[step], patterns, idx, group_size
                     )
                     predictions[letter] += 1
 
@@ -166,7 +169,7 @@ class PredictionService:
                     else:
                         wrong += 1
 
-            month = month + 4
+            month += group_size
 
         total = correct + wrong
         accuracy = correct / total if total > 0 else 0.0
@@ -194,6 +197,16 @@ class PredictionService:
             error_band,
             last_real_date,
         )
+
+    @staticmethod
+    def validate_group_size(group_size):
+        if group_size <= 0 or 12 % group_size != 0:
+            raise ValueError("group_size must be a positive divisor of 12")
+
+    @staticmethod
+    def validate_k(k):
+        if k <= 0 or k >= 12 or k % 2 == 0:
+            raise ValueError("k must be an odd positive integer less than 12")
 
     def create_groups(self, entries, start=0, group_size=4, k=6):
         """
@@ -261,16 +274,14 @@ class PredictionService:
         # counter to store the change frequencies of the patterns
         freq = Counter()
 
-        # for each roup
-        for i in range(1, y // group_size):
-            pattern = ""
-            # p is 0, 4, and 8... is this just starting point for quartering the data?
-            curr_group = p + i  # p + current group
+        start_offset = p // group_size
 
-            # look the the range of current quarter (?) + group size
-            for j in range(curr_group, curr_group + group_size):
-                pattern += changes[j][2]  # create the pattern
-            freq[pattern] += 1  # store off in the counter
+        # walk fully-indexable windows aligned to the selected within-year group offset
+        for curr_group in range(start_offset + 1, y - group_size + 1, group_size):
+            pattern = "".join(
+                changes[j][2] for j in range(curr_group, curr_group + group_size)
+            )
+            freq[pattern] += 1
         return freq
 
     def predict_change(self, change_curr_year, frequency, patterns, index, group_size):

@@ -41,6 +41,8 @@ class PredictionResult(BaseModel):
 class PredictionResponse(BaseModel):
     region_id: int
     region_name: str
+    group_size: int
+    k: int
     patterns: List[str]
     groups: List[List[Any]]
     changes: List[List[Any]]
@@ -61,6 +63,8 @@ async def get_prediction(
     region_id: int,
     pred_month: Optional[int] = None,
     pred_year: Optional[int] = None,
+    group_size: int = Query(4),
+    k: int = Query(5),
 ):
     """
     Fetches data for a specific region from Postgres and runs the Prediction Service.
@@ -79,7 +83,6 @@ async def get_prediction(
 
         for r in rows:
             data.append([r[5], r[6]])  # date, price
-        print(data)
         region_name = rows[0][3]
 
         # run prediction service
@@ -92,6 +95,12 @@ async def get_prediction(
             pred_date = dt.date(year, month, last_day)
 
         pred_service = PredictionService()
+        try:
+            pred_service.validate_group_size(group_size)
+            pred_service.validate_k(k)
+        except ValueError as exc:
+            raise HTTPException(status_code=422, detail=str(exc)) from exc
+
         (
             results,
             patterns,
@@ -102,7 +111,9 @@ async def get_prediction(
             acc_summary,
             error_bands,
             last_real_date,
-        ) = pred_service.run(data, pred_date=pred_date)
+        ) = pred_service.run(
+            data, group_size=group_size, k=k, pred_date=pred_date
+        )
 
         # handle edge case where prediction service returns no results
         if not results:
@@ -114,6 +125,8 @@ async def get_prediction(
         return {
             "region_id": region_id,
             "region_name": region_name,
+            "group_size": group_size,
+            "k": k,
             "patterns": patterns,
             "groups": [[str(g[0]), float(g[1]), g[2]] for g in groups],
             "changes": [[str(c[0]), float(c[1]), c[2]] for c in changes],

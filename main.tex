@@ -1,0 +1,181 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{booktabs} 
+\usepackage{float}
+
+\title{Housing Market Prediction}
+\author{Austin Brummett \and David Lakes }
+\date{April 2026}
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction}
+The residential real-estate market in the United States is one of the largest asset groups in the world. Accurate short-term home price forecasts are valuable for prospective home buyers who are evaluating affordability, real-estate agents advising clients, and private equity managing their portfolios. Providing predicted ranges from one to twelve months in the future allows for more accurate planning for those groups.
+
+In this project, we explore using a pattern-based time series forecasting approach developed by authors in [1]. The core idea is to discretize monthly price changes into binary directional symbols ("U" for up, "D" for down), identify recurring multi-month patterns, and use the historical frequency of those patterns to predict the future. Magnitude is estimated to allow the performance of a \textit{k}-nearest neighbor search over the historical changes.
+
+The prediction system is implemented using an end-to-end web application. A Python FastAPI back end fetches and stores the Zillow ZHVI residential data \cite{zillow} in  PostgreSQL, runs the prediction algorithm, and exposes the result using a REST API. The front end is a Next.js front end that renders interactive charts and dashboards for historical and predicted data. For predictions, the charts allow the user to select any metro area, prediction month, and target year.
+\subsection{Problem Statement}
+\textbf{Input}: Monthly average residential real-estate data for the last 26 years at the for individual cities within states and a national average. We used Chicago, IL as our test case.\\
+\textbf{Output}: Forecast residential real-estate prices for each month in the future.\\
+\textbf{Objective} The primary aim of this project is to predict US residential real-estate prices for next months by:
+\begin{enumerate}
+    \item Analyzing historical monthly real-estate fluctuations to identify underlying patterns.
+    \item Predicting price changes using change-direction prediction model combined with the Euclidean Distance algorithm to predict both the direction and the magnitude of the price shift.
+\item Validating the model with historical and predicted values and measuring accuracy.
+\end{enumerate}
+
+\section{Methodology/ Algorithms }
+
+For the methodology, the prediction method we used was provided by Dr. Arash Raifey and Nathan Awuku Amoako for our approach in predicting future residential real-estate prices.
+The prediction pipeline is built out of four main stages: grouping, changes, pattern-frequency estimation, and KNN magnitude estimation.
+\subsection{Grouping}
+The raw monthly observations are partitioned into non-overlapping groups of \textit{m} consecutive months (default \textit{m} = 4, corresponding \textit{roughly} to quarters). Each observation is assigned a group index with a start offset of \textit{s}:
+    
+\[
+g_i = \left\lfloor \frac{(\text{month}(t_i) - 1 - s) \bmod 12}{m} \right\rfloor
+\]
+
+\subsection{Changes}
+For each observation from the second group onward, a directional change is computed:
+\[
+\delta_i = p_i - p_{i-1}, \qquad
+c_i =
+\begin{cases}
+\texttt{U} & \text{if } \delta_i > 0,\\
+\texttt{D} & \text{otherwise}.
+\end{cases}
+\]
+This yields a binary symbolic sequence over the entire time series to be used in the pattern estimation.
+\subsection{Pattern-Frequency Estimation}
+All possible pattern strings of length $m$ are enumerated (e.g., for $m=4$: \texttt{DDD}, \texttt{DDU}, \ldots, \texttt{UUU}---$2^m-1 = 8$ patterns in total).
+ 
+For each quarter offset $q \in \{0,1,2\}$ (corresponding to months 0--3, 4--7, and 8--11 within each year), a frequency table $F$ is built by scanning the training portion of the change sequence and counting occurrences of each length-$m$ pattern.
+ 
+To predict direction at test index $i$:
+ 
+\begin{enumerate}
+  \item Extract the partial pattern $p_i$ from the most recent $m-2$ known changes.
+  \item Form two candidate completions: $p_D = p + \texttt{D}$ and $p_U = p +\texttt{U}$.
+  \item Look up their frequencies $f_D = F(p_D)$ and $f_U = F_q(p_U)$ (with a floor of 1 to avoid zero probabilities).
+  \item Draw a uniform random number $x \sim \mathcal{U}(0,1)$; predict \texttt{D} if $x \leq f_D / (f_D + f_U)$, otherwise \texttt{U}.
+\end{enumerate}
+ 
+Since this prediction is stochastic, it is repeated $R$ times (default $R=9$), and the majority vote is taken as the final directional prediction.
+\subsection{\textit{k}-Nearest Neighbor Magnitude Estimation}
+Once the directional prediction is determined, the magnitude of the price change is estimated using a k-nearest neighbor approach over the historical change sequence.  The historical changes are partitioned into  non-overlapping windows (non-overlapping months) of size \textit{m}. For each historical window \textit{j}, a difference vector 
+$\mathbf{d}_j \in \mathbf{R}^m$ is constructed where each component $d_j^{(\ell)}$ is the raw price change at position $\ell$ within that window. 
+
+
+The Euclidean distance between historical window j and the current observation window beginning at index \textit{i} is computed as  $\text{dist}(j, i) = \sqrt{\sum_{t=1}^{m-1} \left( d_j^{(t)} - \delta_{i+t} \right)^2}$  where $\delta_{i+t}$ is the raw price change at position \textit{i} + \textit{t} in the test sequence.
+
+Candidate windows are filtered to retain only those whose final change $d_j^{(m-1)}$ matches the predicted direction (negative for D, non-negative for U). The \textit{k} candidates with smallest distance are selected, and the estimated magnitude is the mean of their final changes: 
+\[
+\hat{\mu} = \frac{1}{k} \sum_{j \in \mathcal{N}_k} d_j^{(m-1)}
+\] The predicted price is then:
+\[
+\hat{p} = p_{last} + |\hat{\mu}| \cdot 
+\begin{cases} 
++1 & \text{if predicted U} \\ 
+-1 & \text{if predicted D} 
+\end{cases}
+\]
+Where $p_{last}$ is the most recent known price. If no direction-matching candidates exist, the magnitude defaults to zero. 
+\subsection{Chained Forecasting} 
+When the target prediction date extends beyond the last available real data point, the model uses chained forecasting to iteratively extend the time series. Starting from the last known date, the full prediction pipeline is run on the current data, and the resulting predicted price for the next month is appended to the data as if it were an observed value. This process repeats month by month until the target date is reached. 
+
+Formally, let $p_{T}$ be the last known price at time T.  For each subsequent month T+1, T+2,..., the predicted price $\hat{p}_{T+n}$ is computed using all data up to T+n-1, then appended to the series: 
+\[
+\hat{p}_{T+n} = \hat{p}_{T+n-1} + |\hat{\mu}_{T+n}| \cdot 
+\begin{cases} 
++1 & \text{if predicted U} \\ 
+-1 & \text{if predicted D} 
+\end{cases}
+\] Each chained prediction thus depends on all previous predictions, meaning prediction error compounds with forecast horizon. This is an inherent limitation of the approach. 
+
+\section{Results/Experiment}
+This section presents the evaluation results of the housing price prediction model across two experimental phases: (1) an initial test using seasonal groupings to predict prices for the next month in the data set, and (2) a broader application of the model to an extended test period, in this case for the months from February 2026 to December 2026. Performance is reported in terms of directional accuracy (the percentage of months for which the model correctly predicted whether prices would increase or decrease) and the Mean Squared Error (MSE) of the predicted price magnitudes.  
+
+The model was evaluated against eight U.S. metropolitan areas using Zillow ZHVI (Zillow Home Value Index) data, with data prior to January 2020 used for training and January 2020 through December 2025 used for testing. Each region was tested across four prediction rounds, targeting  January of 2020, 2021, 2022, and 2023 respectively, yielding 32 total predictions. 
+
+\subsection{Group Size and KNN Sensitivity}
+We tested group sizes $m \in \{1,2,3,4,6,12\}$ and odd KNN values $k \in \{1,3,5,7,9,11\}$ for each of the eight metro areas. The results show that group size is substantially more important than the choice of $k$. In seven of the eight regions, $m=1$ gave the highest average directional accuracy, with especially strong results in Cincinnati, Chicago, South Bend, Flint, Bakersfield, and Asheville. Los Angeles also performed best at $m=1$, though with a smaller margin. New Orleans was the only exception, where no setting materially outperformed chance. Across all runs, the difference between tested $k$ values was negligible, with $k=11$ producing the highest average directional accuracy by only a fraction of a percentage point. These findings suggest that preserving month-level transitions is more valuable than aggregating observations into larger temporal blocks.
+
+Chicago illustrates this pattern clearly. As shown in Table 1, the month-level grouping ($m=1$) substantially outperformed all larger group sizes, reaching a directional accuracy above 81\% regardless of the selected $k$. Once the group size increased beyond 1, directional accuracy dropped to roughly 50\%, while the bound accuracy varied more gradually. This indicates that for Chicago the grouping choice dominated the forecast outcome, while the KNN parameter mainly affected the predicted magnitude range rather than the directional signal itself.
+
+\begin{center}
+\begin{tabular}{cccccc}
+\hline
+\textbf{Group Size} & \textbf{Best $k$} & \textbf{Pred Acc} & \textbf{Bound Acc} & \textbf{Dir} & \textbf{Pct Change} \\ \hline
+1 & 9 & 81.52\% & 67.21\% & D & -0.47\% \\
+2 & 5 & 50.52\% & 71.00\% & D & -0.03\% \\
+3 & 7 & 50.52\% & 67.38\% & U & 0.08\% \\
+4 & 7 & 50.28\% & 67.89\% & D & -0.09\% \\
+6 & 11 & 50.30\% & 68.74\% & D & -0.40\% \\
+12 & 7 & 50.43\% & 58.95\% & U & 0.35\% \\ \hline
+\end{tabular}
+\end{center}
+  
+\subsection{Summary} 
+Across all eight regions, the model achieved an overall directional accuracy of 30/32 (93.75\%). The two incorrect predictions occurred in Bakersfield, CA and South Bend, IN, both in the January 2023 round. Magnitude errors were small across all regions, with RMSE ranging from \$897 (Flint, MI) to \$3,270 (Los Angeles, CA), reflecting the KNN estimator's ability to closely approximate price changes from historical patterns. 
+\begin{center}
+\begin{tabular}{lcccc}
+\hline
+\textbf{Region} & \textbf{Correct} & \textbf{Total} & \textbf{Accuracy} & \textbf{RMSE} \\ \hline
+Chicago, IL & 4 & 4 & 100\% & \$1,001 \\
+New Orleans, LA & 4 & 4 & 100\% & \$1,154 \\
+Asheville, NC & 4 & 4 & 100\% & \$2,253 \\
+Los Angeles, CA & 4 & 4 & 100\% & \$3,270 \\
+Bakersfield, CA & 3 & 4 & 75\% & \$1,402 \\
+Cincinnati, OH & 3 & 4 & 75\% & \$1,286 \\
+Flint, MI & 4 & 4 & 100\% & \$897 \\
+South Bend, IN & 3 & 4 & 75\% & \$961 \\ \hline
+\end{tabular}
+\end{center}
+The highest RMSE in Los Angeles is expected given its substantially higher home values relative to other metros. The two directional misses in the January 2023 round both involved DD prefix patterns with no historical training examples, forcing the model to fall back on a 50/50 probability split. 
+
+South Bend, IN is a notable case: its ZHVI data only begins in August 2007, coinciding with the onset of the housing crisis. As a result, its frequencies were heavily D-dominated (\textit{DDD: 16, UUU: 3)}, causing the model to learn from a predominantly declining market. Despite this, it achieved 75\% directional accuracy on a test period that was almost entirely upward, suggesting the pattern-frequency approach generalizes reasonably across different market regimes. 
+
+\subsection{Chained Forecasting}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\linewidth]{image.png}
+    \caption{Prediction up to December 2026 in Chicago, IL}
+    \label{fig:chicago-december}
+\end{figure}
+The web application was used to evaluate the chained forecasting capability using Chicago, IL as a test case, targeting December 2026. In this mode, the model iteratively appends predicted prices to the data series month by month, using each prediction as input for the next. Over 140 total monthly predictions, the model achieved a directional accuracy of 74/140 (52.9\%), with an RMSE of \$3,841.
+The web application was used to evaluate the chained forecasting capability using Chicago, IL as a test case, targeting December 2026. In this mode, the model iteratively appends predicted prices to the data series month by month, using each prediction as input for the next. Over 140 total monthly predictions, the model achieved a directional accuracy of  74/140 (52.9\%), with an RMSE of \$3,841.
+
+As shown in Figure 1, the predicted price tracks the general upward trend of the actual price series, with the RMSE error band capturing the actual prices within its bounds for most of the test period. The decline in accuracy relative to the single-step evaluation (94.75\%) is expected - chained forecasting compounds prediction error with each step, and directional errors early in the sequence propagate forward. The RMSE of \$3,841 remains relatively modest given Chicago's price range of roughly \$250,000-\$340,000 over the period, representing an error of approximately 1.3\%. 
+
+
+\section{Conclusion and Future Work}
+This project demonstrates that a pattern-frequency approach combined with KNN magnitude estimation can produce short-term forecasts of residential real-estate prices. After evaluation across eight U.S. metropolitan areas the model achieved 93.75\% directional accuracy on single month predictions, with RMSE values remaining within each region's price range. These results suggest that the binary symbolic encoding of monthly changes captures structural queues in the data, even across markets with price levels and historical patterns.
+
+The chained forecasting evaluation in Chicago, IL revealed the primary limitation of this approach, that is, the prediction error compounds with the the forecast horizon. Directional accuracy falls to 52.9\% over 140 chained steps, though the RMSE of \$3,841 remained within the observed price range, indicating that despite the directional discrepancy the magnitude estimations were still within range as accuracy errors occurred. Future work could address the latter and following limitations in several ways:
+
+\begin{enumerate}
+    \item \textbf{Insufficient Date and Quality Issues}: The data used in the experiment was built based on the Zillow ZHVI dataset which only provides a monthly average per region, with a region being either the United States as a whole or a specific city and state combination dating back to 2000. This lead to roughly 240 total data points with six years of the data being reserved for the test set. It would be beneficial to look into a dataset that dates farther back to get a clearer track on patterns since the dataset used goes through two financial upheavals in the United States, the 2008 housing market crash and COVID in 2020. 
+    
+    \item \textbf{Reliance on Price as a Sole Indicator}: By incorporating other indicators such as mortgage rates, inflation percentages, or employment data as additional features might improve the directional accuracy over longer horizons and create a more accurate model in short-term predictions. Additionally, a rolling window for training of the frequency table instead of a fixed cutoff might allow the model to adapt more responsively to shifting markets, such as the rapid rise from 2020 to 2022.
+
+    \item  \textbf{Reliance on Historical Patterns}: The model heavily depends on past residential real-estate price patterns to predict future prices. However, historical data may not always accurately predict future fluctuations, particularly in volatile environments. External factors, such as natural disasters, global events, or policy changes, could dramatically impact residential real-estate prices in ways that historical patterns cannot foresee.
+    
+\end{enumerate}
+Overall, the results validate the core methodology as a lightweight and interpretable forecasting model wrapped in a web-based tool. Its performance makes it well-suited for near-term applications, while the chained forecasting provides directionality that is reasonable for long horizon outlooks when the uncertainty bounds are considered.
+
+\paragraph{Doing better job in predicting the magnitude:} We have used the basic K-NN algorithm for predicting the magnitude of changes. However, one could look at the data available (the ones that are compatible with the current pattern) and use other machine learning algorithm (e.g., regression, random) to see if we can improve the forecast.  
+
+\begin{thebibliography}{40}
+\bibitem{nathan} N.A.Amoako, A. Rafiey, N.N Wawre. U.S. Gas Price Forecasting: A New Approach to Time Series Prediction. {\em Fist Annual conference ©2026 BCET Symposium 2026}.
+\bibitem{zillow}
+Zillow, Inc. \textit{Zillow Home Value Index (ZHVI): Methodology}.
+Zillow Research, 2024. Available at: \texttt{https://www.zillow.com/research/data/}.
+Accessed: January 2026.
+
+\end{thebibliography}
+\end{document}
+    
